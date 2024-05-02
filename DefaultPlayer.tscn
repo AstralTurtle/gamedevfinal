@@ -1,24 +1,49 @@
-[gd_scene load_steps=3 format=3 uid="uid://51mmhsm1phc"]
+[gd_scene load_steps=9 format=3 uid="uid://51mmhsm1phc"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_euqxq"]
+[ext_resource type="Script" path="res://AbilityInput.cs" id="2_72vyn"]
+[ext_resource type="Script" path="res://DefaultA1.cs" id="3_shdv2"]
+[ext_resource type="Script" path="res://DefaultA2.cs" id="4_kxdk1"]
+[ext_resource type="Script" path="res://DefaultA3.cs" id="5_3oemp"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v1enc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh6du"]
 size = Vector2(16, 20)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_002ey"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="DefaultPlayer" type="CharacterBody2D"]
+script = ExtResource("1_euqxq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(20, 30)
 texture = SubResource("PlaceholderTexture2D_v1enc")
 
 [node name="Abilities" type="Node2D" parent="."]
+script = ExtResource("2_72vyn")
 
-[node name="Ability1Manager" type="Node2D" parent="Abilities"]
+[node name="Ability1" type="Node2D" parent="Abilities"]
+script = ExtResource("3_shdv2")
 
-[node name="Ability2Manager" type="Node2D" parent="Abilities"]
+[node name="Ability2" type="Node2D" parent="Abilities"]
+script = ExtResource("4_kxdk1")
 
-[node name="Ability3Manager" type="Node2D" parent="Abilities"]
+[node name="Ability3" type="Node2D" parent="Abilities"]
+script = ExtResource("5_3oemp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_yh6du")
+
+[node name="ModiferManager" type="Node2D" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_002ey")
+
+[connection signal="Ability1" from="Abilities" to="Abilities/Ability1" method="OnActivated"]
+[connection signal="Ability2" from="Abilities" to="Abilities/Ability2" method="OnActivated"]
+[connection signal="Ability3" from="Abilities" to="Abilities/Ability3" method="OnActivated"]
