@@ -59,7 +59,7 @@ public partial class AbilityInput : Node2D
 			else GD.Print("Ability 2 is on cooldown");
 		}
 		else if (@event.IsActionReleased("ability_3"))
-		{
+		{	
 			if (a3cdt >= a3cd)
 			{
 				EmitSignal(SignalName.Ability3);
