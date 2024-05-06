@@ -22,23 +22,26 @@ public partial class RogueA2 : Node2D
 		warp.setPlayer(player);
 		
 		warp.Position = player.Position;
-		warp.Position += new Vector2(0, -50);
+		
 
 		warp.RotationDegrees = 0;
 
 		// copy player velocity
-		
+		warp.inheritVelocity((player as CharacterBody2D).Velocity);
 
 			 	
 		
 		GetTree().Root.AddChild(warp);
 		
 		Vector2 mpos = GetViewport().GetMousePosition();
-		GD.Print(mpos);
+		//GD.Print(mpos);
 
 		Vector2 dir = mpos - GetGlobalTransformWithCanvas().Origin;
 		dir = dir.Normalized();
-		GD.Print(dir);
+		// GD.Print(dir);
+
+		warp.Position += new Vector2(25, 25) * dir;
+
 		warp.throwWarp(dir);
 
 	}

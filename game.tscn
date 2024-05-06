@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://tyefdx00unju"]
+[gd_scene load_steps=9 format=3 uid="uid://tyefdx00unju"]
 
 [ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://PlayerClasses/Rogue/RoguePlayer.tscn" id="1_68se5"]
-[ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://ParallaxBackground/Sky.png" id="2_m6scr"]
-[ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://ParallaxBackground/DownLayer.png" id="3_tfeov"]
-[ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://ParallaxBackground/MiddleLayer.png" id="4_6xg8v"]
-[ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://ParallaxBackground/TopLayer.png" id="5_4w3p0"]
-[ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://ParallaxBackground/Light.png" id="6_q04yx"]
+[ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_m6scr"]
+[ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://Assets/ParallaxBackground/DownLayer.png" id="3_tfeov"]
+[ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_6xg8v"]
+[ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_4w3p0"]
+[ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_q04yx"]
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Enemies/Default/DefaultEnemy.tscn" id="7_ny1nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30smm"]
 size = Vector2(3394, 115)
@@ -19,6 +20,7 @@ position = Vector2(-79, 587)
 shape = SubResource("RectangleShape2D_30smm")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 follow_viewport_scale = 2.0
@@ -80,3 +82,9 @@ texture = ExtResource("6_q04yx")
 centered = false
 
 [node name="RoguePlayer" parent="." instance=ExtResource("1_68se5")]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="DefaultEnemy" parent="." instance=ExtResource("7_ny1nq")]
+position = Vector2(235, 503)

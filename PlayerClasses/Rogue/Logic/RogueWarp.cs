@@ -34,6 +34,11 @@ public partial class RogueWarp : Node2D
 		// rb.Freeze = false;
 	}
 
+	public void inheritVelocity(Vector2 vel){
+		if (rb == null) rb = GetNode<RigidBody2D>("RigidBody2D");
+		rb.LinearVelocity = vel;
+	}
+
 	public void OnCollisionEntered(Node body){
 		player.Position = rb.Position;
 		QueueFree();

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmym7v4d50lg3"]
+
+[ext_resource type="Texture2D" uid="uid://bhbq4apo7smiq" path="res://Assets/dagger_ [iron].png" id="1_qq4bc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4phok"]
+atlas = ExtResource("1_qq4bc")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ets1w"]
+atlas = ExtResource("1_qq4bc")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p84tk"]
+atlas = ExtResource("1_qq4bc")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifsl1"]
+atlas = ExtResource("1_qq4bc")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l27rf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4phok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ets1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p84tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifsl1")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 15.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l27rf")
+animation = &"new_animation"
+frame_progress = 0.557374
