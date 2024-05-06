@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyx6kvdwhcm1x"]
+
+[ext_resource type="PackedScene" uid="uid://bdu5pik362yxc" path="res://ConnectionMenu.tscn" id="1_xwixy"]
+[ext_resource type="PackedScene" uid="uid://dh456kim1riy4" path="res://CharacterSelect.tscn" id="2_s52pj"]
+
+[node name="Lobby" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConnectionMenu" parent="." instance=ExtResource("1_xwixy")]
+
+[node name="CharacterSelect" parent="." instance=ExtResource("2_s52pj")]
