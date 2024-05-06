@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://51mmhsm1phc"]
+[gd_scene load_steps=16 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/AbilityInput.cs" id="2_iddi7"]

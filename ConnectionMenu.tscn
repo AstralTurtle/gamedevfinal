@@ -1,10 +1,13 @@
-[gd_scene format=3 uid="uid://bdu5pik362yxc"]
+[gd_scene load_steps=2 format=3 uid="uid://bdu5pik362yxc"]
+
+[ext_resource type="Script" path="res://GameLogic/Multiplayer/ConnectionMenu.cs" id="1_vl8l1"]
 
 [node name="ConnectionMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_vl8l1")
 
 [node name="HostButton" type="Button" parent="."]
 layout_mode = 0
@@ -15,8 +18,12 @@ offset_bottom = 448.0
 text = "Host"
 
 [node name="JoinButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 416.0
 offset_top = 256.0
 offset_right = 736.0
 offset_bottom = 320.0
 text = "Join"
+
+[connection signal="button_down" from="HostButton" to="." method="OnHostPressed"]
+[connection signal="button_down" from="JoinButton" to="." method="OnJoinPressed"]
