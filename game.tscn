@@ -88,3 +88,5 @@ spawn_path = NodePath("..")
 
 [node name="DefaultEnemy" parent="." instance=ExtResource("7_ny1nq")]
 position = Vector2(235, 503)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
