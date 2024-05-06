@@ -1,2 +1,5 @@
-# Godot 4+ specific ignores
+# Godot folder
 .godot/
+
+# Visual Studio Code folder
+.vscode/
