@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GameLogic/Multiplayer/lobby.gd" id="1_oisnw"]
 [ext_resource type="PackedScene" uid="uid://bdu5pik362yxc" path="res://ConnectionMenu.tscn" id="1_xwixy"]
-[ext_resource type="PackedScene" path="res://CharacterSelect.tscn" id="2_s52pj"]
+[ext_resource type="PackedScene" uid="uid://dh456kim1riy4" path="res://CharacterSelect.tscn" id="2_s52pj"]
 [ext_resource type="Script" path="res://GameLogic/Multiplayer/HostHelper.cs" id="3_xy64d"]
 [ext_resource type="Script" path="res://GameLogic/Multiplayer/JoinHelper.cs" id="4_mswu2"]
 
@@ -25,8 +25,19 @@ script = ExtResource("3_xy64d")
 script = ExtResource("4_mswu2")
 
 [node name="CharacterSelect" parent="." instance=ExtResource("2_s52pj")]
+visible = false
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 1.0
 
 [connection signal="getCode" from="." to="ConnectionMenu/HostHelper" method="getCode"]
 [connection signal="getIP" from="." to="ConnectionMenu/JoinHelper" method="checkCode"]
+[connection signal="openLobby" from="." to="ConnectionMenu" method="openLobby"]
+[connection signal="openLobby" from="." to="CharacterSelect" method="openLobby"]
+[connection signal="succesfulConnection" from="." to="." method="connectionSuccess"]
+[connection signal="updatePlayerCount" from="." to="CharacterSelect" method="updatePlayerCountText"]
+[connection signal="upnp_completed" from="." to="." method="_on_upnp_completed"]
 [connection signal="OnHost" from="ConnectionMenu" to="." method="hostGame"]
 [connection signal="OnJoin" from="ConnectionMenu" to="." method="joinGame"]
+[connection signal="onHostLocal" from="ConnectionMenu" to="." method="hostLocal"]
+[connection signal="onJoinLocal" from="ConnectionMenu" to="." method="joinLocal"]

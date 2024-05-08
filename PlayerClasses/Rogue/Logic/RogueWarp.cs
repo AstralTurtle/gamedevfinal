@@ -40,7 +40,15 @@ public partial class RogueWarp : Node2D
 	}
 
 	public void OnCollisionEntered(Node body){
-		player.Position = rb.Position;
+		GD.Print();
+		GD.Print("Positions: " +rb.Position + "vs" + player.Position + "vs" + Position);
+				
+		
+		Node2D colShape = GetNode<Node2D>("RigidBody2D/CollisionShape2D");
+		GD.Print("colShape: " + colShape.GetGlobalTransformWithCanvas().Origin);
+		player.Position = colShape.GlobalPosition;
+		GD.Print("Real Movement: " + player.Position);
+
 		QueueFree();
 		// GD.Print(GetParent().Name);
 	}

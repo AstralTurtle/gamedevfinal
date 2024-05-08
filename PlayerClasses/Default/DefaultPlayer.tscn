@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://nqicemm0nxbm"]
+[gd_scene load_steps=17 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/AbilityInput.cs" id="2_iddi7"]
+[ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultAnimationController.cs" id="2_kupsx"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultA1.cs" id="3_f2u74"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultA2.cs" id="4_qr3ps"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultA3.cs" id="5_s8po0"]
@@ -12,10 +13,10 @@
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/HealthBar.cs" id="10_ouvhn"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/HealthLabel.cs" id="11_dhy4n"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v1enc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b3icr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh6du"]
-size = Vector2(16, 20)
+size = Vector2(8, 12)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_002ey"]
 properties/0/path = NodePath(".:position")
@@ -23,7 +24,10 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 properties/1/path = NodePath(".:health")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
+properties/2/path = NodePath("Sprite2D:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 2
 
 [sub_resource type="LabelSettings" id="LabelSettings_ne4ii"]
 font_size = 8
@@ -33,9 +37,10 @@ outline_color = Color(0, 0, 0, 1)
 [node name="DefaultPlayer" type="CharacterBody2D"]
 script = ExtResource("1_gjsnu")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(20, 30)
-texture = SubResource("PlaceholderTexture2D_v1enc")
+sprite_frames = SubResource("SpriteFrames_b3icr")
+script = ExtResource("2_kupsx")
 
 [node name="Abilities" type="Node2D" parent="."]
 script = ExtResource("2_iddi7")
@@ -72,7 +77,9 @@ position_smoothing_enabled = true
 position_smoothing_speed = 25.0
 script = ExtResource("8_jr32c")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Camera2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
 offset_left = -379.0
 offset_top = -144.0
 offset_right = -339.0
@@ -81,7 +88,7 @@ step = 0.0
 fill_mode = 4
 script = ExtResource("9_e8fxm")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
 offset_left = -27.0
 offset_top = -26.0
 offset_right = 28.0
@@ -89,7 +96,7 @@ offset_bottom = -18.0
 show_percentage = false
 script = ExtResource("10_ouvhn")
 
-[node name="Label" type="Label" parent="ProgressBar"]
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = -1.0
@@ -99,12 +106,13 @@ text = "100"
 label_settings = SubResource("LabelSettings_ne4ii")
 script = ExtResource("11_dhy4n")
 
-[connection signal="HealthChanged" from="." to="ProgressBar" method="OnHealthChanged"]
-[connection signal="HealthChanged" from="." to="ProgressBar/Label" method="OnHealthChanged"]
-[connection signal="A2CDChanged" from="Abilities" to="Camera2D/TextureProgressBar" method="updateCooldown"]
+[connection signal="HealthChanged" from="." to="CanvasLayer/ProgressBar" method="OnHealthChanged"]
+[connection signal="HealthChanged" from="." to="CanvasLayer/ProgressBar/Label" method="OnHealthChanged"]
+[connection signal="triggerAnimation" from="." to="Sprite2D" method="triggerAnim"]
+[connection signal="A2CDChanged" from="Abilities" to="CanvasLayer/TextureProgressBar" method="updateCooldown"]
 [connection signal="Ability1" from="Abilities" to="Abilities/Ability1" method="OnActivated"]
 [connection signal="Ability2" from="Abilities" to="Abilities/Ability2" method="OnActivated"]
 [connection signal="Ability3" from="Abilities" to="Abilities/Ability3" method="OnActivated"]
 [connection signal="PrimaryAttack" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
 [connection signal="SecondaryAttack" from="Abilities" to="Abilities/SecondaryAttack" method="OnActivated"]
-[connection signal="setA2CD" from="Abilities" to="Camera2D/TextureProgressBar" method="setCooldown"]
+[connection signal="setA2CD" from="Abilities" to="CanvasLayer/TextureProgressBar" method="setCooldown"]

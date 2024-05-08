@@ -10,15 +10,23 @@ signal getCode(ip)
 
 signal openLobby
 
+signal updatePlayerCount(num)
 
 const api = "https://webserver-zgik.onrender.com/"
 
 var onHostCode 
 var upnp
-var thread = null
+# var thread = null
 
 const PORT = 11423
 
+# export("int")
+var numPlayers = 1;
+
+
+var players = {
+
+}
 
 func _upnp_setup(server_port):
 	# UPNP queries take some time.
@@ -36,27 +44,67 @@ func _upnp_setup(server_port):
 		emit_signal("upnp_completed", OK)
 
 func _ready():
-	thread = Thread.new()
-	thread.call_deferred("_upnp_setup",PORT)
+	multiplayer.connected_to_server.connect(connected)
+	multiplayer.peer_connected.connect(onPeerConnected)
 
 
-func _exit_tree():
-	# Wait for thread finish here to handle game exit while the thread is running.
-	thread.wait_to_finish()
+
+func onPeerConnected(id):
+	numPlayers += 1
+	emit_signal("updatePlayerCount", numPlayers)
+	players[id] = -1
+
+@rpc("any_peer", "call_local", "reliable")
+func testRPC():
+	print("RPC called")
 
 
 # Called when the node enters the scene tree for the first time.
 func hostGame():
 	_upnp_setup(PORT)
 
+func hostLocal():
+	var server = ENetMultiplayerPeer.new()
+	server.create_server(PORT, 4)
+	multiplayer.multiplayer_peer = server
+	print("Hosting game @")
+	print(IP.get_local_addresses()[0] + ":" + str(PORT))
+	print(IP.get_local_addresses())
+	emit_signal("openLobby")
+	numPlayers = 1
+	emit_signal("updatePlayerCount", numPlayers)
+	
 
-func _on_upnp_completed(error):
+func joinLocal(ip):
+	
+	var client = ENetMultiplayerPeer.new()
+	var err = client.create_client(ip, PORT)
+
+
+	if (err == OK ):
+		multiplayer.multiplayer_peer = client
+		print(client)
+		emit_signal("openLobby")
+	else:
+		print("Error connecting to server")
+		print(err)
+
+
+func connected():
+	print("Connected to server")
+	rpc("testRPC")
+	rpc("connectionSuccess")	
+
+	
+
+
+func _on_upnp_completed(_error):
 	var server = ENetMultiplayerPeer.new()
 	server.create_server(PORT, 4)
 	print("Hosting game @")
 	print(PORT)
 	print(upnp.query_external_address())
-	getCode.emit(upnp.query_external_address())
+	getCode.emit(upnp.query_external_address() + ":" + PORT)
 
 	
 func joinGame(code):
@@ -69,3 +117,12 @@ func onCodeReceived(code):
 	print("Code received")
 	print(code)
 	onHostCode = code
+
+@rpc("any_peer", "call_local", "reliable")
+func selectCharacter(index):
+	if (index in players.values()):
+		return 
+	players[multiplayer.get_rpc_sender_id()] = index
+
+func sendCharacterSelect(index):
+	rpc("selectCharacter", index)

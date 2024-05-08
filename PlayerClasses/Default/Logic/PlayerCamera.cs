@@ -7,7 +7,11 @@ public partial class PlayerCamera : Camera2D
 	public override void _Ready()
 	{
 		if(IsMultiplayerAuthority()){
+			
 			Enabled = true;
+			GD.Print(GetViewport());
+			MakeCurrent();
+		
 		} else {
 			Enabled = false;
 		}

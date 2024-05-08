@@ -1,7 +1,34 @@
-[gd_scene format=3 uid="uid://dh456kim1riy4"]
+[gd_scene load_steps=3 format=3 uid="uid://dh456kim1riy4"]
+
+[ext_resource type="Script" path="res://CharacterSelect.cs" id="1_s0mxo"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xp6e8"]
+properties/0/path = NodePath("PlayerCount:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="CharacterSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_s0mxo")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 1.0
+replication_config = SubResource("SceneReplicationConfig_xp6e8")
+
+[node name="PlayerCount" type="Label" parent="."]
+layout_mode = 0
+offset_right = 87.0
+offset_bottom = 70.0
+text = "Players 
+Connected"
+
+[node name="Label" type="Label" parent="PlayerCount"]
+visible = false
+layout_mode = 0
+offset_left = 86.0
+offset_top = -1.0
+offset_right = 173.0
+offset_bottom = 69.0

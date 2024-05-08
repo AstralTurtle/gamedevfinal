@@ -23,11 +23,10 @@ public partial class RogueSecondaryAttack : Node2D
 		
 
 			 	
-		
+		// dagger
 		GetTree().Root.AddChild(dagger);
 
 		Vector2 mpos = GetViewport().GetMousePosition();
-		GD.Print(mpos);
 
 		Vector2 dir = mpos - GetGlobalTransformWithCanvas().Origin;
 		dir = dir.Normalized();
