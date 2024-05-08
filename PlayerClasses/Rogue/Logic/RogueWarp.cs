@@ -9,26 +9,41 @@ public partial class RogueWarp : Node2D
 	[Export]
 	float speed = 500;
 
+	const float rotSpeed = 3.14f * 5;
 	public void setPlayer(Node2D p){
 		player = p;
 	}
+
+	Sprite2D sprite;
+
 
 
 	public override void _Ready()
 	{
 		rb = GetNode<RigidBody2D>("RigidBody2D");
+		sprite = GetNode<Sprite2D>("RigidBody2D/Sprite2D");
 		// rb.ApplyImpulse(new Vector2)e
 	}
 
 	// Debug
 	public override void _Process(double delta){
+		
+		sprite.Rotate(rotSpeed * (float)delta);
 		// GD.Print(rb.LinearVelocity);
 		// GD.Print()
 		// GD.Print(rb.Position + "vs" + Position);	
 		// GD.Print(rb.GetCollidingBodies()); 		 		 
 	}
 
-	public void throwWarp(Vector2 dir){
+
+    public override void _PhysicsProcess(double delta)
+    {
+		
+        // base._PhysicsProcess(delta);
+    }
+
+
+    public void throwWarp(Vector2 dir){
 		
 		rb.ApplyImpulse(dir * speed);
 		// rb.Freeze = false;
@@ -40,12 +55,9 @@ public partial class RogueWarp : Node2D
 	}
 
 	public void OnCollisionEntered(Node body){
-		GD.Print();
-		GD.Print("Positions: " +rb.Position + "vs" + player.Position + "vs" + Position);
-				
+
 		
 		Node2D colShape = GetNode<Node2D>("RigidBody2D/CollisionShape2D");
-		GD.Print("colShape: " + colShape.GetGlobalTransformWithCanvas().Origin);
 		player.Position = colShape.GlobalPosition;
 		GD.Print("Real Movement: " + player.Position);
 

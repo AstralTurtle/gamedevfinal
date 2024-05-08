@@ -245,3 +245,17 @@ script = ExtResource("5_845r1")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 6)
 scale = Vector2(2, 2)
+
+[node name="CanvasLayer" parent="." index="6"]
+follow_viewport_enabled = false
+
+[node name="CooldownIcon1" parent="CanvasLayer/Cooldowns" index="0"]
+layout_mode = 0
+
+[node name="CooldownIcon2" parent="CanvasLayer/Cooldowns" index="1"]
+layout_mode = 0
+
+[node name="CooldownIcon3" parent="CanvasLayer/Cooldowns" index="2"]
+layout_mode = 0
+
+[connection signal="setCooldowns" from="Abilities" to="CanvasLayer/Cooldowns" method="setCooldowns"]

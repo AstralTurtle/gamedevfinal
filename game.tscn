@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://tyefdx00unju"]
+[gd_scene load_steps=9 format=3 uid="uid://tyefdx00unju"]
 
 [ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://PlayerClasses/Rogue/RoguePlayer.tscn" id="1_68se5"]
 [ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_m6scr"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_6xg8v"]
 [ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_4w3p0"]
 [ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_q04yx"]
-[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Enemies/Default/DefaultEnemy.tscn" id="7_ny1nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30smm"]
 size = Vector2(3394, 115)
@@ -93,10 +92,5 @@ centered = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
-
-[node name="DefaultEnemy" parent="." instance=ExtResource("7_ny1nq")]
-position = Vector2(235, 503)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [connection signal="triggerAnimation" from="RoguePlayer" to="RoguePlayer/Sprite2D" method="_on_default_player_trigger_animation"]

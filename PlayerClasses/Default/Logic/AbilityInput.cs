@@ -34,17 +34,10 @@ public partial class AbilityInput : Node2D
 	public delegate void SecondaryAttackEventHandler();
 
 	[Signal]
-	public delegate void A1CDChangedEventHandler(float val);
+	public delegate void updateCooldownsEventHandler(float[] cooldowns);
+
 	[Signal]
-	public delegate void A2CDChangedEventHandler(float val);
-	[Signal]
-	public delegate void A3CDChangedEventHandler(float val);
-	[Signal]
-	public delegate void setA1CDEventHandler(float cd);
-	[Signal]
-	public delegate void setA2CDEventHandler(float cd);
-	[Signal]
-	public delegate void setA3CDEventHandler(float cd);
+	public delegate void setCooldownsEventHandler(float[] cooldown);
 
 
 	public override void _Process(double delta)
@@ -52,18 +45,14 @@ public partial class AbilityInput : Node2D
 		a1cdt += (float)delta;
 		a2cdt += (float)delta;
 		a3cdt += (float)delta;
-		EmitSignal(SignalName.A1CDChanged, a1cdt);
-		EmitSignal(SignalName.A2CDChanged, a2cdt);
-		EmitSignal(SignalName.A3CDChanged, a3cdt);
+		EmitSignal(SignalName.updateCooldowns, new float[] { a1cdt, a2cdt, a3cdt });
 
 		// base._Process(delta);
 	}
 
     public override void _Ready()
     {
-		EmitSignal(SignalName.setA1CD, a1cd);
-		EmitSignal(SignalName.setA2CD, a2cd);
-		EmitSignal(SignalName.setA3CD, a3cd);
+		EmitSignal(SignalName.setCooldowns, new float[] { a1cd, a2cd, a3cd });
 
         base._Ready();
     }
