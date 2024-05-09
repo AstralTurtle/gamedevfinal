@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://balcxa7is4rwl"]
+[gd_scene load_steps=35 format=3 uid="uid://balcxa7is4rwl"]
 
 [ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://PlayerClasses/Default/DefaultPlayer.tscn" id="1_30s0c"]
 [ext_resource type="Texture2D" uid="uid://djwqg7j7n0me4" path="res://Assets/thief_.png" id="2_ot125"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://PlayerClasses/Rogue/RogueAnimationController.cs" id="3_a7e08"]
 [ext_resource type="Script" path="res://PlayerClasses/Rogue/Logic/RogueA2.cs" id="3_rmc66"]
 [ext_resource type="Script" path="res://PlayerClasses/Rogue/Logic/RogueA3.cs" id="4_7b7eh"]
+[ext_resource type="Texture2D" uid="uid://bdx6wqebp2us1" path="res://Assets/Joker_1.png" id="4_fnugq"]
 [ext_resource type="Script" path="res://PlayerClasses/Rogue/Logic/RogueSecondaryAttack.cs" id="5_845r1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8b5nn"]
@@ -230,6 +231,9 @@ animation = &"run"
 autoplay = "idle"
 script = ExtResource("3_a7e08")
 
+[node name="Abilities" parent="." index="1"]
+abilityIcons = [null, ExtResource("4_fnugq"), null]
+
 [node name="Ability1" parent="Abilities" index="0"]
 script = ExtResource("2_udeqv")
 
@@ -245,17 +249,3 @@ script = ExtResource("5_845r1")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 6)
 scale = Vector2(2, 2)
-
-[node name="CanvasLayer" parent="." index="6"]
-follow_viewport_enabled = false
-
-[node name="CooldownIcon1" parent="CanvasLayer/Cooldowns" index="0"]
-layout_mode = 0
-
-[node name="CooldownIcon2" parent="CanvasLayer/Cooldowns" index="1"]
-layout_mode = 0
-
-[node name="CooldownIcon3" parent="CanvasLayer/Cooldowns" index="2"]
-layout_mode = 0
-
-[connection signal="setCooldowns" from="Abilities" to="CanvasLayer/Cooldowns" method="setCooldowns"]

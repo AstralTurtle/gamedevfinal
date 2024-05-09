@@ -1,18 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://nqicemm0nxbm"]
+[gd_scene load_steps=17 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/AbilityInput.cs" id="2_iddi7"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultAnimationController.cs" id="2_kupsx"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultA1.cs" id="3_f2u74"]
+[ext_resource type="PackedScene" uid="uid://cbsp8tdj30huu" path="res://AbilityHUD.tscn" id="4_lhccp"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultA2.cs" id="4_qr3ps"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultA3.cs" id="5_s8po0"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultPrimaryAttack.cs" id="6_cwcoy"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/DefaultSecondaryAttack.cs" id="7_qu54q"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/PlayerCamera.cs" id="8_jr32c"]
-[ext_resource type="Script" path="res://PlayerClasses/Default/Logic/CooldownIcon.cs" id="9_e8fxm"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/HealthBar.cs" id="10_ouvhn"]
 [ext_resource type="Script" path="res://PlayerClasses/Default/Logic/HealthLabel.cs" id="11_dhy4n"]
-[ext_resource type="Script" path="res://PlayerClasses/Default/CooldownIconManager.cs" id="12_artn0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3icr"]
 
@@ -46,6 +45,7 @@ script = ExtResource("2_kupsx")
 [node name="Abilities" type="Node2D" parent="."]
 scale = Vector2(0.95179, 1.03501)
 script = ExtResource("2_iddi7")
+AbilityHUD = ExtResource("4_lhccp")
 
 [node name="Ability1" type="Node2D" parent="Abilities"]
 script = ExtResource("3_f2u74")
@@ -79,10 +79,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 25.0
 script = ExtResource("8_jr32c")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+[node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -27.0
 offset_top = -26.0
 offset_right = 28.0
@@ -90,7 +87,7 @@ offset_bottom = -18.0
 show_percentage = false
 script = ExtResource("10_ouvhn")
 
-[node name="Label" type="Label" parent="CanvasLayer/ProgressBar"]
+[node name="Label" type="Label" parent="ProgressBar"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = -1.0
@@ -100,53 +97,9 @@ text = "100"
 label_settings = SubResource("LabelSettings_ne4ii")
 script = ExtResource("11_dhy4n")
 
-[node name="Cooldowns" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("12_artn0")
-
-[node name="CooldownIcon1" type="TextureProgressBar" parent="CanvasLayer/Cooldowns"]
-offset_left = -1516.0
-offset_top = -576.0
-offset_right = -1476.0
-offset_bottom = -536.0
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 4
-script = ExtResource("9_e8fxm")
-
-[node name="CooldownIcon2" type="TextureProgressBar" parent="CanvasLayer/Cooldowns"]
-offset_left = -379.0
-offset_top = -144.0
-offset_right = -339.0
-offset_bottom = -104.0
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 4
-script = ExtResource("9_e8fxm")
-
-[node name="CooldownIcon3" type="TextureProgressBar" parent="CanvasLayer/Cooldowns"]
-offset_left = -758.0
-offset_top = -288.0
-offset_right = -718.0
-offset_bottom = -248.0
-max_value = 1.0
-step = 0.0
-value = 1.0
-fill_mode = 4
-script = ExtResource("9_e8fxm")
-
-[connection signal="HealthChanged" from="." to="CanvasLayer/ProgressBar" method="OnHealthChanged"]
-[connection signal="HealthChanged" from="." to="CanvasLayer/ProgressBar/Label" method="OnHealthChanged"]
 [connection signal="triggerAnimation" from="." to="Sprite2D" method="triggerAnim"]
 [connection signal="Ability1" from="Abilities" to="Abilities/Ability1" method="OnActivated"]
 [connection signal="Ability2" from="Abilities" to="Abilities/Ability2" method="OnActivated"]
 [connection signal="Ability3" from="Abilities" to="Abilities/Ability3" method="OnActivated"]
 [connection signal="PrimaryAttack" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
 [connection signal="SecondaryAttack" from="Abilities" to="Abilities/SecondaryAttack" method="OnActivated"]
-[connection signal="setCooldowns" from="Abilities" to="CanvasLayer/Cooldowns" method="setCooldowns"]
-[connection signal="updateCooldowns" from="Abilities" to="CanvasLayer/Cooldowns" method="updateCooldown"]

@@ -27,6 +27,10 @@ var numPlayers = 1;
 var players = {
 
 }
+ 
+var gameScene = preload("res://game.tscn").instantiate()
+
+
 
 func _upnp_setup(server_port):
 	# UPNP queries take some time.
@@ -72,6 +76,7 @@ func hostLocal():
 	print(IP.get_local_addresses())
 	emit_signal("openLobby")
 	numPlayers = 1
+	players[1] = -1
 	emit_signal("updatePlayerCount", numPlayers)
 	
 
@@ -88,6 +93,10 @@ func joinLocal(ip):
 	else:
 		print("Error connecting to server")
 		print(err)
+
+
+
+
 
 
 func connected():
@@ -118,11 +127,38 @@ func onCodeReceived(code):
 	print(code)
 	onHostCode = code
 
+func onCharacterSelectCharacterChosen(index):
+	print("any signals???")
+	rpc("selectCharacter", index)
+
 @rpc("any_peer", "call_local", "reliable")
 func selectCharacter(index):
-	if (index in players.values()):
+	print("Character selected" + str(index))
+	if (index != -1 && index in players.values()):
+		print("Character already selected")
+		print(players)
 		return 
-	players[multiplayer.get_rpc_sender_id()] = index
+	players[multiplayer.get_remote_sender_id()] = index
+	print(players)
 
-func sendCharacterSelect(index):
-	rpc("selectCharacter", index)
+
+
+func StartGamePressed():
+
+	if (-1 in players.values()):
+		print("Not all players have selected a character")
+		return
+	print(players)
+	rpc("GameStart")
+	pass # Replace with function body.
+
+@rpc("any_peer", "call_local", "reliable")
+func GameStart():
+	# emit_signal("gameStart")
+	#delete the uis
+	get_node("ConnectionMenu").queue_free()
+	get_node("CharacterSelect").queue_free()
+	# add game scene
+	# get_tree().change_scene("res://scenes/Game.tscn")
+	get_tree().root.add_child(gameScene)	
+	pass # Replace with function body.

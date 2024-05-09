@@ -38,7 +38,14 @@ public partial class AbilityInput : Node2D
 
 	[Signal]
 	public delegate void setCooldownsEventHandler(float[] cooldown);
+	[Signal]
+	public delegate void setAbilityIconsEventHandler(Texture2D[] icons);
 
+	[Export]
+	Texture2D[] abilityIcons = new Texture2D[3];
+
+	[Export]
+	PackedScene AbilityHUD;
 
 	public override void _Process(double delta)
 	{
@@ -46,13 +53,25 @@ public partial class AbilityInput : Node2D
 		a2cdt += (float)delta;
 		a3cdt += (float)delta;
 		EmitSignal(SignalName.updateCooldowns, new float[] { a1cdt, a2cdt, a3cdt });
+		
 
 		// base._Process(delta);
 	}
 
     public override void _Ready()
     {
-		EmitSignal(SignalName.setCooldowns, new float[] { a1cd, a2cd, a3cd });
+		AbilityHUD hud = AbilityHUD.Instantiate<AbilityHUD>();
+		// SignalName.setCooldowns += hud.triggerSetCooldowns;
+		hud.triggerSetCooldowns(new float[] { a1cd, a2cd, a3cd });
+		hud.triggerSetCooldownIcons(abilityIcons);
+
+		GetTree().Root.CallDeferred("add_child", hud);
+
+
+		// hud.Connect(SignalName.updateCooldowns, new Callable(hud,"triggerUpdateCooldowns" ) );
+		// EmitSignal(SignalName.setCooldowns, new float[] { a1cd, a2cd, a3cd });
+		// EmitSignal(SignalName.setAbilityIcons, abilityIcons);
+
 
         base._Ready();
     }
@@ -61,6 +80,7 @@ public partial class AbilityInput : Node2D
     public override void _Input(InputEvent @event)
 	{
 		if (!IsMultiplayerAuthority()) return;
+		
 		if (@event.IsActionReleased("ability_1"))
 		{
 			if (a1cdt >= a1cd)
@@ -103,6 +123,8 @@ public partial class AbilityInput : Node2D
 			GD.Print("Secondary Attack");
 		}
 	}
+
+	
 
 
 }
