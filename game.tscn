@@ -92,5 +92,3 @@ centered = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
-
-[connection signal="triggerAnimation" from="RoguePlayer" to="RoguePlayer/Sprite2D" method="_on_default_player_trigger_animation"]

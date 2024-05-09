@@ -54,8 +54,8 @@ public partial class Player : CharacterBody2D
 		EmitSignal(SignalName.HealthChanged, health);		
 	}
 
-    public override void _Input(InputEvent @event)
-    {		
+	public override void _Input(InputEvent @event)
+	{		
 		if (!IsMultiplayerAuthority()) return;
 		if (@event.IsAction("ui_down")){
 			GD.Print(Position);
@@ -64,12 +64,12 @@ public partial class Player : CharacterBody2D
 					// Rpc("takeDamage", 10.0f);
 
 		}
-        // base._Input(@event);
-    }	
+		// base._Input(@event);
+	}	
 
 
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		if (!IsMultiplayerAuthority()) return;
 		Vector2 velocity = Velocity;
