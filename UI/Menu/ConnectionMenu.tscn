@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdu5pik362yxc"]
 
 [ext_resource type="Script" path="res://Services/Multiplayer/ConnectionMenu.cs" id="1_vl8l1"]
-[ext_resource type="Script" path="res://PopupText.cs" id="2_2krv8"]
+[ext_resource type="Script" path="res://UI/Components/PopupText.cs" id="2_2krv8"]
 
 [node name="ConnectionMenu" type="Control"]
 layout_mode = 3

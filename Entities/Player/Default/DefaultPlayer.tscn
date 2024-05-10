@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/AbilityInput.cs" id="2_iddi7"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultAnimationController.cs" id="2_kupsx"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA1.cs" id="3_f2u74"]
-[ext_resource type="PackedScene" uid="uid://cbsp8tdj30huu" path="res://AbilityHUD.tscn" id="4_lhccp"]
+[ext_resource type="PackedScene" uid="uid://cbsp8tdj30huu" path="res://UI/HUD/Abilities.tscn" id="4_lhccp"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA2.cs" id="4_qr3ps"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA3.cs" id="5_s8po0"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultPrimaryAttack.cs" id="6_cwcoy"]

@@ -1,12 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cbsp8tdj30huu"]
+[gd_scene load_steps=2 format=3 uid="uid://cbsp8tdj30huu"]
 
-[ext_resource type="Script" path="res://AbilityHUD.cs" id="1_0k6rq"]
-[ext_resource type="Script" path="res://Entities/Player/Default/CooldownIconManager.cs" id="2_3vvq8"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/CooldownIcon.cs" id="3_egnwo"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 follow_viewport_enabled = true
-script = ExtResource("1_0k6rq")
 
 [node name="Cooldowns2" type="Control" parent="."]
 layout_mode = 3
@@ -15,7 +12,6 @@ offset_left = -375.0
 offset_top = -300.0
 offset_right = -335.0
 offset_bottom = -260.0
-script = ExtResource("2_3vvq8")
 metadata/_edit_use_anchors_ = true
 
 [node name="CooldownIcon1" type="TextureProgressBar" parent="Cooldowns2"]
@@ -51,7 +47,3 @@ step = 0.0
 value = 1.0
 fill_mode = 4
 script = ExtResource("3_egnwo")
-
-[connection signal="setCooldownIcons" from="." to="Cooldowns2" method="_on_canvas_layer_set_cooldown_icons"]
-[connection signal="setCooldowns" from="." to="Cooldowns2" method="setCooldowns"]
-[connection signal="updateCooldowns" from="." to="Cooldowns2" method="updateCooldown"]

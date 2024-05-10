@@ -22,8 +22,6 @@ public partial class CharacterSelect : Control
 	
 	}
 
-
-
 	// mr passthrough himself
 	public void triggerStartGamePressed(){
 		if (!IsMultiplayerAuthority()) return;
@@ -40,9 +38,5 @@ public partial class CharacterSelect : Control
 		GD.Print(index);
 		EmitSignal(SignalName.selectCharacter, index);
 	}
-
-
-
-
 }
 

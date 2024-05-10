@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dh456kim1riy4"]
 
-[ext_resource type="Script" path="res://CharacterSelect.cs" id="1_s0mxo"]
+[ext_resource type="Script" path="res://Services/Multiplayer/CharacterSelect.cs" id="1_s0mxo"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xp6e8"]
 properties/0/path = NodePath("PlayerCount:text")
