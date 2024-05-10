@@ -1,11 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://tyefdx00unju"]
 
-[ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://PlayerClasses/Rogue/RoguePlayer.tscn" id="1_68se5"]
-[ext_resource type="Script" path="res://GameManager.cs" id="1_78ml8"]
 [ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_m6scr"]
 [ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://Assets/ParallaxBackground/DownLayer.png" id="3_tfeov"]
 [ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_6xg8v"]
 [ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_4w3p0"]
+[ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://Entities/Player/Rogue/RoguePlayer.tscn" id="6_dw7cg"]
 [ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_q04yx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30smm"]
@@ -98,6 +97,11 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_q04yx")
 centered = false
 
+<<<<<<< HEAD
+=======
+[node name="RoguePlayer" parent="." instance=ExtResource("6_dw7cg")]
+
+>>>>>>> affdec7c0cf04468ebd8845d5fd2b2f90c5d26a1
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://PlayerClasses/Rogue/RoguePlayer.tscn", "res://PlayerClasses/Rogue/Scenes/RogueWarp.tscn", "res://PlayerClasses/Rogue/Scenes/RogueWarp.tscn")
 spawn_path = NodePath("..")

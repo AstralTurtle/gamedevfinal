@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdu5pik362yxc"]
+
+[ext_resource type="Script" path="res://Services/Multiplayer/ConnectionMenu.cs" id="1_vl8l1"]
+[ext_resource type="Script" path="res://UI/Components/PopupText.cs" id="2_2krv8"]
+
+[node name="ConnectionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vl8l1")
+
+[node name="HostButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 384.0
+offset_right = 736.0
+offset_bottom = 448.0
+text = "Host"
+
+[node name="JoinButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 256.0
+offset_right = 736.0
+offset_bottom = 320.0
+text = "Join"
+
+[node name="CodeInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 789.0
+offset_top = 266.0
+offset_right = 935.0
+offset_bottom = 304.0
+placeholder_text = "Enter Game Code"
+
+[node name="HostLocal" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = 604.0
+offset_top = 504.0
+offset_right = 764.0
+offset_bottom = 568.0
+text = "Host Local"
+
+[node name="JoinLocal" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.3
+anchor_top = -6.125
+anchor_right = -1.3
+anchor_bottom = -6.125
+offset_left = 420.0
+offset_top = 757.0
+offset_right = 580.0
+offset_bottom = 821.0
+text = "Join Local"
+
+[node name="TextEdit" type="LineEdit" parent="JoinLocal"]
+layout_mode = 0
+offset_left = -160.0
+offset_bottom = 64.0
+placeholder_text = "Enter IP"
+script = ExtResource("2_2krv8")
+
+[connection signal="button_down" from="HostButton" to="." method="OnHostPressed"]
+[connection signal="button_down" from="JoinButton" to="." method="OnJoinPressed"]
+[connection signal="button_down" from="HostLocal" to="." method="onHostLocalPressed"]
+[connection signal="button_down" from="JoinLocal" to="JoinLocal/TextEdit" method="popup"]
+[connection signal="text_submitted" from="JoinLocal/TextEdit" to="." method="onJoinLocalPressed"]

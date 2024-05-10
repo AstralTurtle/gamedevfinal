@@ -1,0 +1,95 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh456kim1riy4"]
+
+[ext_resource type="Script" path="res://Services/Multiplayer/CharacterSelect.cs" id="1_s0mxo"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xp6e8"]
+properties/0/path = NodePath("PlayerCount:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s0mxo")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_interval = 1.0
+replication_config = SubResource("SceneReplicationConfig_xp6e8")
+
+[node name="PlayerCount" type="Label" parent="."]
+layout_mode = 0
+offset_right = 87.0
+offset_bottom = 70.0
+text = "Players 
+Connected"
+
+[node name="Label" type="Label" parent="PlayerCount"]
+visible = false
+layout_mode = 0
+offset_left = 86.0
+offset_top = -1.0
+offset_right = 173.0
+offset_bottom = 69.0
+
+[node name="Rogue" type="Button" parent="."]
+layout_mode = 0
+offset_left = 904.0
+offset_top = 248.0
+offset_right = 1088.0
+offset_bottom = 472.0
+text = "Rogue"
+
+[node name="Warrior" type="Button" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 256.0
+offset_right = 234.0
+offset_bottom = 472.0
+text = "Warrior
+(WIP - Gives you
+ Rogue)"
+
+[node name="Ramged" type="Button" parent="."]
+layout_mode = 0
+offset_left = 344.0
+offset_top = 256.0
+offset_right = 514.0
+offset_bottom = 472.0
+text = "Ranged 
+(WIP - Gives you
+ Rogue)"
+
+[node name="Support" type="Button" parent="."]
+layout_mode = 0
+offset_left = 624.0
+offset_top = 256.0
+offset_right = 794.0
+offset_bottom = 472.0
+text = "Support 
+(WIP - Gives you
+ Rogue)"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 88.0
+offset_right = 735.0
+offset_bottom = 168.0
+text = "Deselect"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 536.0
+offset_right = 679.0
+offset_bottom = 609.0
+text = "Start"
+
+[connection signal="pressed" from="Rogue" to="." method="triggerCharacterChosen" binds= [3]]
+[connection signal="pressed" from="Warrior" to="." method="triggerCharacterChosen" binds= [0]]
+[connection signal="pressed" from="Ramged" to="." method="triggerCharacterChosen" binds= [1]]
+[connection signal="pressed" from="Support" to="." method="triggerCharacterChosen" binds= [2]]
+[connection signal="pressed" from="Button" to="." method="triggerCharacterChosen" binds= [-1]]
+[connection signal="pressed" from="Button2" to="." method="triggerStartGamePressed"]
