@@ -8,7 +8,7 @@ public partial class RogueA2 : Node2D
 
 	public override void _Ready()
 	{
-		WarpProjectile = GD.Load<PackedScene>("res://PlayerClasses/Rogue/Scenes/RogueWarp.tscn");
+		WarpProjectile = GD.Load<PackedScene>("res://Entities/Player/Rogue/Scenes/RogueWarp.tscn");
 		GD.Print("RogueA2 ready");
 		GD.Print(WarpProjectile);
 	}

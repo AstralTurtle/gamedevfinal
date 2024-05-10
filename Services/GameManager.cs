@@ -24,11 +24,13 @@ public partial class GameManager : Node2D
 	}
 
 	public void spawnAllPlayers(){
+		GD.Print(playerPrefabs);
 		Variant[] playerID = players.Keys.ToArray();
 		// int[] playerIDs = (int[])playerID; // Cast playerID to int[]
 		for(int i = 0; i < players.Count; i++){
 			int currentPlayerID = playerID[i].As<int>();
 			// cursed gdscript to c# conversion
+			GD.Print(playerPrefabs[i]);
 			Player player = playerPrefabs[players[currentPlayerID].As<int>()].Instantiate<Player>();
 			// player.triggerMultiplayerAuthority(currentPlayerID);
 			player.SetMultiplayerAuthority(currentPlayerID);

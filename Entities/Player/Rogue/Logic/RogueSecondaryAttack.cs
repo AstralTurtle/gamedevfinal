@@ -6,7 +6,7 @@ public partial class RogueSecondaryAttack : Node2D
 	[Export]
 	PackedScene secondaryAttack;
 	public  override void _Ready() {
-		secondaryAttack = GD.Load<PackedScene>("res://PlayerClasses/Rogue/Scenes/DaggerThrow.tscn");
+		secondaryAttack =  GD.Load<PackedScene>("res://Entities/Player/Rogue/Scenes/DaggerThrow.tscn");
 	}
 
 	public void OnActivated() {

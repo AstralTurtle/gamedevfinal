@@ -5,9 +5,6 @@ public partial class CharacterSelect : Control
 {
 	[Signal]
 	public delegate void selectCharacterEventHandler(int character);
-	
-	[Export]
-	PackedScene[] characterScenes = new PackedScene[4];
 
 	[Signal]
 	public delegate void StartGamePressedEventHandler();

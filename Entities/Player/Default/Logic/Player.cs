@@ -23,6 +23,8 @@ public partial class Player : CharacterBody2D
 	public float health = 100.0f;
 	[Signal]
 	public delegate void HealthChangedEventHandler(float health);
+	[Signal]
+	public delegate void onAuthChangedEventHandler(int id);
 
 	[Signal]
 	public delegate void PlayerDiedEventHandler();
@@ -67,6 +69,8 @@ public partial class Player : CharacterBody2D
 	public void setAuth(int id){
 		GD.Print("setAuth");
 		SetMultiplayerAuthority(id, true);
+		EmitSignal(SignalName.onAuthChanged, id);
+
 	}
 
     public override void _Input(InputEvent @event)
@@ -83,17 +87,11 @@ public partial class Player : CharacterBody2D
     }	
 
 
-	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
-	public void testPrint(){
-		GD.Print("Name: "+ Name + " Auth: "+GetMultiplayerAuthority());
-	}
-
-
     public override void _PhysicsProcess(double delta)
 	{
 		
 		if (!IsMultiplayerAuthority()) return;
-		Rpc("testPrint");
+
 		Vector2 velocity = Velocity;
 
 		wasOnFloor = IsOnFloor();

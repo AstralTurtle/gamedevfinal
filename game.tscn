@@ -1,11 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://tyefdx00unju"]
 
-[ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_m6scr"]
-[ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://Assets/ParallaxBackground/DownLayer.png" id="3_tfeov"]
-[ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_6xg8v"]
-[ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_4w3p0"]
-[ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://Entities/Player/Rogue/RoguePlayer.tscn" id="6_dw7cg"]
-[ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_q04yx"]
+[ext_resource type="Script" path="res://Services/GameManager.cs" id="1_ek3bk"]
+[ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://Entities/Player/Rogue/RoguePlayer.tscn" id="2_hsmnt"]
+[ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_tv8bg"]
+[ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://Assets/ParallaxBackground/DownLayer.png" id="3_0ip7e"]
+[ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_u5q1y"]
+[ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_h4ai3"]
+[ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_dh25t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_30smm"]
 size = Vector2(3394, 115)
@@ -13,9 +14,9 @@ size = Vector2(3394, 115)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_l8mfk"]
 
 [node name="Game" type="Node2D"]
-position = Vector2(0, -1)
-script = ExtResource("1_78ml8")
-playerPrefabs = [ExtResource("1_68se5"), ExtResource("1_68se5"), ExtResource("1_68se5"), ExtResource("1_68se5")]
+position = Vector2(0, -2)
+script = ExtResource("1_ek3bk")
+playerPrefabs = [ExtResource("2_hsmnt"), ExtResource("2_hsmnt"), ExtResource("2_hsmnt"), ExtResource("2_hsmnt")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-17, -461)
@@ -46,7 +47,7 @@ motion_mirroring = Vector2(162, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
 position = Vector2(-185, -52)
 scale = Vector2(2, 2)
-texture = ExtResource("2_m6scr")
+texture = ExtResource("2_tv8bg")
 centered = false
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -58,7 +59,7 @@ motion_mirroring = Vector2(162, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(-185, -52)
 scale = Vector2(2, 2)
-texture = ExtResource("3_tfeov")
+texture = ExtResource("3_0ip7e")
 centered = false
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -70,7 +71,7 @@ motion_mirroring = Vector2(162, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
 position = Vector2(-185, -52)
 scale = Vector2(2, 2)
-texture = ExtResource("4_6xg8v")
+texture = ExtResource("4_u5q1y")
 centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -82,7 +83,7 @@ motion_mirroring = Vector2(162, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2(-185, -52)
 scale = Vector2(2, 2)
-texture = ExtResource("5_4w3p0")
+texture = ExtResource("5_h4ai3")
 centered = false
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -94,14 +95,9 @@ motion_mirroring = Vector2(162, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
 position = Vector2(-116.5, 142.5)
 scale = Vector2(2, 2)
-texture = ExtResource("6_q04yx")
+texture = ExtResource("6_dh25t")
 centered = false
 
-<<<<<<< HEAD
-=======
-[node name="RoguePlayer" parent="." instance=ExtResource("6_dw7cg")]
-
->>>>>>> affdec7c0cf04468ebd8845d5fd2b2f90c5d26a1
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://PlayerClasses/Rogue/RoguePlayer.tscn", "res://PlayerClasses/Rogue/Scenes/RogueWarp.tscn", "res://PlayerClasses/Rogue/Scenes/RogueWarp.tscn")
+_spawnable_scenes = PackedStringArray("res://Entities/Player/Rogue/RoguePlayer.tscn", "", "")
 spawn_path = NodePath("..")
