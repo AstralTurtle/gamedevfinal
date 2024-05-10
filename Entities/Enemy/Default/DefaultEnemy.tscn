@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d113rnvphskv8"]
+
+[ext_resource type="Script" path="res://Entities/Enemy/Default/Logic/Enemy.cs" id="1_spcmw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_600dm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q8cbg"]
+
+[node name="DefaultEnemy" type="CharacterBody2D"]
+script = ExtResource("1_spcmw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_600dm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.07288e-06, 1.07288e-06)
+scale = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_q8cbg")

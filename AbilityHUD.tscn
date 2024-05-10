@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cbsp8tdj30huu"]
 
 [ext_resource type="Script" path="res://AbilityHUD.cs" id="1_0k6rq"]
-[ext_resource type="Script" path="res://PlayerClasses/Default/CooldownIconManager.cs" id="2_3vvq8"]
-[ext_resource type="Script" path="res://PlayerClasses/Default/Logic/CooldownIcon.cs" id="3_egnwo"]
+[ext_resource type="Script" path="res://Entities/Player/Default/CooldownIconManager.cs" id="2_3vvq8"]
+[ext_resource type="Script" path="res://Entities/Player/Default/Logic/CooldownIcon.cs" id="3_egnwo"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 follow_viewport_enabled = true

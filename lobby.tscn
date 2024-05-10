@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cq4h7lxwrsksf"]
 
-[ext_resource type="Script" path="res://GameLogic/Multiplayer/lobby.gd" id="1_oisnw"]
+[ext_resource type="Script" path="res://Services/Multiplayer/lobby.gd" id="1_oisnw"]
 [ext_resource type="PackedScene" uid="uid://bdu5pik362yxc" path="res://ConnectionMenu.tscn" id="1_xwixy"]
 [ext_resource type="PackedScene" uid="uid://dh456kim1riy4" path="res://CharacterSelect.tscn" id="2_s52pj"]
-[ext_resource type="Script" path="res://GameLogic/Multiplayer/HostHelper.cs" id="3_xy64d"]
-[ext_resource type="Script" path="res://GameLogic/Multiplayer/JoinHelper.cs" id="4_mswu2"]
+[ext_resource type="Script" path="res://Services/Multiplayer/HostHelper.cs" id="3_xy64d"]
+[ext_resource type="Script" path="res://Services/Multiplayer/JoinHelper.cs" id="4_mswu2"]
 
 [node name="Lobby" type="Control"]
 layout_mode = 3
