@@ -161,8 +161,5 @@ func GameStart():
 	# get_tree().change_scene("res://scenes/Game.tscn")
 	get_tree().root.add_child(gameScene)	
 	pass # Replace with function body.
-<<<<<<< HEAD:GameLogic/Multiplayer/lobby.gd
 
 	
-=======
->>>>>>> affdec7c0cf04468ebd8845d5fd2b2f90c5d26a1:Services/Multiplayer/lobby.gd
