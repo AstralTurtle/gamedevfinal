@@ -35,6 +35,8 @@ public partial class Player : CharacterBody2D
 
 	bool wasOnFloor = false;
 
+	float lastHit = 0;
+
 	public override void _Ready()
 	{
 		EmitSignal(SignalName.HealthChanged, health);
@@ -54,8 +56,21 @@ public partial class Player : CharacterBody2D
 		EmitSignal(SignalName.HealthChanged, health);		
 	}
 
-	public override void _Input(InputEvent @event)
-	{		
+	public void triggerMultiplayerAuthority(int id){
+		GD.Print("triggerMultiplayerAuthority");
+		// GD.Print("nameof: " + nameof(rpcMultiplayerAuthority));
+		GD.Print(Rpc(nameof(setAuth), id));
+	}
+
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void setAuth(int id){
+		GD.Print("setAuth");
+		SetMultiplayerAuthority(id, true);
+	}
+
+    public override void _Input(InputEvent @event)
+    {		
 		if (!IsMultiplayerAuthority()) return;
 		if (@event.IsAction("ui_down")){
 			GD.Print(Position);
@@ -64,14 +79,21 @@ public partial class Player : CharacterBody2D
 					// Rpc("takeDamage", 10.0f);
 
 		}
-		// base._Input(@event);
-	}	
+        // base._Input(@event);
+    }	
 
 
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void testPrint(){
+		GD.Print("Name: "+ Name + " Auth: "+GetMultiplayerAuthority());
+	}
 
-	public override void _PhysicsProcess(double delta)
+
+    public override void _PhysicsProcess(double delta)
 	{
+		
 		if (!IsMultiplayerAuthority()) return;
+		Rpc("testPrint");
 		Vector2 velocity = Velocity;
 
 		wasOnFloor = IsOnFloor();

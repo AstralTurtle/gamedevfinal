@@ -24,7 +24,8 @@ public partial class RogueSecondaryAttack : Node2D
 
 			 	
 		// dagger
-		GetTree().Root.AddChild(dagger);
+		// GetTree().Root.GetNode<Node2D>("Game").AddChild(dagger);
+		Rpc("addToTree",dagger);
 
 		Vector2 mpos = GetViewport().GetMousePosition();
 
@@ -36,6 +37,11 @@ public partial class RogueSecondaryAttack : Node2D
 		dagger.throwObj(dir);
 
 
+	}
+
+	[Rpc(MultiplayerApi.RpcMode.Authority, CallLocal = true)]
+	public void addToTree(DaggerThrow proj){
+		GetTree().Root.GetNode<Node2D>("Game").AddChild(proj);
 	}
 
 	public void changeWeapon(PackedScene newWeapon){

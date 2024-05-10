@@ -60,13 +60,7 @@ public partial class AbilityInput : Node2D
 
     public override void _Ready()
     {
-		AbilityHUD hud = AbilityHUD.Instantiate<AbilityHUD>();
-		// SignalName.setCooldowns += hud.triggerSetCooldowns;
-		hud.triggerSetCooldowns(new float[] { a1cd, a2cd, a3cd });
-		hud.triggerSetCooldownIcons(abilityIcons);
-
-		GetTree().Root.CallDeferred("add_child", hud);
-
+		
 
 		// hud.Connect(SignalName.updateCooldowns, new Callable(hud,"triggerUpdateCooldowns" ) );
 		// EmitSignal(SignalName.setCooldowns, new float[] { a1cd, a2cd, a3cd });

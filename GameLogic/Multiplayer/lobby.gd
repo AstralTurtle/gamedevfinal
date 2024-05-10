@@ -144,7 +144,6 @@ func selectCharacter(index):
 
 
 func StartGamePressed():
-
 	if (-1 in players.values()):
 		print("Not all players have selected a character")
 		return
@@ -162,3 +161,5 @@ func GameStart():
 	# get_tree().change_scene("res://scenes/Game.tscn")
 	get_tree().root.add_child(gameScene)	
 	pass # Replace with function body.
+
+	

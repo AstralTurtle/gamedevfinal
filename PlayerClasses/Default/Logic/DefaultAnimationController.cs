@@ -31,6 +31,7 @@ public partial class DefaultAnimationController : AnimatedSprite2D
 	}
 
 	public void setLookDirection(Vector2 dir){
+		if (!IsMultiplayerAuthority()) return;
 		if (dir.X < 0)
 		{
 			FlipH = true;
@@ -42,6 +43,7 @@ public partial class DefaultAnimationController : AnimatedSprite2D
 	}
 
 	public Vector2 getLookDirection(){
+		
 		// get mouse position
 		Vector2 mpos = GetViewport().GetMousePosition();
 
@@ -58,6 +60,7 @@ public partial class DefaultAnimationController : AnimatedSprite2D
 
     public override void _PhysicsProcess(double delta)
     {
+		if (!IsMultiplayerAuthority()) return;
 		setLookDirection(getLookDirection());
         // base._PhysicsProcess(delta);
     }
