@@ -77,10 +77,8 @@ public partial class Player : CharacterBody2D
     {		
 		if (!IsMultiplayerAuthority()) return;
 		if (@event.IsAction("ui_down")){
-			GD.Print(Position);
-			GD.Print(GetGlobalTransformWithCanvas().Origin);
 			// GD.Print("ui_accept");
-					// Rpc("takeDamage", 10.0f);
+					Rpc("takeDamage", 10.0f);
 
 		}
         // base._Input(@event);

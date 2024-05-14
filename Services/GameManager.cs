@@ -37,7 +37,7 @@ public partial class GameManager : Node2D
 			Rpc("rpcSetAuth", player, currentPlayerID);
 			player.Name = "Player" + currentPlayerID;
 			AddChild(player);
-
+		
 		}
 	}
 
