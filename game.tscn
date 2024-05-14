@@ -99,5 +99,5 @@ texture = ExtResource("6_dh25t")
 centered = false
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Entities/Player/Rogue/RoguePlayer.tscn", "", "")
+_spawnable_scenes = PackedStringArray("res://Entities/Player/Rogue/RoguePlayer.tscn", "res://Entities/Player/Rogue/Scenes/RogueWarp.tscn", "res://Entities/Player/Rogue/Scenes/DaggerThrow.tscn")
 spawn_path = NodePath("..")

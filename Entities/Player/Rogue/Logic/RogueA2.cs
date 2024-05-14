@@ -48,6 +48,6 @@ public partial class RogueA2 : Node2D
 
 	[Rpc(MultiplayerApi.RpcMode.Authority, CallLocal = true)]
 	public void addToTree(RogueWarp proj){
-		GetTree().Root.GetNode<Node2D>("Game").AddChild(proj);
+		GetTree().Root.GetNode<Node2D>("Game").AddChild(proj ,true);
 	}
 }
