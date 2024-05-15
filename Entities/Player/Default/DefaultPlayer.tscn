@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://nqicemm0nxbm"]
+[gd_scene load_steps=18 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/AbilityInput.cs" id="2_iddi7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultPrimaryAttack.cs" id="6_cwcoy"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultSecondaryAttack.cs" id="7_qu54q"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/PlayerCamera.cs" id="8_jr32c"]
+[ext_resource type="Script" path="res://Services/Multiplayer/Synchronizercs.cs" id="10_fxga6"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/HealthBar.cs" id="10_ouvhn"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/HealthLabel.cs" id="11_dhy4n"]
 
@@ -28,6 +29,9 @@ properties/1/replication_mode = 2
 properties/2/path = NodePath("Sprite2D:animation")
 properties/2/spawn = true
 properties/2/replication_mode = 2
+properties/3/path = NodePath("Sprite2D:flip_h")
+properties/3/spawn = true
+properties/3/replication_mode = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_ne4ii"]
 font_size = 8
@@ -70,6 +74,7 @@ shape = SubResource("RectangleShape2D_yh6du")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_002ey")
+script = ExtResource("10_fxga6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -100)
@@ -97,6 +102,7 @@ text = "100"
 label_settings = SubResource("LabelSettings_ne4ii")
 script = ExtResource("11_dhy4n")
 
+[connection signal="onAuthChanged" from="." to="MultiplayerSynchronizer" method="setAuth"]
 [connection signal="onAuthChanged" from="." to="Camera2D" method="authChanged"]
 [connection signal="triggerAnimation" from="." to="Sprite2D" method="triggerAnim"]
 [connection signal="Ability1" from="Abilities" to="Abilities/Ability1" method="OnActivated"]

@@ -14,8 +14,21 @@ public partial class RogueA2 : Node2D
 	}
 
 	
-
 	public void OnActivated() {
+		Vector2 mpos = GetViewport().GetMousePosition();
+		//GD.Print(mpos);
+
+		Vector2 dir = mpos - GetGlobalTransformWithCanvas().Origin;
+		dir = dir.Normalized();
+
+
+		Rpc("OnActivatedRPC", dir);
+		
+	}	
+
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void OnActivatedRPC(Vector2 dir) {
 		Node2D player = GetParent<Node2D>().GetParent<Node2D>();
 		GD.Print(player.Name);
 		RogueWarp warp = WarpProjectile.Instantiate<RogueWarp>();
@@ -31,13 +44,11 @@ public partial class RogueA2 : Node2D
 
 			 	
 		
-		Rpc("addToTree",warp);	
-		
-		Vector2 mpos = GetViewport().GetMousePosition();
-		//GD.Print(mpos);
+		// Rpc("addToTree",warp);	
+		GetTree().Root.GetNode<Node2D>("Game").AddChild(warp ,true);
 
-		Vector2 dir = mpos - GetGlobalTransformWithCanvas().Origin;
-		dir = dir.Normalized();
+		
+		
 		// GD.Print(dir);
 
 		warp.Position += new Vector2(25, 25) * dir;
@@ -45,6 +56,9 @@ public partial class RogueA2 : Node2D
 		warp.throwWarp(dir);
 
 	}
+
+
+	
 
 	[Rpc(MultiplayerApi.RpcMode.Authority, CallLocal = true)]
 	public void addToTree(RogueWarp proj){

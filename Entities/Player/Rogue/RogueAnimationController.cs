@@ -1,4 +1,4 @@
-using Godot;
+	using Godot;
 using System;
 
 public partial class RogueAnimationController : AnimatedSprite2D
@@ -34,6 +34,7 @@ public partial class RogueAnimationController : AnimatedSprite2D
 
 
 	public void setLookDirection(Vector2 dir){
+		if (!IsMultiplayerAuthority()) return;
 		if (dir.X < 0)
 		{
 			FlipH = true;
