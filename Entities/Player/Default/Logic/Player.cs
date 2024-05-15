@@ -60,9 +60,9 @@ public partial class Player : CharacterBody2D
 
 	public void triggerMultiplayerAuthority(int id){
 		GD.Print("triggerMultiplayerAuthority");
-		GD.Print("nameof: " + nameof(setAuth));
+		GD.Print("nameof: " + nameof(setAuth) + "for id: " + id);
 		Rpc("setAuth", id);
-		EmitSignal(SignalName.onAuthChanged, id);
+		// EmitSignal(SignalName.onAuthChanged, id);
 	}
 
 

@@ -11,6 +11,7 @@ public partial class Synchronizercs : MultiplayerSynchronizer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		GD.Print("Auth: " + GetMultiplayerAuthority());
 	}
 
 	public void setAuth(int id){
