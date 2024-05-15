@@ -32,12 +32,13 @@ public partial class GameManager : Node2D
 			// cursed gdscript to c# conversion
 			GD.Print(playerPrefabs[i]);
 			Player player = playerPrefabs[players[currentPlayerID].As<int>()].Instantiate<Player>();
-			// player.triggerMultiplayerAuthority(currentPlayerID);
-			player.SetMultiplayerAuthority(currentPlayerID);
-			Rpc("rpcSetAuth", player, currentPlayerID);
+			
+			// player.SetMultiplayerAuthority(currentPlayerID);
+			// Rpc("rpcSetAuth", player, currentPlayerID);
 			player.Name = "Player" + currentPlayerID;
 			AddChild(player);
-		
+			player.triggerMultiplayerAuthority(currentPlayerID);
+			// player.Position = new Vector2(100 + i * -100, 100);
 		}
 	}
 

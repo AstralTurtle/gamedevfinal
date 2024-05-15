@@ -49,7 +49,7 @@ public partial class Player : CharacterBody2D
 		EmitSignal(SignalName.triggerAnimation, AnimNames[5]);
 		GD.Print("takeDamage");
 		health -= damage;
-		GD.Print(health);
+		GD.Print(health);	
 		if(health <= 0){
 			// QueueFree();
 			// EmitSignal(SignalName.PlayerDied);
@@ -60,12 +60,13 @@ public partial class Player : CharacterBody2D
 
 	public void triggerMultiplayerAuthority(int id){
 		GD.Print("triggerMultiplayerAuthority");
-		// GD.Print("nameof: " + nameof(rpcMultiplayerAuthority));
-		GD.Print(Rpc(nameof(setAuth), id));
+		GD.Print("nameof: " + nameof(setAuth));
+		Rpc("setAuth", id);
+		EmitSignal(SignalName.onAuthChanged, id);
 	}
 
 
-	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
 	public void setAuth(int id){
 		GD.Print("setAuth");
 		SetMultiplayerAuthority(id, true);
@@ -87,7 +88,7 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
-		
+		// GD.Print(Position);
 		if (!IsMultiplayerAuthority()) return;
 
 		Vector2 velocity = Velocity;

@@ -16,4 +16,22 @@ public partial class PlayerCamera : Camera2D
 			Enabled = false;
 		}
 	}
+
+
+	public void authChanged(int id){
+		if(IsMultiplayerAuthority()){
+			
+			Enabled = true;
+			GD.Print(GetViewport());
+			MakeCurrent();
+		
+		} else {
+			Enabled = false;
+		}
+
+
+	}
+
+
+	
 }

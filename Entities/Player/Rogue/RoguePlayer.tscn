@@ -224,6 +224,7 @@ animations = [{
 }]
 
 [node name="RoguePlayer" instance=ExtResource("1_30s0c")]
+position = Vector2(0, -1)
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(2, 2)

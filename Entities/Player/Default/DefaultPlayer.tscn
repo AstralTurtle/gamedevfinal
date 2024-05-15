@@ -97,6 +97,7 @@ text = "100"
 label_settings = SubResource("LabelSettings_ne4ii")
 script = ExtResource("11_dhy4n")
 
+[connection signal="onAuthChanged" from="." to="Camera2D" method="authChanged"]
 [connection signal="triggerAnimation" from="." to="Sprite2D" method="triggerAnim"]
 [connection signal="Ability1" from="Abilities" to="Abilities/Ability1" method="OnActivated"]
 [connection signal="Ability2" from="Abilities" to="Abilities/Ability2" method="OnActivated"]
