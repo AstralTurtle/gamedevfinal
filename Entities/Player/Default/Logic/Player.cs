@@ -27,6 +27,9 @@ public partial class Player : CharacterBody2D
 	public delegate void onAuthChangedEventHandler(int id);
 
 	[Signal]
+	public delegate void PlayerHitEventHandler(float debounce);
+
+	[Signal]
 	public delegate void PlayerDiedEventHandler();
 
 	[Signal]
@@ -37,7 +40,8 @@ public partial class Player : CharacterBody2D
 
 	bool wasOnFloor = false;
 
-	float lastHit = 0;
+
+	bool canBeHit = true;
 
 	public override void _Ready()
 	{
@@ -46,6 +50,16 @@ public partial class Player : CharacterBody2D
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void takeDamage(float damage){
+		GD.Print("takingDamage");
+		if (!canBeHit) {
+			GD.Print("Debounce");
+			return;
+		}
+		GD.Print("no Debounce");
+		canBeHit = false;
+		EmitSignal(SignalName.PlayerHit, 0.5);
+
+
 		EmitSignal(SignalName.triggerAnimation, AnimNames[5]);
 		GD.Print("takeDamage");
 		health -= damage;
@@ -57,6 +71,12 @@ public partial class Player : CharacterBody2D
 		}
 		EmitSignal(SignalName.HealthChanged, health);		
 	}
+
+	public void takeDamageDebounce(bool res){
+		GD.Print(res);
+		canBeHit = res;
+	}
+
 
 	public void triggerMultiplayerAuthority(int id){
 		GD.Print("triggerMultiplayerAuthority");
@@ -78,7 +98,7 @@ public partial class Player : CharacterBody2D
     {		
 		if (!IsMultiplayerAuthority()) return;
 		if (@event.IsAction("ui_down")){
-			// GD.Print("ui_accept");
+			GD.Print("ui_down");
 					Rpc("takeDamage", 10.0f);
 
 		}

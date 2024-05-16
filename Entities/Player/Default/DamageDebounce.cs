@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Synchronizercs : MultiplayerSynchronizer
+public partial class DamageDebounce : Timer
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -11,11 +11,13 @@ public partial class Synchronizercs : MultiplayerSynchronizer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		// GD.Print("Auth: " + GetMultiplayerAuthority());
 	}
 
-	public void setAuth(int id){
-		SetMultiplayerAuthority(id);
+	public void OnActivated(float time){
+		GD.Print("Timer Activated for time: " + time);
+		OneShot = true;
+		Start(time);
+		
 	}
 
 

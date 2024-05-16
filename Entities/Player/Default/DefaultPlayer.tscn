@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://nqicemm0nxbm"]
+[gd_scene load_steps=19 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/AbilityInput.cs" id="2_iddi7"]
@@ -6,13 +6,14 @@
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA1.cs" id="3_f2u74"]
 [ext_resource type="PackedScene" uid="uid://cbsp8tdj30huu" path="res://UI/HUD/Abilities.tscn" id="4_lhccp"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA2.cs" id="4_qr3ps"]
-[ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA3.cs" id="5_s8po0"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultPrimaryAttack.cs" id="6_cwcoy"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultSecondaryAttack.cs" id="7_qu54q"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/PlayerCamera.cs" id="8_jr32c"]
+[ext_resource type="PackedScene" uid="uid://bmym7v4d50lg3" path="res://Entities/Player/Rogue/Scenes/dagger.tscn" id="8_mmnwh"]
 [ext_resource type="Script" path="res://Services/Multiplayer/Synchronizercs.cs" id="10_fxga6"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/HealthBar.cs" id="10_ouvhn"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/HealthLabel.cs" id="11_dhy4n"]
+[ext_resource type="Script" path="res://Entities/Player/Default/DamageDebounce.cs" id="14_tiooy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3icr"]
 
@@ -57,11 +58,9 @@ script = ExtResource("3_f2u74")
 [node name="Ability2" type="Node2D" parent="Abilities"]
 script = ExtResource("4_qr3ps")
 
-[node name="Ability3" type="Node2D" parent="Abilities"]
-script = ExtResource("5_s8po0")
-
 [node name="PrimaryAttack" type="Node2D" parent="Abilities"]
 script = ExtResource("6_cwcoy")
+primaryAttack = ExtResource("8_mmnwh")
 
 [node name="SecondaryAttack" type="Node2D" parent="Abilities"]
 script = ExtResource("7_qu54q")
@@ -102,11 +101,17 @@ text = "100"
 label_settings = SubResource("LabelSettings_ne4ii")
 script = ExtResource("11_dhy4n")
 
+[node name="CanTakeDamage" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("14_tiooy")
+
+[connection signal="HealthChanged" from="." to="ProgressBar" method="OnHealthChanged"]
+[connection signal="HealthChanged" from="." to="ProgressBar/Label" method="OnHealthChanged"]
 [connection signal="onAuthChanged" from="." to="MultiplayerSynchronizer" method="setAuth"]
 [connection signal="onAuthChanged" from="." to="Camera2D" method="authChanged"]
 [connection signal="triggerAnimation" from="." to="Sprite2D" method="triggerAnim"]
 [connection signal="Ability1" from="Abilities" to="Abilities/Ability1" method="OnActivated"]
 [connection signal="Ability2" from="Abilities" to="Abilities/Ability2" method="OnActivated"]
-[connection signal="Ability3" from="Abilities" to="Abilities/Ability3" method="OnActivated"]
 [connection signal="PrimaryAttack" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
 [connection signal="SecondaryAttack" from="Abilities" to="Abilities/SecondaryAttack" method="OnActivated"]
+[connection signal="timeout" from="CanTakeDamage" to="." method="takeDamageDebounce" binds= [true]]

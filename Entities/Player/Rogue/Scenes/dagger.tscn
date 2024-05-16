@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmym7v4d50lg3"]
+[gd_scene load_steps=9 format=3 uid="uid://bmym7v4d50lg3"]
 
 [ext_resource type="Texture2D" uid="uid://di7jwnbu2ts4q" path="res://Assets/dagger_ [iron].png" id="1_qq4bc"]
+[ext_resource type="Script" path="res://Entities/Player/Rogue/Scenes/DaggerStab.cs" id="1_t64im"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4phok"]
 atlas = ExtResource("1_qq4bc")
@@ -38,9 +39,20 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktv0e"]
+size = Vector2(5, 10)
+
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_t64im")
+speed = 250.0
+distance = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l27rf")
 animation = &"new_animation"
 frame_progress = 0.557374
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ktv0e")

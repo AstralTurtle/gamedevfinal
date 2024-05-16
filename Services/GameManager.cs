@@ -27,7 +27,8 @@ public partial class GameManager : Node2D
 		GD.Print(playerPrefabs);
 		Variant[] playerID = players.Keys.ToArray();
 		// int[] playerIDs = (int[])playerID; // Cast playerID to int[]
-		for(int i = 0; i < players.Count; i++){
+		for(int i = players.Count - 1 ; i > -1; i--){
+			GD.Print(i);
 			int currentPlayerID = playerID[i].As<int>();
 			// cursed gdscript to c# conversion
 			GD.Print(playerPrefabs[i]);

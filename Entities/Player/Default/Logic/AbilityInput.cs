@@ -13,21 +13,17 @@ public partial class AbilityInput : Node2D
 	// Ability 2 CD Timer
 	float a2cdt = 0;
 
-	[Export] // Ability 3 CD
-	float a3cd = 1;
-	// Ability 3 CD Timer
-	float a3cdt = 0;
+	
 
-	bool primaryDebunce = true;
-	bool secondaryDebunce = true;
+	bool primaryDebounce = true;
+	bool secondaryDebounce = true;
 
 	// Signals
 	[Signal]
 	public delegate void Ability1EventHandler();
 	[Signal]
 	public delegate void Ability2EventHandler();
-	[Signal]
-	public delegate void Ability3EventHandler();
+
 	[Signal]
 	public delegate void PrimaryAttackEventHandler();
 	[Signal]
@@ -51,8 +47,7 @@ public partial class AbilityInput : Node2D
 	{
 		a1cdt += (float)delta;
 		a2cdt += (float)delta;
-		a3cdt += (float)delta;
-		EmitSignal(SignalName.updateCooldowns, new float[] { a1cdt, a2cdt, a3cdt });
+		EmitSignal(SignalName.updateCooldowns, new float[] { a1cdt, a2cdt });
 		
 
 		// base._Process(delta);
@@ -95,29 +90,29 @@ public partial class AbilityInput : Node2D
 			}
 			else GD.Print("Ability 2 is on cooldown");
 		}
-		else if (@event.IsActionReleased("ability_3"))
-		{	
-			if (a3cdt >= a3cd)
-			{
-				EmitSignal(SignalName.Ability3);
-				a3cdt = 0;
-				GD.Print("Ability 3 used");
-			}
-			else GD.Print("Ability 3 is on cooldown");
-
-		}
-		else if (@event.IsActionReleased("primary_attack"))
+		
+		else if (@event.IsActionReleased("primary_attack") && primaryDebounce)
 		{
+			primaryDebounce = false;
 			EmitSignal(SignalName.PrimaryAttack);
 			GD.Print("Primary Attack");
 		}
-		else if (@event.IsActionReleased("secondary_attack") )
+		else if (@event.IsActionReleased("secondary_attack")  && secondaryDebounce)
 		{
+			secondaryDebounce = false;
 			EmitSignal(SignalName.SecondaryAttack);
 			GD.Print("Secondary Attack");
 		}
 	}
 
+
+	public void resetPrimaryDebounce(){
+		primaryDebounce = true;
+	}
+
+	public void resetSecondaryDebounce(){
+		secondaryDebounce = true;
+	}
 	
 
 
