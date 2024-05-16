@@ -18,7 +18,7 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3icr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh6du"]
-size = Vector2(8, 12)
+size = Vector2(15, 21)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_002ey"]
 properties/0/path = NodePath(".:position")
@@ -43,7 +43,7 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_gjsnu")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(20, 30)
+scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_b3icr")
 script = ExtResource("2_kupsx")
 

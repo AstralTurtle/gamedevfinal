@@ -28,7 +28,7 @@ public partial class DaggerStab : Node2D
 	public override void _Process(double delta){
 		Position = Position.MoveToward(location,(float)delta * speed);
 
-		GD.Print(Position + " vs " + location);
+		// GD.Print(Position + " vs " + location);
 		if (Position == location){
 			QueueFree();
 		}

@@ -40,7 +40,8 @@ public partial class RogueA2 : Node2D
 		warp.RotationDegrees = 0;
 
 		// copy player velocity
-		warp.inheritVelocity((player as CharacterBody2D).Velocity);
+		// this desyncs the projectile in multiplayer for some reason so :shrug:
+		// warp.inheritVelocity((player as CharacterBody2D).Velocity);
 
 			 	
 		

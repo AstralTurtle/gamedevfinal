@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=3 uid="uid://cdsteg6aaqtr3"]
 
-
 [ext_resource type="Script" path="res://Entities/Player/Rogue/Logic/DaggerThrow.cs" id="1_ebnxq"]
 [ext_resource type="Texture2D" uid="uid://di7jwnbu2ts4q" path="res://Assets/dagger_ [iron].png" id="2_wokrc"]
 

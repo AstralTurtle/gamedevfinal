@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bmym7v4d50lg3"]
 
 [ext_resource type="Texture2D" uid="uid://di7jwnbu2ts4q" path="res://Assets/dagger_ [iron].png" id="1_qq4bc"]
-[ext_resource type="Script" path="res://Entities/Player/Rogue/Scenes/DaggerStab.cs" id="1_t64im"]
+[ext_resource type="Script" path="res://Entities/Player/Rogue/Logic/DaggerStab.cs" id="1_ugl8q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4phok"]
 atlas = ExtResource("1_qq4bc")
@@ -43,13 +43,14 @@ animations = [{
 size = Vector2(5, 10)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_t64im")
+script = ExtResource("1_ugl8q")
 speed = 250.0
 distance = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_l27rf")
 animation = &"new_animation"
+autoplay = "new_animation"
 frame_progress = 0.557374
 
 [node name="Area2D" type="Area2D" parent="."]

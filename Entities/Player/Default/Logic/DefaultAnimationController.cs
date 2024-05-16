@@ -3,7 +3,8 @@ using System;
 
 public partial class DefaultAnimationController : AnimatedSprite2D
 {
-	String[] AnimNames = new String[] {""};
+	[Export]
+	String[] AnimNames = new String[7];
 
 
 	public override void _Ready()
@@ -17,16 +18,18 @@ public partial class DefaultAnimationController : AnimatedSprite2D
 	}
 
 		public void triggerAnim(string animName){
+			
 		if (Array.IndexOf(AnimNames, animName) == -1)
 		{
-			
+			GD.Print("Animation not found: " + animName);
 			return;
 		}
 		if (Animation == animName)
 		{
-		
+			GD.Print("Animation already playing: " + animName);
 			return;
 		}
+		GD.Print("triggering anim: " + animName);
 		PlayAnimation(animName);
 	}
 

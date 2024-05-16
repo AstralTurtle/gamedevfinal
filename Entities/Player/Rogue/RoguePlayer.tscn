@@ -236,7 +236,6 @@ point_count = 2
 position = Vector2(0, -1)
 
 [node name="Sprite2D" parent="." index="0"]
-scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3jelb")
 animation = &"run"
 autoplay = "idle"
@@ -280,7 +279,6 @@ script = ExtResource("5_845r1")
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 6)
-scale = Vector2(2, 2)
 
 [connection signal="PlayerHit" from="." to="CanTakeDamage" method="OnActivated"]
 [connection signal="Duration" from="Abilities/Ability1" to="CanTakeDamage" method="OnActivated"]
