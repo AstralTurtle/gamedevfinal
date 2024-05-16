@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://c6qxdup6mvb0k"]
+[gd_scene load_steps=30 format=3 uid="uid://c6qxdup6mvb0k"]
 
 [ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_rhhq0"]
 [ext_resource type="Texture2D" uid="uid://dbnmsjc3minuo" path="res://Assets/camelot_ [version 1.0]/ladyOfTheLake_.png" id="2_tcmng"]
+[ext_resource type="Script" path="res://Entities/Player/Support/Logic/SupportAria.cs" id="3_qqfi2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b44xn"]
 atlas = ExtResource("2_tcmng")
@@ -204,6 +205,9 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_676en"]
+radius = 93.3916
+
 [node name="SupportPlayer" instance=ExtResource("1_rhhq0")]
 AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "death")
 
@@ -215,3 +219,10 @@ AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "dea
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-0.5, 11.5)
+
+[node name="Aria" type="Area2D" parent="." index="8"]
+script = ExtResource("3_qqfi2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aria" index="0"]
+position = Vector2(-1, 12)
+shape = SubResource("CircleShape2D_676en")

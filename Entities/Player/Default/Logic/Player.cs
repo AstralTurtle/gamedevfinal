@@ -8,6 +8,8 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public const float JumpVelocity = -400.0f;
 
+	public float speedboost = 0f;
+
 	[Export]
 	public String[] AnimNames = new String[] {"idle", "run", "jump_idle", "jump_run", "land", "hit", "death"};
 	
@@ -70,6 +72,27 @@ public partial class Player : CharacterBody2D
 			EmitSignal(SignalName.triggerAnimation, AnimNames[6]);
 		}
 		EmitSignal(SignalName.HealthChanged, health);		
+	}
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void healPlayer(float heal){
+		health += heal;
+		EmitSignal(SignalName.HealthChanged, health);
+	}
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void boostSpeed(float boost){
+		speedboost = boost;
+	}
+
+	public void triggerSpeedBoost(float boost){
+		Rpc("boostSpeed", boost);
+	}
+
+	
+
+	public void triggerHeal(float heal){
+		Rpc("healPlayer", heal);
 	}
 
 	public void takeDamageDebounce(bool res){
