@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://c6qxdup6mvb0k"]
+[gd_scene load_steps=32 format=3 uid="uid://c6qxdup6mvb0k"]
 
 [ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_rhhq0"]
 [ext_resource type="Texture2D" uid="uid://dbnmsjc3minuo" path="res://Assets/camelot_ [version 1.0]/ladyOfTheLake_.png" id="2_tcmng"]
 [ext_resource type="Script" path="res://Entities/Player/Support/Logic/SupportAria.cs" id="3_qqfi2"]
+[ext_resource type="Script" path="res://Entities/Player/Support/Logic/SupportA1.cs" id="3_yrr61"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b44xn"]
 atlas = ExtResource("2_tcmng")
@@ -206,7 +207,18 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_676en"]
-radius = 93.3916
+radius = 100.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2m2ih"]
+particle_flag_disable_z = true
+emission_shape = 2
+emission_sphere_radius = 100.0
+spread = 90.0
+orbit_velocity_min = 1.0
+orbit_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+color = Color(0, 1, 0, 1)
+hue_variation_max = 0.1
 
 [node name="SupportPlayer" instance=ExtResource("1_rhhq0")]
 AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "death")
@@ -217,12 +229,38 @@ animation = &"land"
 autoplay = "idle"
 AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "death")
 
+[node name="Ability1" parent="Abilities" index="0"]
+script = ExtResource("3_yrr61")
+
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-0.5, 11.5)
 
+[node name="ProgressBar" parent="." index="6"]
+offset_top = -27.0
+offset_bottom = -19.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" parent="ProgressBar" index="0"]
+metadata/_edit_use_anchors_ = true
+
 [node name="Aria" type="Area2D" parent="." index="8"]
 script = ExtResource("3_qqfi2")
+speedboost = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aria" index="0"]
 position = Vector2(-1, 12)
 shape = SubResource("CircleShape2D_676en")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Aria" index="1"]
+position = Vector2(-2, 10)
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_2m2ih")
+preprocess = 5.0
+fixed_fps = 0
+local_coords = true
+draw_order = 0
+trail_enabled = true
+trail_lifetime = 0.1
+trail_sections = 2
+
+[connection signal="Activated" from="Abilities/Ability1" to="Aria" method="triggerFlip"]

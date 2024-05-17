@@ -21,15 +21,15 @@ public partial class DefaultAnimationController : AnimatedSprite2D
 			
 		if (Array.IndexOf(AnimNames, animName) == -1)
 		{
-			GD.Print("Animation not found: " + animName);
+			// GD.Print("Animation not found: " + animName);
 			return;
 		}
 		if (Animation == animName)
 		{
-			GD.Print("Animation already playing: " + animName);
+			// GD.Print("Animation already playing: " + animName);
 			return;
 		}
-		GD.Print("triggering anim: " + animName);
+		// GD.Print("triggering anim: " + animName);
 		PlayAnimation(animName);
 	}
 

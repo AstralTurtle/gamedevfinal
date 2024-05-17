@@ -77,12 +77,14 @@ public partial class Player : CharacterBody2D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void healPlayer(float heal){
 		health += heal;
+		GD.Print(health + "rpc healed");
 		EmitSignal(SignalName.HealthChanged, health);
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void boostSpeed(float boost){
 		speedboost = boost;
+		
 	}
 
 	public void triggerSpeedBoost(float boost){
@@ -131,6 +133,13 @@ public partial class Player : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
 	{
+		if (speedboost < 0){
+			speedboost = 0;
+		}
+		if (health > 100){
+			health = 100;
+		}
+
 		// GD.Print(Position);
 		if (!IsMultiplayerAuthority()) return;
 
@@ -151,7 +160,7 @@ public partial class Player : CharacterBody2D
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor()){
-			velocity.Y = JumpVelocity;
+			velocity.Y = JumpVelocity - speedboost;
 		}
 
 		// Get the input direction and handle the movement/deceleration.
@@ -159,7 +168,7 @@ public partial class Player : CharacterBody2D
 		Vector2 direction = Input.GetVector("left", "right", "jump", "ui_down");
 		if (direction != Vector2.Zero)	
 		{
-			velocity.X = direction.X * Speed;
+			velocity.X = direction.X * (Speed + speedboost);
 			if (direction.X < 0 && IsOnFloor()){
 				// EmitSignal(SignalName.triggerAnimation, AnimNames[1]);
 				EmitSignal(SignalName.triggerAnimation, AnimNames[1]);
@@ -173,6 +182,11 @@ public partial class Player : CharacterBody2D
 		if (velocity.X == 0 && IsOnFloor()){
 			EmitSignal(SignalName.triggerAnimation, AnimNames[0]);
 		}
+
+		speedboost -= 150 *  (float)delta;
+		
+
+
 
 
 		
