@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://yskqkqadmta5"]
+
+[ext_resource type="Script" path="res://Entities/Player/Support/Logic/Potion.cs" id="1_pqq83"]
+[ext_resource type="Texture2D" uid="uid://cfgye5ymjejrk" path="res://Assets/potions/light_red.png" id="2_clkqr"]
+[ext_resource type="Script" path="res://Component/ChangableSprite.cs" id="2_ngqtn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vh7gl"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_pqq83")
+healAmount = 25.0
+speedboost = 250.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vh7gl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_clkqr")
+script = ExtResource("2_ngqtn")
+
+[connection signal="SetSprite" from="." to="Sprite2D" method="setTexture"]

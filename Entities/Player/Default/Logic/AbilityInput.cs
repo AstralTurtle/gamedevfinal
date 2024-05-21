@@ -115,5 +115,20 @@ public partial class AbilityInput : Node2D
 	}
 	
 
+	public void triggerHaste()
+	{
+		Rpc("haste");
+	}
+
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void haste()
+	{
+		a1cdt += a1cd / 2;
+		a2cdt += a2cd / 2;
+		primaryDebounce = true;
+		secondaryDebounce = true;
+
+	}
+
 
 }

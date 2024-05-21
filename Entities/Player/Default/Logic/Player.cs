@@ -38,6 +38,9 @@ public partial class Player : CharacterBody2D
 	public delegate void PlayerRespawnedEventHandler();
 
 	[Signal]
+	public delegate void HasteEventHandler();
+
+	[Signal]
 	public delegate void triggerAnimationEventHandler(string animationName);
 
 	bool wasOnFloor = false;
@@ -77,12 +80,16 @@ public partial class Player : CharacterBody2D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void healPlayer(float heal){
 		health += heal;
-		GD.Print(health + "rpc healed");
+		if (health > 100){
+			health = 100;
+		}
+		// GD.Print(health + "rpc healed");
 		EmitSignal(SignalName.HealthChanged, health);
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void boostSpeed(float boost){
+		if (speedboost > boost) return;
 		speedboost = boost;
 		
 	}
@@ -91,6 +98,9 @@ public partial class Player : CharacterBody2D
 		Rpc("boostSpeed", boost);
 	}
 
+	public void triggerHaste(){
+		EmitSignal(SignalName.Haste);
+	}
 	
 
 	public void triggerHeal(float heal){
@@ -98,7 +108,7 @@ public partial class Player : CharacterBody2D
 	}
 
 	public void takeDamageDebounce(bool res){
-		GD.Print(res);
+		// GD.Print(res);
 		canBeHit = res;
 	}
 

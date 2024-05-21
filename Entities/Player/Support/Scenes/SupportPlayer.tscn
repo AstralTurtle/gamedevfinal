@@ -1,9 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://c6qxdup6mvb0k"]
+[gd_scene load_steps=37 format=3 uid="uid://c6qxdup6mvb0k"]
 
 [ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_rhhq0"]
 [ext_resource type="Texture2D" uid="uid://dbnmsjc3minuo" path="res://Assets/camelot_ [version 1.0]/ladyOfTheLake_.png" id="2_tcmng"]
 [ext_resource type="Script" path="res://Entities/Player/Support/Logic/SupportAria.cs" id="3_qqfi2"]
 [ext_resource type="Script" path="res://Entities/Player/Support/Logic/SupportA1.cs" id="3_yrr61"]
+[ext_resource type="Script" path="res://Entities/Player/Support/Logic/SupportA2.cs" id="4_d7a3n"]
+[ext_resource type="PackedScene" uid="uid://yskqkqadmta5" path="res://Entities/Player/Support/Scenes/Potion.tscn" id="5_357p5"]
+[ext_resource type="Texture2D" uid="uid://cfgye5ymjejrk" path="res://Assets/potions/light_red.png" id="6_iqi6a"]
+[ext_resource type="Texture2D" uid="uid://bjjws84pcvpyc" path="res://Assets/potions/blue.png" id="7_csnbq"]
+[ext_resource type="Texture2D" uid="uid://bk6ty5ccmrnkm" path="res://Assets/potions/yellow.png" id="8_nu7po"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b44xn"]
 atlas = ExtResource("2_tcmng")
@@ -229,8 +234,16 @@ animation = &"land"
 autoplay = "idle"
 AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "death")
 
+[node name="Abilities" parent="." index="1"]
+a1cd = 0.0
+
 [node name="Ability1" parent="Abilities" index="0"]
 script = ExtResource("3_yrr61")
+
+[node name="Ability2" parent="Abilities" index="1"]
+script = ExtResource("4_d7a3n")
+potion = ExtResource("5_357p5")
+textures = [ExtResource("6_iqi6a"), ExtResource("7_csnbq"), ExtResource("8_nu7po")]
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-0.5, 11.5)

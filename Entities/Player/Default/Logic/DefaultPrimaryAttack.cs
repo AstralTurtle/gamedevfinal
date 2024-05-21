@@ -14,6 +14,8 @@ public partial class DefaultPrimaryAttack : Node2D
 
 	}
 
+	
+
 
 
 	public void changeWeapon(PackedScene newWeapon){

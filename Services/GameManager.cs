@@ -38,6 +38,7 @@ public partial class GameManager : Node2D
 			// Rpc("rpcSetAuth", player, currentPlayerID);
 			player.Name = "Player" + currentPlayerID;
 			AddChild(player);
+			player.AddToGroup("players");
 			player.triggerMultiplayerAuthority(currentPlayerID);
 			// player.Position = new Vector2(100 + i * -100, 100);
 		}

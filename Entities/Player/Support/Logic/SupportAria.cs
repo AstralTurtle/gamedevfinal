@@ -35,8 +35,9 @@ public partial class SupportAria : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		GD.Print(GetTree().GetNodesInGroup("players"));
 		if (!IsMultiplayerAuthority()) return;
-		GD.Print(playerCount);
+		// GD.Print(playerCount);
 		
 			if (playerCount < 1){
 				playerCount = 1;
@@ -55,7 +56,7 @@ public partial class SupportAria : Area2D
 					}
 				}
 			}
-			GD.Print(inAria);
+			// GD.Print(inAria);
 		
 
 
@@ -92,7 +93,7 @@ public partial class SupportAria : Area2D
 
 			Player player = (Player)body;
 			if (!inAria.Contains(player)){
-							GD.Print("SupportAriaEntered "+ playerCount);
+							// GD.Print("SupportAriaEntered "+ playerCount);
 
 				inAria[playerCount] = player;	
 				

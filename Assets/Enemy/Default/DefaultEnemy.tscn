@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://d113rnvphskv8"]
 
-[ext_resource type="Script" path="res://Entities/Enemy/Default/Logic/Enemy.cs" id="1_spcmw"]
+[ext_resource type="Script" path="res://Assets/Enemy/Default/Logic/Enemy.cs" id="1_spcmw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_600dm"]
 
