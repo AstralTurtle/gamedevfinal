@@ -10,7 +10,11 @@ public partial class DefaultPrimaryAttack : Node2D
 	}
 
 	public void OnActivated() {
+		Rpc("OnActivatedRPC");
 		
+	}
+
+	public void OnActivatedRPC(Vector2 dir){
 
 	}
 

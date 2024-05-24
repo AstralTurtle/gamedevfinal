@@ -13,10 +13,16 @@ public partial class AbilityInput : Node2D
 	// Ability 2 CD Timer
 	float a2cdt = 0;
 
+	[Export]
+
+	int maxPrimary = 1;
+	int primary = 0;
+	[Export]
+	int maxSecondary = 1;
+	int secondary = 0;
 	
 
-	bool primaryDebounce = true;
-	bool secondaryDebounce = true;
+
 
 	// Signals
 	[Signal]
@@ -91,15 +97,15 @@ public partial class AbilityInput : Node2D
 			else GD.Print("Ability 2 is on cooldown");
 		}
 		
-		else if (@event.IsActionReleased("primary_attack") && primaryDebounce)
+		else if (@event.IsActionReleased("primary_attack") && (maxPrimary > primary))
 		{
-			primaryDebounce = false;
+			primary++;
 			EmitSignal(SignalName.PrimaryAttack);
 			GD.Print("Primary Attack");
 		}
-		else if (@event.IsActionReleased("secondary_attack")  && secondaryDebounce)
+		else if (@event.IsActionReleased("secondary_attack")  && (maxSecondary > secondary))
 		{
-			secondaryDebounce = false;
+			secondary++;
 			EmitSignal(SignalName.SecondaryAttack);
 			GD.Print("Secondary Attack");
 		}
@@ -107,11 +113,11 @@ public partial class AbilityInput : Node2D
 
 
 	public void resetPrimaryDebounce(){
-		primaryDebounce = true;
+		primary--;
 	}
 
 	public void resetSecondaryDebounce(){
-		secondaryDebounce = true;
+		secondary--;
 	}
 	
 
@@ -125,8 +131,8 @@ public partial class AbilityInput : Node2D
 	{
 		a1cdt += a1cd / 2;
 		a2cdt += a2cd / 2;
-		primaryDebounce = true;
-		secondaryDebounce = true;
+		primary--;
+		secondary--;
 
 	}
 

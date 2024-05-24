@@ -35,7 +35,7 @@ public partial class SupportAria : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print(GetTree().GetNodesInGroup("players"));
+		// GD.Print(GetTree().GetNodesInGroup("players"))	;
 		if (!IsMultiplayerAuthority()) return;
 		// GD.Print(playerCount);
 		
@@ -62,6 +62,38 @@ public partial class SupportAria : Area2D
 
 
 	}
+
+	public void triggerPulseAria(){
+		Rpc("pulseAria");
+	}
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+	public void pulseAria(){
+		Player[] players = GetTree().GetNodesInGroup("players").Cast<Player>().ToArray();
+		if (isHealing){
+			foreach (Player player in players){
+				if (player != null){
+					if (inAria.Contains<Player>(player)){
+						player.triggerHeal(healAmount * 2);
+					} else  {
+						player.triggerHeal(healAmount);
+					}
+				}
+			}
+		}
+		else {
+			foreach (Player player in players){
+				if (player != null){
+					if (inAria.Contains<Player>(player)){
+						player.triggerSpeedBoost(speedboost * 2);
+					} else  {
+						player.triggerSpeedBoost(speedboost);
+					}
+				}
+			}
+		}
+
+	}
+
 
 	public void triggerFlip(){
 		Rpc("flipAria");
