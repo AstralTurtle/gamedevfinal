@@ -1,0 +1,289 @@
+[gd_scene load_steps=38 format=3 uid="uid://l7aplpv3xh33"]
+
+[ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_348lo"]
+[ext_resource type="Script" path="res://Entities/Player/Melee/Logic/MeleePlayer.cs" id="2_vxq40"]
+[ext_resource type="Texture2D" uid="uid://5g4jqo282orv" path="res://Assets/camelot_ [version 1.0]/gawain_.png" id="3_hu41a"]
+[ext_resource type="Texture2D" uid="uid://c0wwsnubiv46f" path="res://Assets/shield.png" id="3_i8t5w"]
+[ext_resource type="Script" path="res://Entities/Player/Melee/Logic/MeleeA1.cs" id="4_fo1nt"]
+[ext_resource type="PackedScene" uid="uid://dboe0nbqg4lg4" path="res://Entities/Player/Melee/Scenes/ShieldToss.tscn" id="5_sxjf7"]
+[ext_resource type="Script" path="res://Entities/Player/Melee/Logic/MeleePrimaryAttack.cs" id="6_gvcrx"]
+[ext_resource type="PackedScene" uid="uid://7xecvjvgnpqb" path="res://Entities/Player/Melee/Scenes/SwordSwing.tscn" id="7_73x0j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfdhj"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rc4sy"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qu8bc"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjb0y"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(96, 288, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wxwa0"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5nw5"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlngx"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x037b"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(96, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vhft"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uayys"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tyr1"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi4yv"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(96, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jknd"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlkk6"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44l7n"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr8vf"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efeeb"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2ju4"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sn5q"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h0ye"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5lbp"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofsvd"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmlr1"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jia7v"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6ttl"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjse4"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_reoil"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq0xj"]
+atlas = ExtResource("3_hu41a")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_neaev"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfdhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rc4sy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qu8bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjb0y")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wxwa0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5nw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlngx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x037b")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vhft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uayys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tyr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi4yv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jknd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlkk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44l7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr8vf")
+}],
+"loop": true,
+"name": &"jump_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efeeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2ju4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sn5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h0ye")
+}],
+"loop": true,
+"name": &"jump_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5lbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofsvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmlr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jia7v")
+}],
+"loop": true,
+"name": &"land",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6ttl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjse4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_reoil")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq0xj")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="MeleePlayer" instance=ExtResource("1_348lo")]
+script = ExtResource("2_vxq40")
+shieldHealth = 50.0
+shieldRegenRate = 0.5
+shieldMaxHealth = 0.0
+shieldRespawnThreshold = 50.0
+
+[node name="ShieldSprite" type="Sprite2D" parent="." index="0"]
+position = Vector2(-0.499999, 0.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_i8t5w")
+
+[node name="Sprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_neaev")
+animation = &"land"
+autoplay = "idle"
+
+[node name="Abilities" parent="." index="2"]
+a1cd = 6.0
+a2cd = 0.0
+
+[node name="Ability1" parent="Abilities" index="0"]
+script = ExtResource("4_fo1nt")
+shieldToss = ExtResource("5_sxjf7")
+
+[node name="Ability2" parent="Abilities" index="1"]
+script = null
+
+[node name="PrimaryAttack" parent="Abilities" index="2"]
+script = ExtResource("6_gvcrx")
+primaryAttack = ExtResource("7_73x0j")
+
+[node name="SecondaryAttack" parent="Abilities" index="3"]
+script = null
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2(0, 7.75)
+
+[node name="StatManager" parent="." index="9"]
+maxHealth = 150.0
+speed = 250.0
+
+[connection signal="Haste" from="." to="Abilities" method="triggerHaste"]
+[connection signal="Ability2" from="Abilities" to="." method="toggleShield"]

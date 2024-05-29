@@ -4,9 +4,9 @@ using System;
 public partial class Player : CharacterBody2D
 {
 	[Export]
-	public const float Speed = 300.0f;
+	public  float Speed = 300.0f;
 	[Export]
-	public const float JumpVelocity = -400.0f;
+	public float JumpVelocity = -400.0f;
 
 	public float speedboost = 0f;
 
@@ -22,6 +22,9 @@ public partial class Player : CharacterBody2D
 	
 
 	[Export]
+	public float maxHealth = 100.0f;
+
+
 	public float health = 100.0f;
 	[Signal]
 	public delegate void HealthChangedEventHandler(float health);
@@ -46,11 +49,20 @@ public partial class Player : CharacterBody2D
 	bool wasOnFloor = false;
 
 
-	bool canBeHit = true;
+	protected bool canBeHit = true;
 
 	public override void _Ready()
 	{
+		
+		GetNode<StatManager>("StatManager").StatChanged += updateStats;
+		
+		health = maxHealth;
 		EmitSignal(SignalName.HealthChanged, health);
+	}
+
+	public void updateStats(float[] stats){
+		maxHealth = stats[0];
+		Speed = stats[1];
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
@@ -80,8 +92,8 @@ public partial class Player : CharacterBody2D
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
 	public void healPlayer(float heal){
 		health += heal;
-		if (health > 100){
-			health = 100;
+		if (health > maxHealth){
+			health = maxHealth;
 		}
 		// GD.Print(health + "rpc healed");
 		EmitSignal(SignalName.HealthChanged, health);
@@ -146,7 +158,7 @@ public partial class Player : CharacterBody2D
 		if (speedboost < 0){
 			speedboost = 0;
 		}
-		if (health > 100){
+		if (health > maxHealth){
 			health = 100;
 		}
 
@@ -170,7 +182,7 @@ public partial class Player : CharacterBody2D
 
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor()){
-			velocity.Y = JumpVelocity - speedboost;
+			velocity.Y = JumpVelocity - speedboost - (Speed/300);
 		}
 
 		// Get the input direction and handle the movement/deceleration.

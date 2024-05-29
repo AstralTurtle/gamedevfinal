@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://tyefdx00unju"]
+[gd_scene load_steps=12 format=3 uid="uid://tyefdx00unju"]
 
 [ext_resource type="Script" path="res://Services/GameManager.cs" id="1_ek3bk"]
 [ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://Entities/Player/Rogue/RoguePlayer.tscn" id="2_hsmnt"]
+[ext_resource type="PackedScene" uid="uid://l7aplpv3xh33" path="res://Entities/Player/Melee/Scenes/MeleePlayer.tscn" id="2_okdib"]
 [ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_tv8bg"]
 [ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://Assets/ParallaxBackground/DownLayer.png" id="3_0ip7e"]
 [ext_resource type="PackedScene" uid="uid://c6qxdup6mvb0k" path="res://Entities/Player/Support/Scenes/SupportPlayer.tscn" id="3_a44fm"]
@@ -17,7 +18,7 @@ size = Vector2(3394, 115)
 [node name="Game" type="Node2D"]
 position = Vector2(0, -2)
 script = ExtResource("1_ek3bk")
-playerPrefabs = [ExtResource("2_hsmnt"), ExtResource("2_hsmnt"), ExtResource("3_a44fm"), ExtResource("2_hsmnt")]
+playerPrefabs = [ExtResource("2_okdib"), ExtResource("2_hsmnt"), ExtResource("3_a44fm"), ExtResource("2_hsmnt")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-17, -461)
@@ -36,7 +37,7 @@ offset = Vector2(0, 100)
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 100)
 follow_viewport_scale = 2.0
-scroll_offset = Vector2(-4264.02, -968.007)
+scroll_offset = Vector2(-590.548, -159.297)
 scroll_base_scale = Vector2(0.2, 0.2)
 scroll_ignore_camera_zoom = true
 

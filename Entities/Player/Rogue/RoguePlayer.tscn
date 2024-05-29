@@ -237,7 +237,7 @@ position = Vector2(0, -1)
 
 [node name="Sprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_3jelb")
-animation = &"run"
+animation = &"jump_run"
 autoplay = "idle"
 script = ExtResource("3_a7e08")
 
@@ -280,6 +280,5 @@ script = ExtResource("5_845r1")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 6)
 
-[connection signal="PlayerHit" from="." to="CanTakeDamage" method="OnActivated"]
 [connection signal="Duration" from="Abilities/Ability1" to="CanTakeDamage" method="OnActivated"]
 [connection signal="IFrames" from="Abilities/Ability1" to="." method="takeDamageDebounce"]

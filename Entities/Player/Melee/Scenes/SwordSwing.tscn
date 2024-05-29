@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://7xecvjvgnpqb"]
+
+[ext_resource type="Texture2D" uid="uid://b2dimj8bnc7d" path="res://Assets/camelot_ [version 1.0]/excalibur_.png" id="1_3ylhh"]
+[ext_resource type="Script" path="res://Entities/Player/Melee/Logic/SwordSwing.cs" id="1_bmnrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c5qe"]
+size = Vector2(9.95814, 0.428626)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbqrk"]
+atlas = ExtResource("1_3ylhh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dc81"]
+atlas = ExtResource("1_3ylhh")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibmhm"]
+atlas = ExtResource("1_3ylhh")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juu2s"]
+atlas = ExtResource("1_3ylhh")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_31glj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbqrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dc81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibmhm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juu2s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="SwordSwing" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_bmnrr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -3.5)
+scale = Vector2(1.60673, 30.3294)
+shape = SubResource("RectangleShape2D_6c5qe")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.902256, 0.995012)
+sprite_frames = SubResource("SpriteFrames_31glj")
+autoplay = "default"
+frame_progress = 0.377353

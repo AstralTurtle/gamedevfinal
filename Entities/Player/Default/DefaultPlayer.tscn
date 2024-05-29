@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://nqicemm0nxbm"]
+[gd_scene load_steps=20 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/AbilityInput.cs" id="2_iddi7"]
@@ -14,11 +14,12 @@
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/HealthBar.cs" id="10_ouvhn"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/HealthLabel.cs" id="11_dhy4n"]
 [ext_resource type="Script" path="res://Entities/Player/Default/DamageDebounce.cs" id="14_tiooy"]
+[ext_resource type="Script" path="res://Entities/Player/Default/StatManager.cs" id="15_87c8w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b3icr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yh6du"]
-size = Vector2(15, 21)
+size = Vector2(15, 26.5)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_002ey"]
 properties/0/path = NodePath(".:position")
@@ -40,6 +41,7 @@ outline_size = 1
 outline_color = Color(0, 0, 0, 1)
 
 [node name="DefaultPlayer" type="CharacterBody2D"]
+platform_on_leave = 1
 script = ExtResource("1_gjsnu")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
@@ -105,8 +107,13 @@ script = ExtResource("11_dhy4n")
 one_shot = true
 script = ExtResource("14_tiooy")
 
+[node name="StatManager" type="Node2D" parent="."]
+script = ExtResource("15_87c8w")
+speed = 300.0
+
 [connection signal="HealthChanged" from="." to="ProgressBar" method="OnHealthChanged"]
 [connection signal="HealthChanged" from="." to="ProgressBar/Label" method="OnHealthChanged"]
+[connection signal="PlayerHit" from="." to="CanTakeDamage" method="OnActivated"]
 [connection signal="onAuthChanged" from="." to="MultiplayerSynchronizer" method="setAuth"]
 [connection signal="onAuthChanged" from="." to="Camera2D" method="authChanged"]
 [connection signal="triggerAnimation" from="." to="Sprite2D" method="triggerAnim"]
@@ -115,3 +122,5 @@ script = ExtResource("14_tiooy")
 [connection signal="PrimaryAttack" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
 [connection signal="SecondaryAttack" from="Abilities" to="Abilities/SecondaryAttack" method="OnActivated"]
 [connection signal="timeout" from="CanTakeDamage" to="." method="takeDamageDebounce" binds= [true]]
+[connection signal="StatChanged" from="StatManager" to="." method="updateStats"]
+[connection signal="StatChanged" from="StatManager" to="ProgressBar" method="maxHealthChanged"]
