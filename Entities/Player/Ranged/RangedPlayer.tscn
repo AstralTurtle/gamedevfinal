@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnp3d0a7mhq24"]
+
+[ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_r06s2"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/RangedAbilityInput.cs" id="2_nqj6f"]
+[ext_resource type="PackedScene" uid="uid://brrb6leg78kbu" path="res://Entities/Player/Ranged/Scenes/Laser.tscn" id="3_lvp8j"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/LaserPivot.cs" id="3_ps1o2"]
+
+[node name="RangedPlayer" instance=ExtResource("1_r06s2")]
+
+[node name="Abilities" parent="." index="1"]
+position = Vector2(0, 4)
+script = ExtResource("2_nqj6f")
+secondaryCD = 1.0
+
+[node name="LaserPivot" type="Node2D" parent="." index="9"]
+script = ExtResource("3_ps1o2")
+
+[node name="RayCast2D" parent="LaserPivot" index="0" instance=ExtResource("3_lvp8j")]
+
+[connection signal="LaserFiring" from="Abilities" to="LaserPivot/RayCast2D" method="triggerLaser"]
+[connection signal="ModeChanged" from="Abilities" to="LaserPivot" method="SetMode"]

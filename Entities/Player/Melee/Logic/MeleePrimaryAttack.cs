@@ -30,6 +30,7 @@ public partial class MeleePrimaryAttack : Node2D
         swing.Rotation = player.Position.AngleToPoint(swing.Position);
         swing.RotationDegrees += 90;
         swing.TreeExited += GetParent<AbilityInput>().resetPrimaryDebounce;
+		
         GetTree().Root.GetNode<Node2D>("Game").AddChild(swing ,true);
         swing.Reparent(player);
         

@@ -48,8 +48,7 @@ offset_top = 256.0
 offset_right = 234.0
 offset_bottom = 472.0
 text = "Warrior
-(WIP - Gives you
- Rogue)"
+"
 
 [node name="Ramged" type="Button" parent="."]
 layout_mode = 0
@@ -68,8 +67,7 @@ offset_top = 256.0
 offset_right = 794.0
 offset_bottom = 472.0
 text = "Support 
-(WIP - Gives you
- Rogue)"
+"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

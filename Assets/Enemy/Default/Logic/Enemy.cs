@@ -21,8 +21,8 @@ public partial class Enemy : CharacterBody2D
         MoveAndSlide();
     }
 
-    public void triggerDamage(){
-        Rpc("takeDamage", 10);
+    public void triggerDamage(float dmg){
+        Rpc("takeDamage", dmg);
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]

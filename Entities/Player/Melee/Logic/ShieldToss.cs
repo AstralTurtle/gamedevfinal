@@ -67,7 +67,7 @@ public partial class ShieldToss : RigidBody2D
 			timer = 0;
 			// GravityScale = 0;
 			LinearVelocity = Vector2.Zero;
-			CallDeferred("disablePhysics");
+			CallDeferred("disablePhysics");	
 			isReturning = true;
 		}
 	}

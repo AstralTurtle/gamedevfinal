@@ -4,22 +4,22 @@ using System;
 public partial class AbilityInput : Node2D
 {
 	[Export] // Ability 1 CD
-	float a1cd = 1;
+	protected float a1cd = 1;
 	// Ability 1 CD Timer
-	float a1cdt = 0;
+	protected float a1cdt = 0;
 
 	[Export] // Ability 2 CD
-	float a2cd = 1;
+	protected float a2cd = 1;
 	// Ability 2 CD Timer
-	float a2cdt = 0;
+	protected float a2cdt = 0;
 
 	[Export]
 
-	int maxPrimary = 1;
-	int primary = 0;
+	protected int maxPrimary = 1;
+	protected int primary = 0;
 	[Export]
-	int maxSecondary = 1;
-	int secondary = 0;
+	protected int maxSecondary = 1;
+	protected int secondary = 0;
 	
 
 
