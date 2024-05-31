@@ -30,6 +30,12 @@ public partial class StatManager : Node2D
 	[Export]
 	public float dmgfmod = 0;
 
+	[Export]
+	public int maxJumps = 1;
+
+	[Export]
+	public int Jumpsfmod = 0;
+
 	public float getHealth(){
 		return (maxHealth * hppmod) + hpfmod;
 	}
@@ -40,6 +46,10 @@ public partial class StatManager : Node2D
 
 	public float getDamage(){
 		return (damage * dmgpmod) + dmgfmod;
+	}
+
+	public int getJumps(){
+		return maxJumps + Jumpsfmod;
 	}
 
 	public void setBaseValue(String stat, float value){
@@ -53,8 +63,11 @@ public partial class StatManager : Node2D
 			case "damage":
 				damage = value;
 				break;
+			case "jumps":
+				maxJumps = (int)value;
+				break;
 		}
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed()});
+		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
 	}
 
 	public void setFlatMod(string stat, float mod){
@@ -68,8 +81,11 @@ public partial class StatManager : Node2D
 			case "damage":
 				dmgfmod = mod;
 				break;
+			case "jumps":
+				maxJumps = (int)mod;
+				break;
 		}
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed()});
+		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
 	}
 
 	public void setPercentMod(string stat, float mod){
@@ -84,12 +100,12 @@ public partial class StatManager : Node2D
 				dmgpmod = mod;
 				break;
 		}
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed()});
+		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
 	}
 
 	public override void _Ready()
 	{
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed()});
+		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
 	}
 
 

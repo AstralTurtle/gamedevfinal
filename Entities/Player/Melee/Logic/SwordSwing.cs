@@ -35,7 +35,7 @@ public partial class SwordSwing : Area2D
 		if(body is Enemy){
 			GD.Print("Hit Enemy");
 			Enemy e = (Enemy)body;
-			e.takeDamage(damage);
+			e.triggerDamage(damage);
 		}
 		
 	}

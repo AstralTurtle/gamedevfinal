@@ -56,9 +56,7 @@ offset_left = 344.0
 offset_top = 256.0
 offset_right = 514.0
 offset_bottom = 472.0
-text = "Ranged 
-(WIP - Gives you
- Rogue)"
+text = "Ranged "
 
 [node name="Support" type="Button" parent="."]
 layout_mode = 0

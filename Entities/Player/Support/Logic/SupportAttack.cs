@@ -6,8 +6,7 @@ public partial class SupportAttack : Area2D
 {
 	[Signal]
 	public delegate void SuccessfulHitEventHandler();
-	[Export]
-	int dmg = 1;
+	float damage = 0;
 	[Export]
 	public float speed = 100f;
 
@@ -16,6 +15,11 @@ public partial class SupportAttack : Area2D
 	public void setDir(Vector2 dr)
 	{
 		dir = dr;
+	}
+
+	public void setDamage(float dmg)
+	{
+		damage = dmg;
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -46,7 +50,7 @@ public partial class SupportAttack : Area2D
 	{
 		if (body is Enemy)
 		{
-			// (body as Enemy).TakeDamage(dmg);
+			(body as Enemy).triggerDamage(damage);
 			EmitSignal(SignalName.SuccessfulHit);
 		}
 		QueueFree();

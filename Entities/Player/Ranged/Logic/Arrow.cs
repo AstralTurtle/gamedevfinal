@@ -37,11 +37,12 @@ public partial class Arrow : RigidBody2D
     {
         if (chargeTime > 0.75)
         {
-            return chargeTime + 1;
+            return chargeTime + 0.5f;
         }
         else
         {
-            return chargeTime + 0.5f;
+
+            return chargeTime;
         }
     }
 

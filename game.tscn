@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://tyefdx00unju"]
+[gd_scene load_steps=13 format=3 uid="uid://tyefdx00unju"]
 
 [ext_resource type="Script" path="res://Services/GameManager.cs" id="1_ek3bk"]
 [ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://Entities/Player/Rogue/RoguePlayer.tscn" id="2_hsmnt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://vhts50nsndi0" path="res://Assets/ParallaxBackground/Sky.png" id="2_tv8bg"]
 [ext_resource type="Texture2D" uid="uid://bmxqrw466rjhj" path="res://Assets/ParallaxBackground/DownLayer.png" id="3_0ip7e"]
 [ext_resource type="PackedScene" uid="uid://c6qxdup6mvb0k" path="res://Entities/Player/Support/Scenes/SupportPlayer.tscn" id="3_a44fm"]
+[ext_resource type="PackedScene" uid="uid://cnp3d0a7mhq24" path="res://Entities/Player/Ranged/RangedPlayer.tscn" id="3_o77jt"]
 [ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_u5q1y"]
 [ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_h4ai3"]
 [ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_dh25t"]
@@ -18,7 +19,7 @@ size = Vector2(3394, 115)
 [node name="Game" type="Node2D"]
 position = Vector2(0, -2)
 script = ExtResource("1_ek3bk")
-playerPrefabs = [ExtResource("2_okdib"), ExtResource("2_hsmnt"), ExtResource("3_a44fm"), ExtResource("2_hsmnt")]
+playerPrefabs = [ExtResource("2_okdib"), ExtResource("3_o77jt"), ExtResource("3_a44fm"), ExtResource("2_hsmnt")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-17, -461)
@@ -37,7 +38,7 @@ offset = Vector2(0, 100)
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 100)
 follow_viewport_scale = 2.0
-scroll_offset = Vector2(-590.548, -159.297)
+scroll_offset = Vector2(-675.096, -152.948)
 scroll_base_scale = Vector2(0.2, 0.2)
 scroll_ignore_camera_zoom = true
 

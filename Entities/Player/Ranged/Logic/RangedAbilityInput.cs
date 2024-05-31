@@ -143,16 +143,21 @@ public partial class RangedAbilityInput : AbilityInput
         }
         else if (@event.IsActionReleased("ability_1"))
         {
+            GD.Print("mage a1");
             if (mageA1CDT >= mageA1CD)
             {
+
+                GD.Print("mage a1 activated");
                 mageA1CDT = 0;
                 EmitSignal(SignalName.MageA1Activated);
             }
         }
         else if (@event.IsActionReleased("ability_2"))
         {
+            GD.Print("mage a2");
             if (mageA2CDT >= mageA2CD)
             {
+                GD.Print("mage a2 activated");
                 mageA2CDT = 0;
                 EmitSignal(SignalName.MageA2Activated);
             }

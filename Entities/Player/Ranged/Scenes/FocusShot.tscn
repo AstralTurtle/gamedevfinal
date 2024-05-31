@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp8gdpn0t1rew"]
+
+[ext_resource type="Texture2D" uid="uid://bugpdcrvftbfh" path="res://Assets/Bow and Arrows.png" id="1_5mvsd"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/FocusShot.cs" id="1_r3hrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3acwe"]
+size = Vector2(50, 25)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_r3hrp")
+speed = 800.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_3acwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3.16964, -3.59981)
+texture = ExtResource("1_5mvsd")
+region_enabled = true
+region_rect = Rect2(0, 36, 16, 7)

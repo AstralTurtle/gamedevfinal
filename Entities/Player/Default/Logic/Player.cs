@@ -26,6 +26,9 @@ public partial class Player : CharacterBody2D
 
 
 	public float health = 100.0f;
+
+	int jumps = 0;
+	int maxJumps = 1;
 	[Signal]
 	public delegate void HealthChangedEventHandler(float health);
 	[Signal]
@@ -63,6 +66,7 @@ public partial class Player : CharacterBody2D
 	public void updateStats(float[] stats){
 		maxHealth = stats[0];
 		Speed = stats[1];
+		maxJumps = (int)stats[2];
 	}
 
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
@@ -180,8 +184,13 @@ public partial class Player : CharacterBody2D
 			EmitSignal(SignalName.triggerAnimation, AnimNames[4]);
 		}
 
+		if (IsOnFloor()){
+			jumps = 0;
+		}
+
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor()){
+		if (Input.IsActionJustPressed("jump") && jumps < maxJumps){
+			jumps++;
 			velocity.Y = JumpVelocity - speedboost - (Speed/300);
 		}
 

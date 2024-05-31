@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6wjgyorrpnim"]
+
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/ArrowRainSpawner.cs" id="1_eaji4"]
+[ext_resource type="PackedScene" uid="uid://cqukxqgnbey16" path="res://Entities/Player/Ranged/Scenes/ArrowRainArrow.tscn" id="2_5mr6v"]
+
+[node name="ArrowRainSpawner" type="Node2D"]
+script = ExtResource("1_eaji4")
+arrowScene = ExtResource("2_5mr6v")
+numArrows = 10
