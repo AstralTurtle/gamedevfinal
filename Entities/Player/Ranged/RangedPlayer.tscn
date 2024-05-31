@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnp3d0a7mhq24"]
+[gd_scene load_steps=6 format=3 uid="uid://cnp3d0a7mhq24"]
 
 [ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_r06s2"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/RangedAbilityInput.cs" id="2_nqj6f"]
 [ext_resource type="PackedScene" uid="uid://brrb6leg78kbu" path="res://Entities/Player/Ranged/Scenes/Laser.tscn" id="3_lvp8j"]
-[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/LaserPivot.cs" id="3_ps1o2"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/BowPrimaryAttack.cs" id="3_vjdos"]
+[ext_resource type="PackedScene" uid="uid://ck4qo3iu67da5" path="res://Entities/Player/Ranged/Scenes/Arrow.tscn" id="4_gv3aw"]
 
 [node name="RangedPlayer" instance=ExtResource("1_r06s2")]
 
@@ -11,11 +12,18 @@
 position = Vector2(0, 4)
 script = ExtResource("2_nqj6f")
 secondaryCD = 1.0
+maxArrowCharge = 1.0
+arrowChargeRate = 1.0
+maxLaserCharge = 100.0
+laserRegenRate = 40.0
+laserTimeout = 5.0
+laserDecayRate = 20.0
 
-[node name="LaserPivot" type="Node2D" parent="." index="9"]
-script = ExtResource("3_ps1o2")
+[node name="PrimaryAttack" parent="Abilities" index="2"]
+script = ExtResource("3_vjdos")
+primaryAttack = ExtResource("4_gv3aw")
 
-[node name="RayCast2D" parent="LaserPivot" index="0" instance=ExtResource("3_lvp8j")]
+[node name="RayCast2D" parent="." index="9" instance=ExtResource("3_lvp8j")]
 
-[connection signal="LaserFiring" from="Abilities" to="LaserPivot/RayCast2D" method="triggerLaser"]
-[connection signal="ModeChanged" from="Abilities" to="LaserPivot" method="SetMode"]
+[connection signal="ArrowFired" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
+[connection signal="LaserFiring" from="Abilities" to="RayCast2D" method="triggerLaser"]

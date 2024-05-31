@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck4qo3iu67da5"]
+
+[ext_resource type="Script" path="res://Arrow.cs" id="1_dgy3j"]
+[ext_resource type="Texture2D" uid="uid://bugpdcrvftbfh" path="res://Assets/Bow and Arrows.png" id="2_oerc4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1a27b"]
+size = Vector2(16, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tr2ic"]
+atlas = ExtResource("2_oerc4")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqa23"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tr2ic")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_dgy3j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_1a27b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_wqa23")
