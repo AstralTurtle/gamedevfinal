@@ -41,9 +41,26 @@ public partial class RangedAbilityInput : AbilityInput
     [Export]
     float laserDecayRate = 20f;
 
+    [Signal]
+    public delegate void MageA1ActivatedEventHandler();
+
+    [Signal]
+    public delegate void MageA2ActivatedEventHandler();
+
+    [Export]
+    float mageA1CD = 1;
+
+    [Export]
+    float mageA2CD = 1;
+    float mageA2CDT = 0;
+    float mageA1CDT = 0;
+
     public override void _Process(double delta)
     {
         secondaryCDT += (float)delta;
+        mageA1CDT += (float)delta;
+        mageA2CDT += (float)delta;
+
         if (!isLaserFiring)
             laserChargeTime += (float)delta * laserRegenRate;
         else
@@ -124,6 +141,22 @@ public partial class RangedAbilityInput : AbilityInput
                 EmitSignal(SignalName.LaserFiring, true);
             }
         }
+        else if (@event.IsActionReleased("ability_1"))
+        {
+            if (mageA1CDT >= mageA1CD)
+            {
+                mageA1CDT = 0;
+                EmitSignal(SignalName.MageA1Activated);
+            }
+        }
+        else if (@event.IsActionReleased("ability_2"))
+        {
+            if (mageA2CDT >= mageA2CD)
+            {
+                mageA2CDT = 0;
+                EmitSignal(SignalName.MageA2Activated);
+            }
+        }
     }
 
     void BowModeInput(InputEvent @event)
@@ -141,6 +174,14 @@ public partial class RangedAbilityInput : AbilityInput
         else if (@event.IsAction("primary_attack"))
         {
             isArrowCharging = true;
+        }
+        else if (@event.IsActionReleased("ability_1"))
+        {
+            EmitSignal(AbilityInput.SignalName.Ability1);
+        }
+        else if (@event.IsActionReleased("ability_2"))
+        {
+            EmitSignal(AbilityInput.SignalName.Ability2);
         }
     }
 

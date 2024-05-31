@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cnp3d0a7mhq24"]
+[gd_scene load_steps=10 format=3 uid="uid://cnp3d0a7mhq24"]
 
 [ext_resource type="PackedScene" uid="uid://nqicemm0nxbm" path="res://Entities/Player/Default/DefaultPlayer.tscn" id="1_r06s2"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/RangedAbilityInput.cs" id="2_nqj6f"]
 [ext_resource type="PackedScene" uid="uid://brrb6leg78kbu" path="res://Entities/Player/Ranged/Scenes/Laser.tscn" id="3_lvp8j"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/BowPrimaryAttack.cs" id="3_vjdos"]
 [ext_resource type="PackedScene" uid="uid://ck4qo3iu67da5" path="res://Entities/Player/Ranged/Scenes/Arrow.tscn" id="4_gv3aw"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/MageA1.cs" id="5_vbkvm"]
+[ext_resource type="PackedScene" uid="uid://cqebcjsifjb" path="res://Entities/Player/Ranged/Scenes/ChaosStorm.tscn" id="6_kwedf"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/MageA2.cs" id="7_s4nqc"]
+[ext_resource type="PackedScene" uid="uid://dwcfhw8p8pjpq" path="res://Entities/Player/Ranged/Scenes/ChaosBomb.tscn" id="8_dngnp"]
 
 [node name="RangedPlayer" instance=ExtResource("1_r06s2")]
 
@@ -18,12 +22,28 @@ maxLaserCharge = 100.0
 laserRegenRate = 40.0
 laserTimeout = 5.0
 laserDecayRate = 20.0
+mageA1CD = 1.0
+mageA2CD = 1.0
 
 [node name="PrimaryAttack" parent="Abilities" index="2"]
 script = ExtResource("3_vjdos")
 primaryAttack = ExtResource("4_gv3aw")
 
+[node name="MageA1" type="Node2D" parent="Abilities" index="4"]
+position = Vector2(0, -3.8647)
+scale = Vector2(1.05065, 0.966174)
+script = ExtResource("5_vbkvm")
+stormScene = ExtResource("6_kwedf")
+
+[node name="MageA2" type="Node2D" parent="Abilities" index="5"]
+position = Vector2(1.05065, -8.69557)
+scale = Vector2(1.10387, 0.933493)
+script = ExtResource("7_s4nqc")
+bombScene = ExtResource("8_dngnp")
+
 [node name="RayCast2D" parent="." index="9" instance=ExtResource("3_lvp8j")]
 
 [connection signal="ArrowFired" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
 [connection signal="LaserFiring" from="Abilities" to="RayCast2D" method="triggerLaser"]
+[connection signal="MageA1Activated" from="Abilities" to="Abilities/MageA1" method="OnActivated"]
+[connection signal="MageA2Activated" from="Abilities" to="Abilities/MageA2" method="OnActivated"]

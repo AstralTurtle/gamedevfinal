@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ck4qo3iu67da5"]
 
-[ext_resource type="Script" path="res://Arrow.cs" id="1_dgy3j"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/Arrow.cs" id="1_woxce"]
 [ext_resource type="Texture2D" uid="uid://bugpdcrvftbfh" path="res://Assets/Bow and Arrows.png" id="2_oerc4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1a27b"]
@@ -24,7 +24,7 @@ animations = [{
 [node name="RigidBody2D" type="RigidBody2D"]
 max_contacts_reported = 1
 contact_monitor = true
-script = ExtResource("1_dgy3j")
+script = ExtResource("1_woxce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

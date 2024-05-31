@@ -1,11 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://brrb6leg78kbu"]
 
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/Laser.cs" id="1_m025g"]
-
-[sub_resource type="Gradient" id="Gradient_3y5dj"]
-colors = PackedColorArray(1, 0, 1, 1, 1, 0.5, 0.5, 1)
-metadata/_snap_count = 2
-metadata/_snap_enabled = true
+[ext_resource type="Gradient" uid="uid://rjdcaj5ukbl8" path="res://Entities/Player/Ranged/Scenes/ChaosGradiant.tres" id="2_n10vs"]
+[ext_resource type="Gradient" uid="uid://dmcfpyo56o02" path="res://Entities/Player/Ranged/Scenes/ChaosParticles.tres" id="3_hqmov"]
 
 [sub_resource type="Curve" id="Curve_1jttb"]
 _data = [Vector2(0, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -15,11 +12,8 @@ metadata/_snap_enabled = true
 [sub_resource type="CurveTexture" id="CurveTexture_4g0v0"]
 curve = SubResource("Curve_1jttb")
 
-[sub_resource type="Gradient" id="Gradient_dxyrx"]
-colors = PackedColorArray(1, 1, 0, 1, 1, 0, 1, 1)
-
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bn0ia"]
-gradient = SubResource("Gradient_dxyrx")
+gradient = ExtResource("3_hqmov")
 
 [sub_resource type="Curve" id="Curve_2bo2m"]
 _data = [Vector2(0.0124224, 0), 0.0, 0.0, 0, 0, Vector2(0.981366, 0.967033), 0.0, 0.0, 0, 0]
@@ -49,13 +43,12 @@ hue_variation_max = 0.25
 scale = Vector2(1.73042, 0.900617)
 target_position = Vector2(1000, 0)
 hit_from_inside = true
-collide_with_areas = true
 script = ExtResource("1_m025g")
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 10, 0)
+points = PackedVector2Array(0, 0, 0, 0)
 default_color = Color(0.498039, 0, 0.498039, 1)
-gradient = SubResource("Gradient_3y5dj")
+gradient = ExtResource("2_n10vs")
 
 [node name="Collision" type="GPUParticles2D" parent="."]
 position = Vector2(9.82421, 0)

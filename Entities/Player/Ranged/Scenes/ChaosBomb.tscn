@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://dwcfhw8p8pjpq"]
+
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/ChaosBomb.cs" id="1_kcvlg"]
+[ext_resource type="Gradient" uid="uid://dmcfpyo56o02" path="res://Entities/Player/Ranged/Scenes/ChaosParticles.tres" id="2_f82iy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k7c5u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_if0fn"]
+radius = 80.0
+
+[sub_resource type="Curve" id="Curve_mg7nh"]
+_data = [Vector2(0, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.8, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+
+[sub_resource type="CurveTexture" id="CurveTexture_sbvqu"]
+curve = SubResource("Curve_mg7nh")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iibg7"]
+gradient = ExtResource("2_f82iy")
+
+[sub_resource type="Curve" id="Curve_um5m7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_gmgam"]
+curve = SubResource("Curve_um5m7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cdc0f"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 80.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 20.0
+radial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_gmgam")
+color_ramp = SubResource("GradientTexture1D_iibg7")
+alpha_curve = SubResource("CurveTexture_sbvqu")
+hue_variation_max = 0.25
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b10re"]
+gradient = ExtResource("2_f82iy")
+
+[node name="RigidBody2D" type="RigidBody2D"]
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_kcvlg")
+
+[node name="ProjectileCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k7c5u")
+
+[node name="Explosion" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion"]
+shape = SubResource("CircleShape2D_if0fn")
+
+[node name="ExplosionParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_cdc0f")
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 0
+
+[node name="SpritePivot" type="Node2D" parent="."]
+
+[node name="Sprite2D5" type="Sprite2D" parent="SpritePivot"]
+rotation = -2.4701
+scale = Vector2(0.0608018, 13.5146)
+texture = SubResource("GradientTexture1D_b10re")
+
+[node name="Sprite2D4" type="Sprite2D" parent="SpritePivot"]
+rotation = -2.81135
+scale = Vector2(0.0608018, 13.5146)
+texture = SubResource("GradientTexture1D_b10re")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SpritePivot"]
+rotation = 2.74679
+scale = Vector2(0.0608018, 13.5146)
+texture = SubResource("GradientTexture1D_b10re")
+
+[node name="Sprite2D2" type="Sprite2D" parent="SpritePivot"]
+rotation = 2.33642
+scale = Vector2(0.0608018, 13.5146)
+texture = SubResource("GradientTexture1D_b10re")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpritePivot"]
+rotation = 3.14159
+scale = Vector2(0.0608018, 13.5146)
+texture = SubResource("GradientTexture1D_b10re")
