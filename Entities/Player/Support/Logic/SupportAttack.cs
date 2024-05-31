@@ -4,55 +4,57 @@ using System.Threading.Tasks;
 
 public partial class SupportAttack : Area2D
 {
-	[Signal]
-	public delegate void SuccessfulHitEventHandler();
-	float damage = 0;
-	[Export]
-	public float speed = 100f;
+    [Signal]
+    public delegate void SuccessfulHitEventHandler();
+    float damage = 0;
 
-	Vector2 dir = new Vector2(0, 0);
+    [Export]
+    public float speed = 200f;
 
-	public void setDir(Vector2 dr)
-	{
-		dir = dr;
-	}
+    Vector2 dir = new Vector2(0, 0);
 
-	public void setDamage(float dmg)
-	{
-		damage = dmg;
-	}
+    [Export]
+    public float lifetime = 15f;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		BodyEntered += OnSupportAttackBodyEntered;
-		destroyOnTime();
+    public void setDir(Vector2 dr)
+    {
+        dir = dr;
+    }
 
-	}
+    public void setDamage(float dmg)
+    {
+        damage = dmg;
+    }
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        BodyEntered += OnSupportAttackBodyEntered;
+        destroyOnTime();
+    }
 
     public override void _Process(double delta)
     {
-		Position = Position + dir * speed * (float)delta;
+        Position = Position + dir * speed * (float)delta;
 
         base._Process(delta);
     }
 
-	
+    public async Task destroyOnTime()
+    {
+        GD.Print("Destroying");
+        await ToSignal(GetTree().CreateTimer(lifetime), SceneTreeTimer.SignalName.Timeout);
+        GD.Print("destroyed");
+        QueueFree();
+    }
 
-    public async Task destroyOnTime(){
-		GD.Print("Destroying");
-		await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
-		GD.Print("destroyed");
-		QueueFree();
-	}
-
-	public void OnSupportAttackBodyEntered(Node body)
-	{
-		if (body is Enemy)
-		{
-			(body as Enemy).triggerDamage(damage);
-			EmitSignal(SignalName.SuccessfulHit);
-		}
-		QueueFree();
-	}
+    public void OnSupportAttackBodyEntered(Node body)
+    {
+        if (body is Enemy)
+        {
+            (body as Enemy).triggerDamage(damage);
+            EmitSignal(SignalName.SuccessfulHit);
+        }
+        QueueFree();
+    }
 }
