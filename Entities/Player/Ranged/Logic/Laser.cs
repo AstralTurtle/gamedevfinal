@@ -72,8 +72,14 @@ public partial class Laser : RayCast2D
 
         // GD.Print("ang:"+ ang);
         // GD.Print("b4"+Rotation);
-        Rotation = ang;
+        Rpc("pivotRPC", ang);
         // GD.Print("aft"+Rotation);
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    void pivotRPC(float ang)
+    {
+        Rotation = ang;
     }
 
     private float GetAngleFromDirection(Vector2 direction)

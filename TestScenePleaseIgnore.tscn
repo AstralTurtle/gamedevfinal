@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://0hfeinnrmuxr"]
 
 [ext_resource type="PackedScene" uid="uid://cnp3d0a7mhq24" path="res://Entities/Player/Ranged/RangedPlayer.tscn" id="1_x1msu"]
-[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Assets/Enemy/Skeleton/Skeleton.tscn" id="2_ug364"]
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Skeleton/Skeleton.tscn" id="2_ug364"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugcjf"]
 size = Vector2(3394, 115)

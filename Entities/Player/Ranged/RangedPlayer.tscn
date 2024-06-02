@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://brrb6leg78kbu" path="res://Entities/Player/Ranged/Scenes/Laser.tscn" id="3_lvp8j"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/BowA1.cs" id="3_proag"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/BowPrimaryAttack.cs" id="3_vjdos"]
-[ext_resource type="Script" path="res://Entities/Player/Ranged/BowWandSwitch.cs" id="4_d1cl4"]
 [ext_resource type="PackedScene" uid="uid://b6wjgyorrpnim" path="res://Entities/Player/Ranged/Scenes/ArrowRainSpawner.tscn" id="4_ekd8g"]
 [ext_resource type="PackedScene" uid="uid://ck4qo3iu67da5" path="res://Entities/Player/Ranged/Scenes/Arrow.tscn" id="4_gv3aw"]
+[ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/BowWandSwitch.cs" id="4_wa6n2"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/BowA2.cs" id="5_e2i63"]
 [ext_resource type="Script" path="res://Entities/Player/Ranged/Logic/MageA1.cs" id="5_vbkvm"]
 [ext_resource type="PackedScene" uid="uid://cqebcjsifjb" path="res://Entities/Player/Ranged/Scenes/ChaosStorm.tscn" id="6_kwedf"]
@@ -214,9 +214,9 @@ AnimNames = PackedStringArray("idle", "run", "death", "hit", "jump_idle", "jump_
 position = Vector2(12.5, 0)
 texture = ExtResource("3_6cfkw")
 region_enabled = true
-region_rect = Rect2(0, 0, 12, 24)
-script = ExtResource("4_d1cl4")
-BOW_RECT = Rect2(12, 0, 11, 24)
+region_rect = Rect2(12, 0, 12, 24)
+script = ExtResource("4_wa6n2")
+BOW_RECT = Rect2(12, 0, 12, 24)
 WAND_RECT = Rect2(0, 0, 12, 24)
 
 [node name="Abilities" parent="." index="1"]
