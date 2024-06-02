@@ -3,111 +3,137 @@ using System;
 
 public partial class StatManager : Node2D
 {
-	[Signal]
-	public delegate void StatChangedEventHandler(float[] change);	
+    [Signal]
+    public delegate void StatChangedEventHandler(float[] change);
 
-	// Base Stats
-	[Export]
-	public float maxHealth = 100;
-	[Export]
-	public float speed = 100;
-	[Export]
-	public float damage = 10;
+    // Base Stats
+    [Export]
+    public float maxHealth = 100;
 
-	// Percent Modifiers
-	[Export]
-	public float hppmod = 1;
-	[Export]
-	public float speedpmod = 1;
-	[Export]
-	public float dmgpmod = 1;
-	// Flat Modifiers
+    [Export]
+    public float speed = 100;
 
-	[Export]
-	public float hpfmod = 0;
-	[Export]
-	public float speedfmod = 0;
-	[Export]
-	public float dmgfmod = 0;
+    [Export]
+    public float damage = 10;
 
-	[Export]
-	public int maxJumps = 1;
+    // Percent Modifiers
+    [Export]
+    public float hppmod = 1;
 
-	[Export]
-	public int Jumpsfmod = 0;
+    [Export]
+    public float speedpmod = 1;
 
-	public float getHealth(){
-		return (maxHealth * hppmod) + hpfmod;
-	}
+    [Export]
+    public float dmgpmod = 1;
 
-	public float getSpeed(){
-		return  (speed * speedpmod) + speedfmod;
-	}
+    // Flat Modifiers
 
-	public float getDamage(){
-		return (damage * dmgpmod) + dmgfmod;
-	}
+    [Export]
+    public float hpfmod = 0;
 
-	public int getJumps(){
-		return maxJumps + Jumpsfmod;
-	}
+    [Export]
+    public float speedfmod = 0;
 
-	public void setBaseValue(String stat, float value){
-		switch (stat){
-			case "health":
-				maxHealth = value;
-				break;
-			case "speed":
-				speed = value;
-				break;
-			case "damage":
-				damage = value;
-				break;
-			case "jumps":
-				maxJumps = (int)value;
-				break;
-		}
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
-	}
+    [Export]
+    public float dmgfmod = 0;
 
-	public void setFlatMod(string stat, float mod){
-		switch(stat){
-			case "health":
-				hpfmod = mod;
-				break;
-			case "speed":
-				speedfmod = mod;
-				break;
-			case "damage":
-				dmgfmod = mod;
-				break;
-			case "jumps":
-				maxJumps = (int)mod;
-				break;
-		}
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
-	}
+    [Export]
+    public int maxJumps = 1;
 
-	public void setPercentMod(string stat, float mod){
-		switch(stat){
-			case "health":
-				hppmod = mod;
-				break;
-			case "speed":
-				speedpmod = mod;
-				break;
-			case "damage":
-				dmgpmod = mod;
-				break;
-		}
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
-	}
+    [Export]
+    public int Jumpsfmod = 0;
 
-	public override void _Ready()
-	{
-		EmitSignal(SignalName.StatChanged, new float[] {getHealth(), getSpeed(), (float)getJumps()});
-	}
+    public float getHealth()
+    {
+        return (maxHealth + hpfmod) * (hppmod + 1);
+    }
 
+    public float getSpeed()
+    {
+        return (speed + speedfmod) * (speedpmod + 1);
+    }
 
+    public float getDamage()
+    {
+        return (damage + dmgfmod) * (dmgpmod + 1);
+    }
 
+    public int getJumps()
+    {
+        return maxJumps + Jumpsfmod;
+    }
+
+    public void setBaseValue(StatType stat, float value)
+    {
+        switch (stat)
+        {
+            case StatType.Health:
+                maxHealth = value;
+                break;
+            case StatType.Damage:
+                damage = value;
+                break;
+            case StatType.Speed:
+                speed = value;
+                break;
+            case StatType.Jumps:
+                maxJumps = (int)value;
+                break;
+        }
+        EmitSignal(
+            SignalName.StatChanged,
+            new float[] { getHealth(), getSpeed(), (float)getJumps() }
+        );
+    }
+
+    public void setFlatMod(StatType stat, float val)
+    {
+        switch (stat)
+        {
+            case StatType.Health:
+                hpfmod += val;
+                break;
+            case StatType.Damage:
+                dmgfmod += val;
+                break;
+            case StatType.Speed:
+                speedfmod += val;
+                break;
+            case StatType.Jumps:
+                Jumpsfmod += (int)val;
+                break;
+        }
+        EmitSignal(
+            SignalName.StatChanged,
+            new float[] { getHealth(), getSpeed(), (float)getJumps() }
+        );
+    }
+
+    public void setPercentMod(StatType stat, float mod)
+    {
+        switch (stat)
+        {
+            case StatType.Health:
+                hppmod += mod;
+                break;
+            case StatType.Speed:
+                speedpmod += mod;
+                break;
+            case StatType.Damage:
+                dmgpmod += mod;
+                break;
+        }
+        EmitSignal(
+            SignalName.StatChanged,
+            new float[] { getHealth(), getSpeed(), (float)getJumps() }
+        );
+    }
+
+    public override void _Ready()
+    {
+        EmitSignal(
+            SignalName.StatChanged,
+            new float[] { getHealth(), getSpeed(), (float)getJumps() }
+        );
+    }
 }

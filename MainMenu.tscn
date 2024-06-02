@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://btflrjvfcmbi0"]
+
+[ext_resource type="Script" path="res://UI/Menu/Play.cs" id="1_pohvc"]
+[ext_resource type="PackedScene" uid="uid://cq4h7lxwrsksf" path="res://UI/Menu/lobby.tscn" id="2_6g5hy"]
+[ext_resource type="PackedScene" uid="uid://c32lnof5mrmtq" path="res://Services/Shop/CurrencyManager.tscn" id="3_nsnps"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d70yd"]
+line_spacing = 10.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 382.0
+offset_top = 303.0
+offset_right = 772.0
+offset_bottom = 347.0
+text = "Play"
+script = ExtResource("1_pohvc")
+_scene = ExtResource("2_6g5hy")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 376.0
+offset_right = 771.0
+offset_bottom = 416.0
+text = "Shop (WIP)"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 124.0
+offset_right = 859.0
+offset_bottom = 210.0
+text = "Dungeons & Delvers"
+label_settings = SubResource("LabelSettings_d70yd")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CurrencyManager" parent="." instance=ExtResource("3_nsnps")]

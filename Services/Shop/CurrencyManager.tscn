@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c32lnof5mrmtq"]
+
+[ext_resource type="Script" path="res://Services/Shop/CurrencyManager.cs" id="1_fun6u"]
+
+[node name="CurrencyManager" type="Node"]
+script = ExtResource("1_fun6u")

@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmyiuj8easkmh"]
+
+[ext_resource type="Script" path="res://Services/Shop/Shop.cs" id="1_t5j85"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5j85")
+testMode = true
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 105.0
+offset_right = 662.0
+offset_bottom = 567.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 661.0
+offset_top = 102.0
+offset_right = 846.0
+offset_bottom = 165.0
+text = "Buy"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 658.0
+offset_top = 506.0
+offset_right = 827.0
+offset_bottom = 566.0
+text = "Refresh | Cost 1"
+
+[connection signal="pressed" from="Button" to="." method="buyItem"]
+[connection signal="pressed" from="Button2" to="." method="refreshButton"]
