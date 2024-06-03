@@ -18,13 +18,13 @@ public partial class StatManager : Node2D
 
     // Percent Modifiers
     [Export]
-    public float hppmod = 1;
+    public float hppmod = 0;
 
     [Export]
-    public float speedpmod = 1;
+    public float speedpmod = 0;
 
     [Export]
-    public float dmgpmod = 1;
+    public float dmgpmod = 0;
 
     // Flat Modifiers
 

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Entities/Enemy/Default/Logic/Enemy.cs" id="1_spcmw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_600dm"]
+size = Vector2(20.5, 20.5)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q8cbg"]
 
@@ -16,3 +17,8 @@ shape = SubResource("RectangleShape2D_600dm")
 position = Vector2(1.07288e-06, 1.07288e-06)
 scale = Vector2(20, 20)
 texture = SubResource("PlaceholderTexture2D_q8cbg")
+
+[node name="DamageBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
+shape = SubResource("RectangleShape2D_600dm")

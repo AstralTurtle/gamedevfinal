@@ -14,7 +14,7 @@ public partial class SupportAttack : Area2D
     Vector2 dir = new Vector2(0, 0);
 
     [Export]
-    public float lifetime = 15f;
+    public float lifetime = 5f;
 
     public void setDir(Vector2 dr)
     {
@@ -52,6 +52,7 @@ public partial class SupportAttack : Area2D
     {
         if (body is Enemy)
         {
+            GD.Print("Hit Enemy");
             (body as Enemy).triggerDamage(damage);
             EmitSignal(SignalName.SuccessfulHit);
         }
