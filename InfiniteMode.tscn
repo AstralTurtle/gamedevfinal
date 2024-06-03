@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://4g678bh8i515"]
+
+[ext_resource type="PackedScene" uid="uid://tyefdx00unju" path="res://game.tscn" id="1_q7y8w"]
+[ext_resource type="Script" path="res://InfiniteMode.cs" id="2_fhcgr"]
+
+[node name="Game" instance=ExtResource("1_q7y8w")]
+script = ExtResource("2_fhcgr")
+waveSize = 5
+waveDelay = 5.0
+enemySpawnerScene = null
