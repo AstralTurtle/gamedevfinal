@@ -4,6 +4,15 @@ using System.Linq;
 
 public partial class Enemy : CharacterBody2D
 {
+    [Signal]
+    public delegate void AnimChangedEventHandler(string animName);
+    [Signal]
+    public delegate void lookDirectionEventHandler(Vector2 dir);
+
+    [Export]
+    String[] animNames = { "idle", "run", "jump"};
+
+
     [Export]
     float health = 20;
 
@@ -16,6 +25,7 @@ public partial class Enemy : CharacterBody2D
     [Export]
     protected float damage = 10;
 
+    protected Vector2 direction = Vector2.Zero;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() { }
 
@@ -44,6 +54,29 @@ public partial class Enemy : CharacterBody2D
                 player.triggerDamage(damage);
             }
         }
+    }
+
+    public virtual bool PlayerDetection()
+    {
+        
+        var shape = GetNode<ShapeCast2D>("ShapeCast2D");
+        if (shape.IsColliding())
+        {
+            for (int i = 0; i < shape.GetCollisionCount(); i++)
+            {
+                var collision = shape.GetCollider(i);
+                if (collision is Player)
+                {
+                    direction = (
+                        (collision as Player).GlobalPosition - GlobalPosition
+                    ).Normalized();
+                    EmitSignal(SignalName.lookDirection, direction);
+                     return true;
+                }
+            }
+        }
+        return false;
+       
     }
 
     public void triggerDamage(float dmg)

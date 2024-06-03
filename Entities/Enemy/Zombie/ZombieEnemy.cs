@@ -4,7 +4,7 @@ using System;
 public partial class ZombieEnemy : Enemy
 {
     Vector2 velocity = Vector2.Zero;
-    Vector2 direction = Vector2.Zero;
+  
     public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
     // Called when the node enters the scene tree for the first time.
@@ -19,15 +19,22 @@ public partial class ZombieEnemy : Enemy
         PlayerDetection();
         if (direction != Vector2.Zero)
         {
+            EmitSignal(Enemy.SignalName.AnimChanged, "run");
             velocity.X = direction.X * Speed;
         }
         else
         {
+            EmitSignal(Enemy.SignalName.AnimChanged, "jump");
             velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+        }
+
+        if (direction == Vector2.Zero){
+            EmitSignal(Enemy.SignalName.AnimChanged, "idle");
         }
 
         if (direction.Y < -0.5 && IsOnFloor())
         {
+            EmitSignal(Enemy.SignalName.AnimChanged, "jump");
             velocity.Y = JumpVelocity;
         }
 
@@ -37,25 +44,4 @@ public partial class ZombieEnemy : Enemy
         base._PhysicsProcess(delta);
     }
 
-    public void PlayerDetection()
-    {
-        var shape = GetNode<ShapeCast2D>("ShapeCast2D");
-        if (shape.IsColliding())
-        {
-            GD.Print("Is colliding " + shape.GetCollisionCount());
-            for (int i = 0; i < shape.GetCollisionCount(); i++)
-            {
-                var collision = shape.GetCollider(i);
-                if (collision is Player)
-                {
-                    direction = (
-                        (collision as Player).GlobalPosition - GlobalPosition
-                    ).Normalized();
-                    GD.Print("direction: " + direction);
-
-                    break;
-                }
-            }
-        }
-    }
 }

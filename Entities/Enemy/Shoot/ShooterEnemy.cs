@@ -13,7 +13,7 @@ public partial class ShooterEnemy : Enemy
 	float throwcd = 2;
 	 float throwcdt = 0;
 
-	Vector2 direction = Vector2.Zero;
+	
 	// Throw above the player
 	
 	// Called when the node enters the scene tree for the first time.
@@ -29,7 +29,7 @@ public partial class ShooterEnemy : Enemy
 		}
 
 		throwcdt += (float)delta;
-		PlayerDetection();
+		bool isplayer = PlayerDetection();
 
 		if (!IsOnFloor())
             velocity.Y += gravity * (float)delta;
@@ -38,23 +38,31 @@ public partial class ShooterEnemy : Enemy
 		{
 			throwcdt = 0;
 			
-			shootObj(direction);
+			Rpc("shootObj", direction);
 
 		}
-
+		if (isplayer){
 		if (direction != Vector2.Zero)
         {
+			EmitSignal(Enemy.SignalName.AnimChanged, "run");
             velocity.X = -(direction.X * Speed);
         }
         else
         {
+			EmitSignal(Enemy.SignalName.AnimChanged, "run");
             velocity.X = -Mathf.MoveToward(Velocity.X, 0, Speed);
         }
-
-        if (direction.Y < -0.5 && IsOnFloor())
+		 if (direction.Y < -0.5 && IsOnFloor())
         {
+			EmitSignal(Enemy.SignalName.AnimChanged, "jump");
             velocity.Y = JumpVelocity;
         }
+		}
+		if (direction == Vector2.Zero){
+			EmitSignal(Enemy.SignalName.AnimChanged, "idle");
+		}
+
+       
 
 		Velocity = velocity;
 		MoveAndSlide();
@@ -77,23 +85,5 @@ public partial class ShooterEnemy : Enemy
 
 	}
 
-	public void PlayerDetection()
-    {
-        var shape = GetNode<ShapeCast2D>("ShapeCast2D");
-        if (shape.IsColliding())
-        {
-            for (int i = 0; i < shape.GetCollisionCount(); i++)
-            {
-                var collision = shape.GetCollider(i);
-                if (collision is Player)
-                {
-                    direction = (
-                        (collision as Player).GlobalPosition - GlobalPosition
-                    ).Normalized();
-
-                    break;
-                }
-            }
-        }
-    }
+	
 }

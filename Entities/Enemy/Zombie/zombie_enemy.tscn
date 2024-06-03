@@ -1,0 +1,124 @@
+[gd_scene load_steps=18 format=3 uid="uid://cg574on8ub6l3"]
+
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_vcpux"]
+[ext_resource type="Script" path="res://Entities/Enemy/Zombie/ZombieEnemy.cs" id="2_22vlo"]
+[ext_resource type="Texture2D" uid="uid://3nbl2wk28ytt" path="res://Assets/forestSprites_ v1.2/troll_.png" id="3_485iu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_241n3"]
+resource_local_to_scene = true
+size = Vector2(15.5, 28.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk01r"]
+atlas = ExtResource("3_485iu")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woc23"]
+atlas = ExtResource("3_485iu")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mb61"]
+atlas = ExtResource("3_485iu")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpoa6"]
+atlas = ExtResource("3_485iu")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh4bo"]
+atlas = ExtResource("3_485iu")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfsrr"]
+atlas = ExtResource("3_485iu")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sceja"]
+atlas = ExtResource("3_485iu")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8idcm"]
+atlas = ExtResource("3_485iu")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o7ef"]
+atlas = ExtResource("3_485iu")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kq5ec"]
+atlas = ExtResource("3_485iu")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cu6o"]
+atlas = ExtResource("3_485iu")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6x40"]
+atlas = ExtResource("3_485iu")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0yxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk01r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woc23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mb61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpoa6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh4bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfsrr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sceja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8idcm")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o7ef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kq5ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cu6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6x40")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="ZombieEnemy" instance=ExtResource("1_vcpux")]
+script = ExtResource("2_22vlo")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0.25, 4.75)
+shape = SubResource("RectangleShape2D_241n3")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_h0yxa")
+animation = &"jump"

@@ -1,22 +1,122 @@
-[gd_scene load_steps=5 format=3 uid="uid://k6mwqf4sg1u3"]
+[gd_scene load_steps=18 format=3 uid="uid://k6mwqf4sg1u3"]
 
-[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Skeleton/Skeleton.tscn" id="1_70fwk"]
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_70fwk"]
 [ext_resource type="Script" path="res://Entities/Enemy/Slime/SlimeEnemy.cs" id="2_2wsun"]
+[ext_resource type="Texture2D" uid="uid://decsvg4hu1klk" path="res://Assets/forestSprites_ v1.2/slime_.png" id="3_ulh5d"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_600dm"]
-size = Vector2(20.5, 20.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyhd2"]
+resource_local_to_scene = true
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_co2ct"]
-radius = 200.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_afwqk"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3x0i"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp840"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wq8nj"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_romhj"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j01pr"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsip2"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iex3q"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjhf1"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s6ivv"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4apn"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62n36"]
+atlas = ExtResource("3_ulh5d")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n07g6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afwqk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3x0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp840")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wq8nj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_romhj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j01pr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsip2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iex3q")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjhf1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s6ivv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4apn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62n36")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [node name="SlimeEnemy" instance=ExtResource("1_70fwk")]
 script = ExtResource("2_2wsun")
 
-[node name="DamageBox#CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
-position = Vector2(2.25, 0.75)
-shape = SubResource("RectangleShape2D_600dm")
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_uyhd2")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="4"]
-position = Vector2(463, 6)
-shape = SubResource("CircleShape2D_co2ct")
-target_position = Vector2(-928, -19)
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -16)
+scale = Vector2(2.0625, 2.1875)
+sprite_frames = SubResource("SpriteFrames_n07g6")
+animation = &"jump"

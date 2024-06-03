@@ -1,0 +1,128 @@
+[gd_scene load_steps=19 format=3 uid="uid://cix8bao4mv82x"]
+
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_v2o6s"]
+[ext_resource type="Script" path="res://Entities/Enemy/Throw/Thrower.cs" id="2_lho4x"]
+[ext_resource type="PackedScene" uid="uid://dfp6qfob2qa86" path="res://Entities/Enemy/Throw/ThrowableProjectile.tscn" id="3_tjh45"]
+[ext_resource type="Texture2D" uid="uid://7kkuymw6k2fj" path="res://Assets/dungeonSprites_ v1.5/demon_.png" id="3_tlve4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kksfq"]
+resource_local_to_scene = true
+size = Vector2(20, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nktb"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2qb7"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ka5u"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6662n"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqqu1"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4k8p"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsfxl"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jchh"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx1o1"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5k7n"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivxwg"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf6o3"]
+atlas = ExtResource("3_tlve4")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nq0xh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nktb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2qb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ka5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6662n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqqu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4k8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsfxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jchh")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx1o1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5k7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivxwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf6o3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="ThrowerEnemy" instance=ExtResource("1_v2o6s")]
+script = ExtResource("2_lho4x")
+throwObjScene = ExtResource("3_tjh45")
+throwcd = 2.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_kksfq")
+
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(0, -11)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_nq0xh")
+animation = &"jump"
+autoplay = "idle"

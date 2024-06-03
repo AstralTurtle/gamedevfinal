@@ -79,6 +79,7 @@ theme = SubResource("Theme_6to77")
 text = "Buy"
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="."]
+layout_mode = 0
 offset_left = 256.0
 offset_top = 544.0
 offset_right = 432.0

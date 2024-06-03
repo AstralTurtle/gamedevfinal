@@ -1,14 +1,115 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbw5jwq8fr2xi"]
+[gd_scene load_steps=19 format=3 uid="uid://bbw5jwq8fr2xi"]
 
 [ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_vv75d"]
 [ext_resource type="Script" path="res://Entities/Enemy/Shoot/ShooterEnemy.cs" id="2_8cqye"]
 [ext_resource type="PackedScene" uid="uid://dvfm71misbxb" path="res://Entities/Enemy/Shoot/ShootableProjectile.tscn" id="3_y21t4"]
+[ext_resource type="Texture2D" uid="uid://c7a2bcr6qcckm" path="res://Assets/dungeonSprites_ v1.5/skeleton_.png" id="4_2xy44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hi4fj"]
 resource_local_to_scene = true
+size = Vector2(20, 32)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0l7h1"]
-radius = 200.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_4746g"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sstc7"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n386u"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7b76i"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xal7"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(0, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n473l"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(24, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq1bt"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(48, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42q5y"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(72, 72, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okeon"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwdpn"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvkwu"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2ukw"]
+atlas = ExtResource("4_2xy44")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x4rjf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4746g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sstc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n386u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7b76i")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xal7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n473l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq1bt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42q5y")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okeon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwdpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvkwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2ukw")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [node name="ShooterEnemy" instance=ExtResource("1_vv75d")]
 script = ExtResource("2_8cqye")
@@ -16,9 +117,11 @@ throwObjScene = ExtResource("3_y21t4")
 throwcd = 2.0
 
 [node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1, -6)
 shape = SubResource("RectangleShape2D_hi4fj")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="2"]
-position = Vector2(463, 6)
-shape = SubResource("CircleShape2D_0l7h1")
-target_position = Vector2(-928, -19)
+[node name="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(-1, -14)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_x4rjf")
+animation = &"idle"

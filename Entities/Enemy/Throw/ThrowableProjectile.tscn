@@ -1,8 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfp6qfob2qa86"]
 
 [ext_resource type="Script" path="res://Entities/Enemy/Throw/ThrowableProjectile.cs" id="1_d6w05"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ueqmn"]
+[ext_resource type="Texture2D" uid="uid://c1o7ocmnv43f6" path="res://Assets/caveSprites_/pickaxe_ [gold].png" id="2_ma8ca"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1wf82"]
 
@@ -12,9 +11,11 @@ contact_monitor = true
 script = ExtResource("1_d6w05")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.49012e-07, -0.5)
-scale = Vector2(18, 19)
-texture = SubResource("PlaceholderTexture2D_ueqmn")
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("2_ma8ca")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
 shape = SubResource("CircleShape2D_1wf82")

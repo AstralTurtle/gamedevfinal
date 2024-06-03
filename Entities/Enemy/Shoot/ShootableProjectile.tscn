@@ -1,18 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvfm71misbxb"]
 
 [ext_resource type="Script" path="res://Entities/Enemy/Shoot/ShootableProjectile.cs" id="1_sg6yv"]
+[ext_resource type="Texture2D" uid="uid://bugpdcrvftbfh" path="res://Assets/Bow and Arrows.png" id="2_0gwd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6asx"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_j2b15"]
+size = Vector2(26, 12)
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_sg6yv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 1)
 shape = SubResource("RectangleShape2D_h6asx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.5, 0.5)
-scale = Vector2(17, 17)
-texture = SubResource("PlaceholderTexture2D_j2b15")
+position = Vector2(2.5, 0.125005)
+scale = Vector2(1.6875, 1.41071)
+texture = ExtResource("2_0gwd4")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 14)
