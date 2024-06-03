@@ -26,23 +26,8 @@ public partial class SlimeEnemy : Enemy
             direction = Vector2.Zero;
             GD.Print("Jumping");
             // shapecast to see if there is a player nearby
-            var shape = GetNode<ShapeCast2D>("ShapeCast2D");
+            PlayerDetection();
 
-            if (shape.IsColliding())
-            {
-                for (int i = 0; i < shape.GetCollisionCount(); i++)
-                {
-                    var collision = shape.GetCollider(i);
-                    if (collision is Player)
-                    {
-                        direction = (
-                            (collision as Player).GlobalPosition - GlobalPosition
-                        ).Normalized();
-
-                        break;
-                    }
-                }
-            }
             jumpcdt = 0.0f;
             velocity.Y = JumpVelocity;
         }
@@ -59,5 +44,25 @@ public partial class SlimeEnemy : Enemy
         Velocity = velocity;
         MoveAndSlide();
         base._PhysicsProcess(delta);
+    }
+
+    public void PlayerDetection()
+    {
+        var shape = GetNode<ShapeCast2D>("ShapeCast2D");
+        if (shape.IsColliding())
+        {
+            for (int i = 0; i < shape.GetCollisionCount(); i++)
+            {
+                var collision = shape.GetCollider(i);
+                if (collision is Player)
+                {
+                    direction = (
+                        (collision as Player).GlobalPosition - GlobalPosition
+                    ).Normalized();
+
+                    break;
+                }
+            }
+        }
     }
 }

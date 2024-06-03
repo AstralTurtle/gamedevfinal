@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://k32hxb2ldnsj"]
+
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_njh2n"]
+[ext_resource type="Script" path="res://Entities/Enemy/Zombie/ZombieEnemy.cs" id="2_1gksf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ous2"]
+resource_local_to_scene = true
+size = Vector2(20, 50)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_77ra2"]
+radius = 200.0
+
+[node name="ZombieEnemy" instance=ExtResource("1_njh2n")]
+script = ExtResource("2_1gksf")
+JumpVelocity = -300.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_2ous2")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="2"]
+position = Vector2(463, 6)
+shape = SubResource("CircleShape2D_77ra2")
+target_position = Vector2(-928, -19)

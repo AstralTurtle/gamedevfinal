@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://0hfeinnrmuxr"]
+[gd_scene load_steps=6 format=3 uid="uid://0hfeinnrmuxr"]
 
 [ext_resource type="PackedScene" uid="uid://k6mwqf4sg1u3" path="res://Entities/Enemy/Slime/SlimeEnemy.tscn" id="2_01ngh"]
 [ext_resource type="PackedScene" uid="uid://c6qxdup6mvb0k" path="res://Entities/Player/Support/Scenes/SupportPlayer.tscn" id="3_hvnr6"]
+[ext_resource type="PackedScene" uid="uid://k32hxb2ldnsj" path="res://Entities/Enemy/Zombie/zombieenemy.tscn" id="3_sq8p0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugcjf"]
 size = Vector2(3394, 115)
@@ -29,3 +30,6 @@ Speed = 300.0
 
 [node name="SupportPlayer" parent="." instance=ExtResource("3_hvnr6")]
 position = Vector2(-218.293, -298.961)
+
+[node name="ZombieEnemy" parent="." instance=ExtResource("3_sq8p0")]
+position = Vector2(-349, 15)

@@ -1,22 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://k6mwqf4sg1u3"]
 
 [ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Skeleton/Skeleton.tscn" id="1_70fwk"]
-[ext_resource type="Script" path="res://SlimeEnemy.cs" id="2_645lg"]
+[ext_resource type="Script" path="res://Entities/Enemy/Slime/SlimeEnemy.cs" id="2_2wsun"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_600dm"]
 size = Vector2(20.5, 20.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_cfxbk"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_co2ct"]
 radius = 200.0
 
 [node name="SlimeEnemy" instance=ExtResource("1_70fwk")]
-script = ExtResource("2_645lg")
+script = ExtResource("2_2wsun")
 
 [node name="DamageBox#CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 position = Vector2(2.25, 0.75)
 shape = SubResource("RectangleShape2D_600dm")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="2"]
-position = Vector2(285, -9)
-shape = SubResource("CircleShape2D_cfxbk")
-target_position = Vector2(-583, -2)
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="4"]
+position = Vector2(463, 6)
+shape = SubResource("CircleShape2D_co2ct")
+target_position = Vector2(-928, -19)

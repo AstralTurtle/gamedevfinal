@@ -16,14 +16,8 @@ public partial class Enemy : CharacterBody2D
     [Export]
     float damage = 10;
 
-    Area2D dbox;
-
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        dbox = GetNode<Area2D>("DamageBox");
-        dbox.BodyEntered += OnCollisionEnter;
-    }
+    public override void _Ready() { }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
 
