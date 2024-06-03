@@ -2,5 +2,5 @@ using System.CodeDom.Compiler;
 using Godot;
 
 public partial class Room {
-    public static int floor;
+	public static int floor;
 }

@@ -1,6 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmyiuj8easkmh"]
+[gd_scene load_steps=12 format=3 uid="uid://cmyiuj8easkmh"]
 
 [ext_resource type="Script" path="res://Services/Shop/Shop.cs" id="1_t5j85"]
+[ext_resource type="Texture2D" uid="uid://dub75cinc2f2r" path="res://Assets/UI/Default/Transparent center/panel-transparent-center-028.png" id="2_m8nod"]
+[ext_resource type="Texture2D" uid="uid://c5x2mro4qcrka" path="res://Assets/UI/Default/Panel/panel-009.png" id="3_ocx31"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fsrnl"]
+
+[sub_resource type="Theme" id="Theme_svxdq"]
+ItemList/styles/panel = SubResource("StyleBoxEmpty_fsrnl")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_my2y4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwdne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_55udt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cke3i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ig4s"]
+
+[sub_resource type="Theme" id="Theme_6to77"]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 32
+Button/styles/disabled = SubResource("StyleBoxEmpty_my2y4")
+Button/styles/focus = SubResource("StyleBoxEmpty_vwdne")
+Button/styles/hover = SubResource("StyleBoxEmpty_55udt")
+Button/styles/normal = SubResource("StyleBoxEmpty_cke3i")
+Button/styles/pressed = SubResource("StyleBoxEmpty_1ig4s")
 
 [node name="Shop" type="Control"]
 layout_mode = 3
@@ -12,28 +38,64 @@ grow_vertical = 2
 script = ExtResource("1_t5j85")
 testMode = true
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
 layout_mode = 0
-offset_left = 174.0
-offset_top = 105.0
-offset_right = 662.0
-offset_bottom = 567.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 512.0
+texture = ExtResource("2_m8nod")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[node name="Button" type="Button" parent="."]
+[node name="ItemList" type="ItemList" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 661.0
-offset_top = 102.0
-offset_right = 846.0
-offset_bottom = 165.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 960.0
+offset_bottom = 384.0
+theme = SubResource("Theme_svxdq")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 544.0
+offset_right = 240.0
+offset_bottom = 608.0
+texture = ExtResource("3_ocx31")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="Button" type="Button" parent="NinePatchRect2"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 64.0
+scale = Vector2(0.919999, 1)
+theme = SubResource("Theme_6to77")
 text = "Buy"
 
-[node name="Button2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 658.0
-offset_top = 506.0
-offset_right = 827.0
-offset_bottom = 566.0
-text = "Refresh | Cost 1"
+[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+offset_left = 256.0
+offset_top = 544.0
+offset_right = 432.0
+offset_bottom = 608.0
+texture = ExtResource("3_ocx31")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
 
-[connection signal="pressed" from="Button" to="." method="buyItem"]
-[connection signal="pressed" from="Button2" to="." method="refreshButton"]
+[node name="Button" type="Button" parent="NinePatchRect3"]
+layout_mode = 0
+offset_right = 192.0
+offset_bottom = 64.0
+scale = Vector2(0.919999, 1)
+theme = SubResource("Theme_6to77")
+text = "Refresh"
+
+[connection signal="pressed" from="NinePatchRect2/Button" to="." method="buyItem"]
+[connection signal="pressed" from="NinePatchRect3/Button" to="." method="buyItem"]
