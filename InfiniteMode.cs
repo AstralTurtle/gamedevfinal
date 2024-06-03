@@ -16,6 +16,11 @@ public partial class InfiniteMode : GameManager
 	[Export]
 	PackedScene enemySpawnerScene;
 
+	public override void _Ready(){
+		base._Ready();
+		StartWave();
+	}
+
 	public void StartWave()
 	{
 		for (int i = 0; i < waveSize; i++)
@@ -27,17 +32,21 @@ public partial class InfiniteMode : GameManager
 
 	}	
 
-	public void _on_EnemyDied()
+	public void OnEnemyDied()
 	{
 		enemiesdead++;
+		giveCoins(1);
 		if (enemiesdead >= waveSize)
 		{
 			EndWave();
 		}
 	}
 
+	
+
 	public void EndWave()
 	{
+		giveGems(1);
 		wave++;
 		enemiesdead = 0;
 		waveSize += Mathf.RoundToInt(waveSize/2);

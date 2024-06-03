@@ -124,4 +124,3 @@ shape = SubResource("RectangleShape2D_hi4fj")
 position = Vector2(-1, -14)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_x4rjf")
-animation = &"idle"

@@ -4,7 +4,7 @@ using System;
 public partial class ThrowableProjectile : RigidBody2D
 {
 	[Export]
-	float rotSpeed = (float)Math.PI * 2;
+	float rotSpeed = (float)Math.PI * 10;
 	[Export]
 	float speed = 300;
 	float damage = 0;

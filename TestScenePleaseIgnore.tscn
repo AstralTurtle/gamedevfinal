@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://0hfeinnrmuxr"]
+[gd_scene load_steps=5 format=3 uid="uid://0hfeinnrmuxr"]
 
+[ext_resource type="PackedScene" uid="uid://dvvmkq31pedqm" path="res://Entities/Enemy/EnemySpawner.tscn" id="2_dw2mo"]
 [ext_resource type="PackedScene" uid="uid://c6qxdup6mvb0k" path="res://Entities/Player/Support/Scenes/SupportPlayer.tscn" id="3_hvnr6"]
-[ext_resource type="PackedScene" uid="uid://bbw5jwq8fr2xi" path="res://Entities/Enemy/Shoot/ShooterEnemy.tscn" id="3_k5h4m"]
-[ext_resource type="PackedScene" uid="uid://cix8bao4mv82x" path="res://Entities/Enemy/Throw/thrower_enemy.tscn" id="3_wo23b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugcjf"]
 size = Vector2(3394, 115)
@@ -27,8 +26,8 @@ texture = SubResource("PlaceholderTexture2D_ntvwp")
 [node name="SupportPlayer" parent="." instance=ExtResource("3_hvnr6")]
 position = Vector2(-218.293, -298.961)
 
-[node name="ShooterEnemy" parent="." instance=ExtResource("3_k5h4m")]
-position = Vector2(-456, -7)
+[node name="EnemySpawner" parent="." instance=ExtResource("2_dw2mo")]
+position = Vector2(169, -217)
 
-[node name="ThrowerEnemy" parent="." instance=ExtResource("3_wo23b")]
-position = Vector2(-26, -14)
+[node name="EnemySpawner2" parent="." instance=ExtResource("2_dw2mo")]
+position = Vector2(-633, -210)

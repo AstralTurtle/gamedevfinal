@@ -49,4 +49,23 @@ public partial class GameManager : Node2D
 		player.SetMultiplayerAuthority(id);
 	}
 
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true )]
+	public void RpcGiveCoins(int amount){
+		CurrencyManager localCM = GetTree().Root.GetNode<CurrencyManager>("CurrencyManager");
+		localCM.AddCoins(amount);
+	}
+
+	public void giveCoins(int amount){
+		Rpc("RpcGiveCoins", amount);
+	}
+
+	public void giveGems(int amount){
+		Rpc("RpcGiveGems", amount);
+	}
+
+	public void RpcGiveGems(int amount){
+		CurrencyManager localCM = GetTree().Root.GetNode<CurrencyManager>("CurrencyManager");
+		localCM.AddGems(amount);
+	}
+
 }
