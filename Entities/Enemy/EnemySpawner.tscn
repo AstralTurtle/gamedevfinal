@@ -1,0 +1,11 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvvmkq31pedqm"]
+
+[ext_resource type="Script" path="res://Entities/Enemy/EnemySpawner.cs" id="1_57asp"]
+[ext_resource type="PackedScene" uid="uid://k6mwqf4sg1u3" path="res://Entities/Enemy/Slime/SlimeEnemy.tscn" id="2_fla6w"]
+[ext_resource type="PackedScene" uid="uid://bbw5jwq8fr2xi" path="res://Entities/Enemy/Shoot/ShooterEnemy.tscn" id="3_h2b77"]
+[ext_resource type="PackedScene" uid="uid://cg574on8ub6l3" path="res://Entities/Enemy/Zombie/zombie_enemy.tscn" id="4_7edyt"]
+[ext_resource type="PackedScene" uid="uid://cix8bao4mv82x" path="res://Entities/Enemy/Throw/thrower_enemy.tscn" id="5_4f2fm"]
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_57asp")
+enemyScenes = [ExtResource("2_fla6w"), ExtResource("3_h2b77"), ExtResource("4_7edyt"), ExtResource("5_4f2fm")]
