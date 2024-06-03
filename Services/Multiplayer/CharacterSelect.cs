@@ -8,6 +8,8 @@ public partial class CharacterSelect : Control
 
 	[Signal]
 	public delegate void StartGamePressedEventHandler();
+	[Signal]
+	public delegate void leaveLobbyEventHandler();
 	
 
 	public void openLobby(){
@@ -35,5 +37,10 @@ public partial class CharacterSelect : Control
 		GD.Print(index);
 		EmitSignal(SignalName.selectCharacter, index);
 	}
+
+	public void lobbyPassthrough(){
+		EmitSignal(SignalName.leaveLobby);
+	}
+
 }
 

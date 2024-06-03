@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="gamedevfinal"
-run/main_scene="res://UI/Menu/lobby.tscn"
+run/main_scene="res://Entities/Enemy/Default/DefaultEnemy.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CurrencyManager="*res://Services/Shop/CurrencyManager.tscn"
-Lobby="*res://UI/Menu/lobby.tscn"
 
 [display]
 

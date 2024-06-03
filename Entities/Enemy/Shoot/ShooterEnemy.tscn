@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbw5jwq8fr2xi"]
+
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_vv75d"]
+[ext_resource type="Script" path="res://Entities/Enemy/Shoot/ShooterEnemy.cs" id="2_8cqye"]
+[ext_resource type="PackedScene" uid="uid://dvfm71misbxb" path="res://Entities/Enemy/Shoot/ShootableProjectile.tscn" id="3_y21t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hi4fj"]
+resource_local_to_scene = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0l7h1"]
+radius = 200.0
+
+[node name="ShooterEnemy" instance=ExtResource("1_vv75d")]
+script = ExtResource("2_8cqye")
+throwObjScene = ExtResource("3_y21t4")
+throwcd = 2.0
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_hi4fj")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." index="2"]
+position = Vector2(463, 6)
+shape = SubResource("CircleShape2D_0l7h1")
+target_position = Vector2(-928, -19)

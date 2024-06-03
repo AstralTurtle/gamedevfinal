@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://0hfeinnrmuxr"]
 
-[ext_resource type="PackedScene" uid="uid://k6mwqf4sg1u3" path="res://Entities/Enemy/Slime/SlimeEnemy.tscn" id="2_01ngh"]
 [ext_resource type="PackedScene" uid="uid://c6qxdup6mvb0k" path="res://Entities/Player/Support/Scenes/SupportPlayer.tscn" id="3_hvnr6"]
-[ext_resource type="PackedScene" uid="uid://k32hxb2ldnsj" path="res://Entities/Enemy/Zombie/zombieenemy.tscn" id="3_sq8p0"]
+[ext_resource type="PackedScene" uid="uid://bbw5jwq8fr2xi" path="res://Entities/Enemy/Shoot/ShooterEnemy.tscn" id="3_k5h4m"]
+[ext_resource type="PackedScene" uid="uid://d2kenkhcw1x5p" path="res://Entities/Enemy/Throw/ThrowerEnemy.tscn" id="4_3ov8x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugcjf"]
 size = Vector2(3394, 115)
@@ -24,12 +24,11 @@ position = Vector2(-80.5, 588.5)
 scale = Vector2(3377, 119)
 texture = SubResource("PlaceholderTexture2D_ntvwp")
 
-[node name="SlimeEnemy" parent="." instance=ExtResource("2_01ngh")]
-position = Vector2(48, 47)
-Speed = 300.0
-
 [node name="SupportPlayer" parent="." instance=ExtResource("3_hvnr6")]
 position = Vector2(-218.293, -298.961)
 
-[node name="ZombieEnemy" parent="." instance=ExtResource("3_sq8p0")]
-position = Vector2(-349, 15)
+[node name="ThrowerEnemy" parent="." instance=ExtResource("4_3ov8x")]
+position = Vector2(452, 4)
+
+[node name="ShooterEnemy" parent="." instance=ExtResource("3_k5h4m")]
+position = Vector2(-408, -32)

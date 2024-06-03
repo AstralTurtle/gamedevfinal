@@ -14,7 +14,7 @@ public partial class Enemy : CharacterBody2D
     protected float JumpVelocity = -200;
 
     [Export]
-    float damage = 10;
+    protected float damage = 10;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() { }

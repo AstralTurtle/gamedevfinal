@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://k32hxb2ldnsj"]
 
-[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Default/DefaultEnemy.tscn" id="1_njh2n"]
+[ext_resource type="PackedScene" uid="uid://d113rnvphskv8" path="res://Entities/Enemy/Skeleton/Skeleton.tscn" id="1_njh2n"]
 [ext_resource type="Script" path="res://Entities/Enemy/Zombie/ZombieEnemy.cs" id="2_1gksf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ous2"]

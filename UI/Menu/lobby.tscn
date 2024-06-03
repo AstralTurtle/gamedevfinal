@@ -39,4 +39,5 @@ visible = false
 [connection signal="onHostLocal" from="ConnectionMenu" to="." method="hostLocal"]
 [connection signal="onJoinLocal" from="ConnectionMenu" to="." method="joinLocal"]
 [connection signal="StartGamePressed" from="CharacterSelect" to="." method="StartGamePressed"]
+[connection signal="leaveLobby" from="CharacterSelect" to="." method="leaveLobby"]
 [connection signal="selectCharacter" from="CharacterSelect" to="." method="onCharacterSelectCharacterChosen"]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfp6qfob2qa86"]
+
+[ext_resource type="Script" path="res://Entities/Enemy/Throw/ThrowableProjectile.cs" id="1_d6w05"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ueqmn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wf82"]
+
+[node name="ThrowableProjectile" type="RigidBody2D"]
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_d6w05")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.49012e-07, -0.5)
+scale = Vector2(18, 19)
+texture = SubResource("PlaceholderTexture2D_ueqmn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1wf82")

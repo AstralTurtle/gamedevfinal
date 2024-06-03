@@ -13,7 +13,7 @@ public partial class Shop : Control
     bool testMode = false;
 
     [Export]
-    int numOptions = 4;
+    uint numOptions = 4;
 
     StatItem[] items;
 
@@ -28,14 +28,17 @@ public partial class Shop : Control
 
     public void refreshButton()
     {
+        
         if (testMode)
         {
+            numOptions = GD.Randi() % 3 + 3;
             refreshShop();
             return;
         }
         CurrencyManager currencyManager = GetNode<CurrencyManager>("/root/CurrencyManager");
         if (currencyManager.SpendCoins(1))
         {
+            numOptions = GD.Randi() % 3 + 3;
             refreshShop();
         }
     }

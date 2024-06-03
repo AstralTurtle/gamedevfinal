@@ -50,8 +50,27 @@ func _upnp_setup(server_port):
 func _ready():
 	multiplayer.connected_to_server.connect(connected)
 	multiplayer.peer_connected.connect(onPeerConnected)
+	multiplayer.peer_disconnected.connect(onPeerDisconnected)
+
+func onPeerDisconnected(id):
+	print(id)
+	numPlayers -= 1
+	emit_signal("updatePlayerCount", numPlayers)
+	players.erase(id)
+	
+	if id == 1:
+		leaveLobby()
 
 
+func leaveLobby():
+	# check if we are the host
+	
+		
+
+
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer.close()
+	get_tree().reload_current_scene()
 
 func onPeerConnected(id):
 	numPlayers += 1
