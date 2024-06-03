@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqycw5odliurw"]
+[gd_scene load_steps=5 format=3 uid="uid://cl2604slm1iu7"]
 
 [ext_resource type="Texture2D" uid="uid://dr07l2asvtdcp" path="res://Assets/UI/Default/Panel/panel-030.png" id="1_34vmw"]
 [ext_resource type="Texture2D" uid="uid://bjjws84pcvpyc" path="res://Assets/potions/blue.png" id="2_p48ha"]
@@ -22,6 +22,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+self_modulate = Color(0.168627, 0.168627, 0.168627, 1)
 layout_mode = 0
 offset_right = 800.0
 offset_bottom = 450.0
@@ -41,19 +42,19 @@ offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/Control"]
 layout_mode = 0
-offset_left = 23.0
-offset_top = 4.0
-offset_right = 90.0
-offset_bottom = 71.0
+offset_left = 24.0
+offset_top = 52.0
+offset_right = 72.0
+offset_bottom = 100.0
 texture = ExtResource("2_p48ha")
 
 [node name="Label" type="Label" parent="NinePatchRect/Control"]
 layout_mode = 0
-offset_left = 128.0
-offset_right = 673.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 48
+offset_left = 88.0
+offset_top = 52.0
+offset_right = 537.0
+offset_bottom = 97.0
+theme_override_font_sizes/font_size = 32
 text = "Blue Potion"
 
 [node name="Button" type="Button" parent="NinePatchRect/Control"]
@@ -85,11 +86,11 @@ layout_mode = 0
 offset_left = 128.0
 offset_right = 673.0
 offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 text = "Red Potion"
 
 [node name="Button" type="Button" parent="NinePatchRect/Control2"]
+layout_mode = 0
 offset_left = 527.0
 offset_top = 9.0
 offset_right = 631.0
@@ -117,11 +118,11 @@ layout_mode = 0
 offset_left = 128.0
 offset_right = 673.0
 offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 48
 text = "Yellow Potion"
 
 [node name="Button" type="Button" parent="NinePatchRect/Control3"]
+layout_mode = 0
 offset_left = 529.0
 offset_top = 4.0
 offset_right = 633.0
