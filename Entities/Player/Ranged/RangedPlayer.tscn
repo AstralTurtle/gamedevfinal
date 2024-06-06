@@ -257,7 +257,7 @@ script = ExtResource("7_s4nqc")
 bombScene = ExtResource("8_dngnp")
 
 [node name="StatManager" parent="." index="8"]
-testmode = true
+maxHealth = 80.0
 
 [node name="RayCast2D" parent="." index="9" instance=ExtResource("3_lvp8j")]
 

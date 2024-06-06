@@ -30,6 +30,7 @@ hue_variation_max = 0.1
 [node name="Area2D" type="Area2D"]
 script = ExtResource("1_oydo2")
 speed = 400.0
+lifetime = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1pbgg")

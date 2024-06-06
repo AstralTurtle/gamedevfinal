@@ -280,5 +280,10 @@ script = ExtResource("5_845r1")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 6)
 
+[node name="StatManager" parent="." index="8"]
+speed = 350.0
+damage = 8.0
+maxJumps = 2
+
 [connection signal="Duration" from="Abilities/Ability1" to="CanTakeDamage" method="OnActivated"]
 [connection signal="IFrames" from="Abilities/Ability1" to="." method="takeDamageDebounce"]

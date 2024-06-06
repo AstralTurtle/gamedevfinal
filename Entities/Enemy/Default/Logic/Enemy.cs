@@ -6,12 +6,12 @@ public partial class Enemy : CharacterBody2D
 {
     [Signal]
     public delegate void AnimChangedEventHandler(string animName);
+
     [Signal]
     public delegate void lookDirectionEventHandler(Vector2 dir);
 
     [Export]
-    String[] animNames = { "idle", "run", "jump"};
-
+    String[] animNames = { "idle", "run", "jump" };
 
     [Export]
     float health = 20;
@@ -26,19 +26,20 @@ public partial class Enemy : CharacterBody2D
     protected float damage = 10;
 
     protected Vector2 direction = Vector2.Zero;
-[Export] bool testmode = false;
+
+    [Export]
+    bool testmode = false;
 
     uint testID = 0;
+
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready() {
+    public override void _Ready()
+    {
         if (testmode)
         {
             testID = (uint)GD.Randi();
         }
-
-     }
-
-    
+    }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
 
@@ -82,16 +83,17 @@ public partial class Enemy : CharacterBody2D
                         (collision as Player).GlobalPosition - GlobalPosition
                     ).Normalized();
                     EmitSignal(SignalName.lookDirection, direction);
-                     return true;
+                    return true;
                 }
             }
         }
         return false;
-       
     }
 
     public void triggerDamage(float dmg)
     {
+        if (!IsMultiplayerAuthority())
+            return;
         Rpc("takeDamage", dmg);
     }
 
@@ -106,8 +108,6 @@ public partial class Enemy : CharacterBody2D
             GD.Print("localcm: " + localCM);
             localCM.AddCoins(1);
             GD.Print("Coins: " + localCM.coins);
-
-
 
             QueueFree();
         }

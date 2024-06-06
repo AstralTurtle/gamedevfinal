@@ -32,7 +32,6 @@ public partial class RespawnPlayer : Area2D
             GameManager gm = GetNode<GameManager>("/root/Game");
             gm.respawnPlayer(pclass, pnid, Position);
 
-            // EmitSignal(nameof(updateValueEventHandler), 1.0f);
             QueueFree();
         }
 

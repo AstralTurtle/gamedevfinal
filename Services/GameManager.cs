@@ -68,17 +68,12 @@ public partial class GameManager : Node2D
             // Rpc("rpcSetAuth", player, currentPlayerID);
             player.Name = "Player" + currentPlayerID;
             player.pclass = players[currentPlayerID].As<int>();
-            Rpc("AddPlayerToTree", player, currentPlayerID);
-            // player.Position = new Vector2(100 + i * -100, 100);
-        }
-    }
 
-    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
-    public void AddPlayerToTree(Player player, int id)
-    {
-        AddChild(player);
-        player.AddToGroup("players");
-        player.triggerMultiplayerAuthority(id);
+            AddChild(player);
+            player.AddToGroup("players");
+            player.triggerMultiplayerAuthority(currentPlayerID);
+            player.Position = new Vector2(100 + i * -100, 100);
+        }
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
