@@ -25,7 +25,7 @@ public partial class CurrencyManager : Node
     {
         if (@event is InputEventKey eventKey)
         {
-            if (eventKey.Pressed && eventKey.Keycode.ToString() == "T")
+            if (eventKey.Pressed && eventKey.Keycode.ToString() == "T" && testmode)
             {
                 GD.Print("T Pressed" + gems);
                 AddGems(100);
