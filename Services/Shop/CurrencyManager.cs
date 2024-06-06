@@ -6,6 +6,24 @@ public partial class CurrencyManager : Node
     public static int gems { get; private set; }
     public int coins { get; private set; }
 
+
+    [Export] bool testmode = false;
+
+    uint testID = 0;
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready() {
+        if (testmode)
+        {
+            testID = (uint)GD.Randi();
+        }
+
+     }
+
+    public override void _Process(double delta){
+        if (testmode){
+            GD.Print(testID);
+        }
+    }
     public void AddGems(int amount)
     {
         gems += amount;
@@ -40,9 +58,18 @@ public partial class CurrencyManager : Node
         return new Godot.Collections.Dictionary<String, Variant>() { { "gems", gems } };
     }
 
+    public void resetCoins()
+    {
+        coins = 0;
+    }
+
     public void AddCoins(int amount)
     {
         coins += amount;
+        if (testmode)
+        {
+            GD.Print("Added " + amount + " coins. Total: " + coins + "for player " + testID);
+        }
     }
 
     public bool SpendGems(int amount)
