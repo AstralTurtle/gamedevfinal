@@ -43,6 +43,21 @@ public partial class StatManager : Node2D
     [Export]
     public int Jumpsfmod = 0;
 
+    public int deathCount = 0;
+
+    [Export]
+    bool testmode = false;
+
+    public override void _Process(double delta)
+    {
+        if (testmode)
+        {
+            GD.Print("deathcount: " + deathCount);
+        }
+
+        base._Process(delta);
+    }
+
     public float getHealth()
     {
         return (maxHealth + hpfmod) * (hppmod + 1);
@@ -127,6 +142,36 @@ public partial class StatManager : Node2D
             SignalName.StatChanged,
             new float[] { getHealth(), getSpeed(), (float)getJumps() }
         );
+    }
+
+    public void onPlayerDie()
+    {
+        deathCount++;
+        Name = "StatManager" + GetParent().Name;
+        // move to game so player doesn't lose all stats
+        Reparent(GetTree().Root.GetNode<Node2D>("Game"));
+        // change name so player can be respawned
+    }
+
+    public void onPlayerSpawn()
+    {
+        // check if there is already a statmanager
+        var oldSM = GetTree().Root.GetNodeOrNull<Node2D>("Game/StatManager" + GetParent().Name);
+        if (oldSM != null)
+        {
+            oldSM.Reparent(GetParent());
+            Name = GD.Randi().ToString();
+            oldSM.Name = "StatManager";
+            // if there is, delete this one
+            QueueFree();
+            return;
+        }
+    }
+
+    public override void _EnterTree()
+    {
+        CallDeferred("onPlayerSpawn");
+        base._EnterTree();
     }
 
     public override void _Ready()

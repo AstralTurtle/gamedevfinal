@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://nqicemm0nxbm"]
+[gd_scene load_steps=21 format=3 uid="uid://nqicemm0nxbm"]
 
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/Player.cs" id="1_gjsnu"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/AbilityInput.cs" id="2_iddi7"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultAnimationController.cs" id="2_kupsx"]
+[ext_resource type="PackedScene" uid="uid://csfgg1ab0t5ui" path="res://Entities/Player/respawn_player.tscn" id="2_orv04"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA1.cs" id="3_f2u74"]
 [ext_resource type="PackedScene" uid="uid://cbsp8tdj30huu" path="res://UI/HUD/Abilities.tscn" id="4_lhccp"]
 [ext_resource type="Script" path="res://Entities/Player/Default/Logic/DefaultA2.cs" id="4_qr3ps"]
@@ -43,6 +44,7 @@ outline_color = Color(0, 0, 0, 1)
 [node name="DefaultPlayer" type="CharacterBody2D"]
 platform_on_leave = 1
 script = ExtResource("1_gjsnu")
+respawnScene = ExtResource("2_orv04")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)

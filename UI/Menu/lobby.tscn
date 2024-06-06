@@ -29,7 +29,6 @@ script = ExtResource("4_mswu2")
 visible = false
 
 [node name="CurrencyManager" parent="." instance=ExtResource("6_csv0a")]
-testmode = true
 
 [connection signal="getCode" from="." to="ConnectionMenu/HostHelper" method="getCode"]
 [connection signal="getIP" from="." to="ConnectionMenu/JoinHelper" method="checkCode"]

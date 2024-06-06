@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://0hfeinnrmuxr"]
+[gd_scene load_steps=6 format=3 uid="uid://0hfeinnrmuxr"]
 
 [ext_resource type="PackedScene" uid="uid://dvvmkq31pedqm" path="res://Entities/Enemy/EnemySpawner.tscn" id="2_dw2mo"]
 [ext_resource type="PackedScene" uid="uid://c6qxdup6mvb0k" path="res://Entities/Player/Support/Scenes/SupportPlayer.tscn" id="3_hvnr6"]
+[ext_resource type="PackedScene" uid="uid://csfgg1ab0t5ui" path="res://Entities/Player/respawn_player.tscn" id="3_u1csd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugcjf"]
 size = Vector2(3394, 115)
@@ -25,9 +26,13 @@ texture = SubResource("PlaceholderTexture2D_ntvwp")
 
 [node name="SupportPlayer" parent="." instance=ExtResource("3_hvnr6")]
 position = Vector2(-218.293, -298.961)
+respawnScene = null
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_dw2mo")]
 position = Vector2(169, -217)
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("2_dw2mo")]
 position = Vector2(-633, -210)
+
+[node name="RespawnPlayer" parent="." instance=ExtResource("3_u1csd")]
+position = Vector2(-296, 22)

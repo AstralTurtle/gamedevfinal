@@ -3,6 +3,8 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+    public int pclass = -1;
+
     [Export]
     public float Speed = 300.0f;
 
@@ -44,7 +46,7 @@ public partial class Player : CharacterBody2D
     public delegate void PlayerHitEventHandler(float debounce);
 
     [Signal]
-    public delegate void PlayerDiedEventHandler();
+    public delegate void PlayerDiedEventHandler(Node node);
 
     [Signal]
     public delegate void PlayerRespawnedEventHandler();
@@ -58,6 +60,9 @@ public partial class Player : CharacterBody2D
     bool wasOnFloor = false;
 
     protected bool canBeHit = true;
+
+    [Export]
+    public PackedScene respawnScene;
 
     public override void _Ready()
     {
@@ -90,14 +95,16 @@ public partial class Player : CharacterBody2D
         EmitSignal(SignalName.triggerAnimation, AnimNames[5]);
         GD.Print("takeDamage");
         health -= damage;
+        EmitSignal(SignalName.HealthChanged, health);
         GD.Print(health);
         if (health <= 0)
         {
+            GD.Print("DEAD");
+            Rpc("die");
             // QueueFree();
             // EmitSignal(SignalName.PlayerDied);
             EmitSignal(SignalName.triggerAnimation, AnimNames[6]);
         }
-        EmitSignal(SignalName.HealthChanged, health);
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
@@ -118,6 +125,21 @@ public partial class Player : CharacterBody2D
         if (speedboost > boost)
             return;
         speedboost = boost;
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    public void die()
+    {
+        GD.Print("what in the die?");
+        EmitSignal(SignalName.PlayerDied);
+        StatManager sm = GetNode<StatManager>("StatManager");
+        sm.onPlayerDie();
+        RespawnPlayer rp = respawnScene.Instantiate<RespawnPlayer>();
+        rp.init(pclass, GetMultiplayerAuthority());
+
+        rp.GlobalPosition = GlobalPosition;
+        GetTree().Root.GetNode<Node2D>("Game").AddChild(rp);
+        QueueFree();
     }
 
     public void triggerSpeedBoost(float boost)

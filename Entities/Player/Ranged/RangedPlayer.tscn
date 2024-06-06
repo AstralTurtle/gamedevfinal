@@ -256,6 +256,9 @@ scale = Vector2(1.10387, 0.933493)
 script = ExtResource("7_s4nqc")
 bombScene = ExtResource("8_dngnp")
 
+[node name="StatManager" parent="." index="8"]
+testmode = true
+
 [node name="RayCast2D" parent="." index="9" instance=ExtResource("3_lvp8j")]
 
 [connection signal="ArrowFired" from="Abilities" to="Abilities/PrimaryAttack" method="OnActivated"]
