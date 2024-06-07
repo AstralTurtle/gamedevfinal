@@ -1,60 +1,47 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Godot;
 
+enum RoomType {
+    Default,
+    StairUp,
+    StairDown,
+    Boss,
+    Shop
+}
+
 public partial class Generator {
-	public static Stack<Room> rooms = new Stack<Room>();
+    private static Stack<Room> rooms = new();
 
-	public static void generateRooms(int rooms) {
-		for (int i = 0; i < rooms; i++) {
-			if (calculateBoss(i)) {
-				addBoss();
-				continue;
-			};
+    public static void generate(int rooms) {
+        int floor = 0;
 
-			if (calculateStair()) {
-				addStairUp();
-				continue;
-			};
+        for (int i = 0; i < rooms - 1; i++) {
+            float random = new RandomNumberGenerator().Randf();
 
-			if (calculateStair()) {
-				addStairDown();
-				continue;
-			};
+            if (random <= 0.025) {
+                addRoom(RoomType.StairUp, floor);
+                floor++;
+                continue;
+            }
 
-			addRoom();
-		}
-	}
+            if (random <= 0.05) {
+                addRoom(RoomType.StairDown, floor);
+                floor--;
+                continue;
+            }
+            
+            if (random <= 0.055) {
+                addRoom(RoomType.Shop, floor);
+            }
 
-	public static void addStairUp() {
+            addRoom(RoomType.Default, floor);
+        }
 
-	}
+        addRoom(RoomType.Boss, floor);
+    }
 
-	public static void addStairDown() {
-		
-	}
-
-	public static void addBoss() {
-		
-	}
-
-	public static void addRoom() {
-		
-	}
-
-	public static bool calculateBoss(int number) {
-		number -= 10;
-		float random = new RandomNumberGenerator().Randf() * 2000000;
-		float chance = (float) Math.Pow(Math.E, (double) number); 
-
-		if (number < 0) return false;
-		return (random > chance);
-	}
-
-	public static bool calculateStair() {
-		float random = new RandomNumberGenerator().Randf();
-
-		return (random > 0.05);
-	}
+    public static void addRoom(RoomType type, int floor) {
+        
+    }
 }
