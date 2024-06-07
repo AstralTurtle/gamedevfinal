@@ -69,6 +69,8 @@ public partial class CurrencyManager : Node
         }
     }
 
+
+
     public override void _ExitTree()
     {
         writeGems();
