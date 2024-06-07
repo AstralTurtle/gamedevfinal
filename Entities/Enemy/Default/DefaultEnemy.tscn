@@ -41,3 +41,6 @@ AnimNames = PackedStringArray("run", "idle", "jump", "", "", "", "")
 position = Vector2(-1, -25)
 shape = SubResource("CircleShape2D_f32mu")
 margin = 10.0
+
+[connection signal="AnimChanged" from="." to="AnimatedSprite2D" method="triggerAnim"]
+[connection signal="lookDirection" from="." to="AnimatedSprite2D" method="SetLookDir" flags=3]

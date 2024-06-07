@@ -238,6 +238,7 @@ AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "dea
 
 [node name="Abilities" parent="." index="1"]
 a1cd = 0.0
+a2cd = 7.0
 maxSecondary = 0
 
 [node name="Ability1" parent="Abilities" index="0"]

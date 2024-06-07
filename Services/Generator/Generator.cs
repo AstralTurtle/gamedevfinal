@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 
-enum RoomType {
+public      enum RoomType {
     Default,
     StairUp,
     StairDown,

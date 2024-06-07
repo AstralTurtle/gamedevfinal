@@ -242,9 +242,12 @@ autoplay = "idle"
 script = ExtResource("3_a7e08")
 
 [node name="Abilities" parent="." index="1"]
+a1cd = 15.0
+a2cd = 7.0
 abilityIcons = [null, ExtResource("4_fnugq"), null]
 
 [node name="Ability1" parent="Abilities" index="0"]
+scale = Vector2(2, 2)
 script = ExtResource("2_udeqv")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Abilities/Ability1" index="0"]

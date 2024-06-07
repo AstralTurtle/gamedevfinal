@@ -222,15 +222,17 @@ WAND_RECT = Rect2(0, 0, 12, 24)
 [node name="Abilities" parent="." index="1"]
 position = Vector2(0, 4)
 script = ExtResource("2_nqj6f")
-secondaryCD = 1.0
+secondaryCD = 15.0
 maxArrowCharge = 1.0
 arrowChargeRate = 1.0
 maxLaserCharge = 100.0
 laserRegenRate = 40.0
 laserTimeout = 5.0
 laserDecayRate = 20.0
-mageA1CD = 1.0
-mageA2CD = 1.0
+mageA1CD = 10.0
+mageA2CD = 7.0
+a1cd = 10.0
+a2cd = 7.0
 
 [node name="Ability1" parent="Abilities" index="0"]
 script = ExtResource("3_proag")

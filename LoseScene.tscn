@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://cip2cff6d06g"]
+
+[ext_resource type="Script" path="res://LoseScene.cs" id="1_mfj0f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bllh4"]
+font_size = 128
+
+[sub_resource type="LabelSettings" id="LabelSettings_1oecv"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_7okvn"]
+font_size = 24
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mfj0f")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 175.0
+text = "You Lost "
+label_settings = SubResource("LabelSettings_bllh4")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="CurrencyEarned" type="Label" parent="."]
+layout_mode = 0
+offset_left = 580.0
+offset_top = 329.0
+offset_right = 649.0
+offset_bottom = 374.0
+text = "0"
+label_settings = SubResource("LabelSettings_1oecv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 313.0
+offset_right = 523.0
+offset_bottom = 388.0
+text = "Coins -> Gems	 ="
+label_settings = SubResource("LabelSettings_7okvn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Gems" type="Label" parent="."]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 417.0
+offset_right = 602.0
+offset_bottom = 492.0
+text = "Gems = "
+label_settings = SubResource("LabelSettings_7okvn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 552.0
+offset_right = 649.0
+offset_bottom = 612.0
+text = "Menu
+"
+
+[connection signal="pressed" from="Button" to="." method="Menu"]

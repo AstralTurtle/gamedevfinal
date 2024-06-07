@@ -7,14 +7,19 @@ public partial class GameManager : Node2D
 {
     [Export]
     PackedScene[] playerPrefabs = new PackedScene[4];
+    [Export]
+    PackedScene lose;
+
+    Node lobby;
 
     Dictionary players;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        var lobby = GetNode("/root/Lobby");
+         lobby = GetNode("/root/Lobby");
         players = lobby.Get("players").As<Dictionary>();
+        // CallDeferred("spawnAllPlayers");
         spawnAllPlayers();
     }
 
@@ -24,11 +29,32 @@ public partial class GameManager : Node2D
         Node[] children = GetChildren().ToArray();
         for (int i = 0; i < children.Length; i++)
         {
+ 
             if (children[i] is StatManager)
             {
-                GD.Print("StatManager Found: " + children[i].Name);
+              
+                // GD.Print("StatManager Found: " + children[i].Name);
             }
+            
+
+
         }
+
+        if (GetTree().GetNodesInGroup("players").Count == 0)
+        {
+            GD.Print("losing?");
+            Rpc("Lose");
+        }
+        
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    public void Lose(){
+        // GD.Print("???");
+        GetTree().Root.AddChild(lose.Instantiate());
+        // lobby.Call("leaveLobby");
+        // lobby.QueueFree();
+        
     }
 
     public void respawnPlayer(int pc, int pid, Vector2 pos)
@@ -36,6 +62,17 @@ public partial class GameManager : Node2D
         if (!IsMultiplayerAuthority())
             return;
         Rpc("RPCrespawnPlayer", pc, pid, pos);
+    }
+
+    public void Unload(){
+        Node[] children = GetChildren().ToArray();
+        GD.Print("unloading " + children.Length + " children");
+        for (int i = 0; i < children.Length; i++)
+        {
+            GD.Print("unloading " + children[i].Name);
+            children[i].QueueFree();
+        }
+        QueueFree();
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]

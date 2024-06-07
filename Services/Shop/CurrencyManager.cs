@@ -21,6 +21,13 @@ public partial class CurrencyManager : Node
         }
     }
 
+    public int[] ConvertCurrency(){
+        int retCoins = coins;
+        int newgems = coins / 5;
+        coins = 0;
+        gems += newgems;
+        return new int[] {retCoins, newgems};
+    }
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is InputEventKey eventKey)
@@ -39,6 +46,7 @@ public partial class CurrencyManager : Node
         GetTree().AutoAcceptQuit = false;
         if (testmode)
         {
+            coins = 100;
             testID = (uint)GD.Randi();
         }
         readGems();
