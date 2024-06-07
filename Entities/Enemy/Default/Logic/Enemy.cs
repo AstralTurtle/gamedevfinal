@@ -26,6 +26,8 @@ public partial class Enemy : CharacterBody2D
     protected float damage = 10;
 
     protected Vector2 direction = Vector2.Zero;
+    [Export]
+    protected int coinValue = 5;
 
     [Export]
     bool testmode = false;
@@ -106,7 +108,7 @@ public partial class Enemy : CharacterBody2D
             GD.Print("Enemy Died");
             CurrencyManager localCM = GetTree().Root.GetNode<CurrencyManager>("CurrencyManager");
             GD.Print("localcm: " + localCM);
-            localCM.AddCoins(1);
+            localCM.AddCoins(coinValue);
             GD.Print("Coins: " + localCM.coins);
 
             QueueFree();

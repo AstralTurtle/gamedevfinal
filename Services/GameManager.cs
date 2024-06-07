@@ -26,20 +26,6 @@ public partial class GameManager : Node2D
     // Called every frame. 'delta' is the elaps.ed time since the previous frame.
     public override void _Process(double delta)
     {
-        Node[] children = GetChildren().ToArray();
-        for (int i = 0; i < children.Length; i++)
-        {
- 
-            if (children[i] is StatManager)
-            {
-              
-                // GD.Print("StatManager Found: " + children[i].Name);
-            }
-            
-
-
-        }
-
         if (GetTree().GetNodesInGroup("players").Count == 0)
         {
             GD.Print("losing?");
