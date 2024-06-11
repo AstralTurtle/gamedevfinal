@@ -63,20 +63,20 @@ public partial class StatManager : Node2D
         return maxJumps + Jumpsfmod;
     }
 
-    public void setBaseValue(StatType stat, float value)
+    public void setBaseValue(Stat stat, float value)
     {
         switch (stat)
         {
-            case StatType.Health:
+            case Stat.Health:
                 maxHealth = value;
                 break;
-            case StatType.Damage:
+            case Stat.Damage:
                 damage = value;
                 break;
-            case StatType.Speed:
+            case Stat.Speed:
                 speed = value;
                 break;
-            case StatType.Jumps:
+            case Stat.Jumps:
                 maxJumps = (int)value;
                 break;
         }
@@ -86,20 +86,20 @@ public partial class StatManager : Node2D
         );
     }
 
-    public void setFlatMod(StatType stat, float val)
+    public void setFlatMod(Stat stat, float val)
     {
         switch (stat)
         {
-            case StatType.Health:
+            case Stat.Health:
                 hpfmod += val;
                 break;
-            case StatType.Damage:
+            case Stat.Damage:
                 dmgfmod += val;
                 break;
-            case StatType.Speed:
+            case Stat.Speed:
                 speedfmod += val;
                 break;
-            case StatType.Jumps:
+            case Stat.Jumps:
                 Jumpsfmod += (int)val;
                 break;
         }
@@ -109,17 +109,17 @@ public partial class StatManager : Node2D
         );
     }
 
-    public void setPercentMod(StatType stat, float mod)
+    public void setPercentMod(Stat stat, float mod)
     {
         switch (stat)
         {
-            case StatType.Health:
+            case Stat.Health:
                 hppmod += mod;
                 break;
-            case StatType.Speed:
+            case Stat.Speed:
                 speedpmod += mod;
                 break;
-            case StatType.Damage:
+            case Stat.Damage:
                 dmgpmod += mod;
                 break;
         }

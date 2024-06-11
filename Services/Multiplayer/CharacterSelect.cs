@@ -23,7 +23,7 @@ public partial class CharacterSelect : Control
 
 	// mr passthrough himself
 	public void triggerStartGamePressed(){
-		if (!IsMultiplayerAuthority()) return;
+	  if (!IsMultiplayerAuthority()) return;
 		EmitSignal(SignalName.StartGamePressed);
 	}
 

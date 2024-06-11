@@ -4,10 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://dub75cinc2f2r" path="res://Assets/UI/Default/Transparent center/panel-transparent-center-028.png" id="2_m8nod"]
 [ext_resource type="Texture2D" uid="uid://c5x2mro4qcrka" path="res://Assets/UI/Default/Panel/panel-009.png" id="3_ocx31"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fsrnl"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2i3ab"]
 
 [sub_resource type="Theme" id="Theme_svxdq"]
-ItemList/styles/panel = SubResource("StyleBoxEmpty_fsrnl")
+ItemList/colors/font_color = Color(0, 0, 0, 1)
+ItemList/colors/font_hovered_color = Color(0.501961, 0.501961, 0.501961, 1)
+ItemList/colors/font_outline_color = Color(0.501961, 0.501961, 0.501961, 1)
+ItemList/colors/font_selected_color = Color(0.501961, 0.501961, 0.501961, 1)
+ItemList/font_sizes/font_size = 32
+ItemList/styles/panel = SubResource("StyleBoxEmpty_2i3ab")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_my2y4"]
 
@@ -36,9 +41,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t5j85")
-testMode = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="Panel" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 64.0
@@ -50,15 +54,15 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="ItemList" type="ItemList" parent="NinePatchRect"]
+[node name="ItemList" type="ItemList" parent="Panel"]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 960.0
-offset_bottom = 384.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1000.0
+offset_bottom = 424.0
 theme = SubResource("Theme_svxdq")
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="."]
+[node name="Buy" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 544.0
@@ -70,7 +74,7 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="Button" type="Button" parent="NinePatchRect2"]
+[node name="Button" type="Button" parent="Buy"]
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 64.0
@@ -78,7 +82,7 @@ scale = Vector2(0.919999, 1)
 theme = SubResource("Theme_6to77")
 text = "Buy"
 
-[node name="NinePatchRect3" type="NinePatchRect" parent="."]
+[node name="Refresh" type="NinePatchRect" parent="."]
 layout_mode = 0
 offset_left = 256.0
 offset_top = 544.0
@@ -90,7 +94,7 @@ patch_margin_top = 16
 patch_margin_right = 16
 patch_margin_bottom = 16
 
-[node name="Button" type="Button" parent="NinePatchRect3"]
+[node name="Button" type="Button" parent="Refresh"]
 layout_mode = 0
 offset_right = 192.0
 offset_bottom = 64.0
@@ -98,5 +102,5 @@ scale = Vector2(0.919999, 1)
 theme = SubResource("Theme_6to77")
 text = "Refresh"
 
-[connection signal="pressed" from="NinePatchRect2/Button" to="." method="buyItem"]
-[connection signal="pressed" from="NinePatchRect3/Button" to="." method="buyItem"]
+[connection signal="pressed" from="Buy/Button" to="." method="buyItem"]
+[connection signal="pressed" from="Refresh/Button" to="." method="RefreshButton"]

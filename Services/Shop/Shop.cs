@@ -10,25 +10,25 @@ public partial class Shop : Control
 	PackedScene statItemScene;
 
 	[Export]
-	bool testMode = false;
+	bool debug = false;
 
 	[Export]
-	int numOptions = 4;
+	int numberOfItems = 4;
 
 	StatItem[] items;
 
-	bool isActive = false;
+	bool active = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		itemList = GetNode<ItemList>("ItemList");
+		itemList = GetNode<NinePatchRect>("Panel").GetChild<ItemList>(0);
 		refreshShop();
 	}
 
-	public void refreshButton()
+	public void RefreshButton()
 	{
-		if (testMode)
+		if (debug)
 		{
 			refreshShop();
 			return;
@@ -44,21 +44,19 @@ public partial class Shop : Control
 	{
 		if (@event.IsActionPressed("open_shop"))
 		{
-			isActive = !isActive;
-			Visible = isActive;
+			active = !active;
+			Visible = active;
 		}
 	}
 
 	void refreshShop()
 	{
-		items = new StatItem[numOptions];
+		items = new StatItem[numberOfItems];
 		itemList.Clear();
-		for (int i = 0; i < numOptions; i++)
-		{
+		for (int i = 0; i < numberOfItems; i++) {
 			StatItem item = new StatItem();
 			items[i] = item;
-			if (item.value > 0)
-				itemList.AddItem(item.ToString());
+			if (item.percentageValue > 0f || item.rawValue > 0f) itemList.AddItem(item.ToString());
 		}
 	}
 
