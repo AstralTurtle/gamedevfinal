@@ -4,3 +4,4 @@
 
 [node name="CurrencyManager" type="Node"]
 script = ExtResource("1_fun6u")
+testmode = true

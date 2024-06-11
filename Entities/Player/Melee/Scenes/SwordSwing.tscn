@@ -45,6 +45,7 @@ animations = [{
 [node name="SwordSwing" type="Area2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_bmnrr")
+lifetime = 0.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, -3.5)

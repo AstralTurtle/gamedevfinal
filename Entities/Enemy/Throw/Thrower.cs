@@ -38,6 +38,7 @@ public partial class Thrower : Enemy
 		{
 			throwcdt = 0;
 			
+						if (IsMultiplayerAuthority())
 			Rpc("throwObj", direction);
 
 		}

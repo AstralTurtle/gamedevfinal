@@ -282,8 +282,9 @@ script = null
 position = Vector2(0, 7.75)
 
 [node name="StatManager" parent="." index="9"]
-maxHealth = 150.0
+maxHealth = 125.0
 speed = 250.0
+damage = 7.0
 
 [connection signal="Haste" from="." to="Abilities" method="triggerHaste"]
 [connection signal="Ability2" from="Abilities" to="." method="toggleShield"]

@@ -238,7 +238,8 @@ AnimNames = PackedStringArray("idle", "run", "jump", "jump", "land", "hit", "dea
 
 [node name="Abilities" parent="." index="1"]
 a1cd = 0.0
-maxPrimary = 5
+a2cd = 7.0
+maxSecondary = 0
 
 [node name="Ability1" parent="Abilities" index="0"]
 script = ExtResource("3_yrr61")
@@ -265,6 +266,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Aria" type="Area2D" parent="." index="8"]
 script = ExtResource("3_qqfi2")
+healAmount = 1.0
 speedboost = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aria" index="0"]
@@ -283,4 +285,9 @@ trail_enabled = true
 trail_lifetime = 0.1
 trail_sections = 2
 
+[node name="StatManager" parent="." index="9"]
+maxHealth = 70.0
+damage = 5.0
+
 [connection signal="Activated" from="Abilities/Ability1" to="Aria" method="triggerFlip"]
+[connection signal="PulseAria" from="Abilities/PrimaryAttack" to="Aria" method="triggerPulseAria"]

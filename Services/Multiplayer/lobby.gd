@@ -61,6 +61,12 @@ func onPeerDisconnected(id):
 	if id == 1:
 		leaveLobby()
 
+func exitLobby():
+	print("Exiting lobby")
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer.close()
+	queue_free()
+
 
 func leaveLobby():
 	# check if we are the host

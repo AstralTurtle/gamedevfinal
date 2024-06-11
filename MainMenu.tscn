@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://btflrjvfcmbi0"]
 
 [ext_resource type="Script" path="res://UI/Menu/Play.cs" id="1_pohvc"]
-[ext_resource type="PackedScene" uid="uid://cq4h7lxwrsksf" path="res://UI/Menu/lobby.tscn" id="2_6g5hy"]
+[ext_resource type="PackedScene" uid="uid://cq4h7lxwrsksf" path="res://UI/lobby.tscn" id="2_6g5hy"]
 [ext_resource type="PackedScene" uid="uid://c32lnof5mrmtq" path="res://Services/Shop/CurrencyManager.tscn" id="3_nsnps"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d70yd"]
@@ -39,7 +39,7 @@ offset_left = 289.0
 offset_top = 124.0
 offset_right = 859.0
 offset_bottom = 210.0
-text = "Dungeons & Delvers"
+text = "Dungeon Delvers"
 label_settings = SubResource("LabelSettings_d70yd")
 horizontal_alignment = 1
 vertical_alignment = 1
