@@ -35,10 +35,20 @@ public partial class GameManager : Node2D
         // CallDeferred("spawnAllPlayers");
         spawnAllPlayers();
 
-    var start = GD.Load<PackedScene>("res://Services/Rooms/Start.tscn");
-    var instance = start.Instantiate();
+      var start = GD.Load<PackedScene>("res://Services/Rooms/Start.tscn");
+      var obby = GD.Load<PackedScene>("res://Services/Rooms/Obby.tscn");
 
-    AddChild(instance);
+      for (int i = 0; i < 5; i++) {
+        if (GD.Randf() > 0.5) {
+          var instance = (Node2D) start.Instantiate();
+          instance.Position = new Vector2(24 * 32 * i, 128);
+          AddChild(instance);
+        } else {
+          var instance = (Node2D) obby.Instantiate();
+          instance.Position = new Vector2(24 * 32 * i, 128);
+          AddChild(instance);
+        }
+      }
     }
 
     // Called every frame. 'delta' is the elaps.ed time since the previous frame.
@@ -107,13 +117,14 @@ public partial class GameManager : Node2D
 
             // player.SetMultiplayerAuthority(currentPlayerID);
             // Rpc("rpcSetAuth", player, currentPlayerID);
+            player.ZIndex = 10;
             player.Name = "Player" + currentPlayerID;
             player.pclass = players[currentPlayerID].As<int>();
 
             AddChild(player);
             player.AddToGroup("players");
             player.triggerMultiplayerAuthority(currentPlayerID);
-            player.Position = new Vector2(100 + i * -100, 100);
+            player.Position = new Vector2(100 + i * -100, 0);
         }
     }
 
