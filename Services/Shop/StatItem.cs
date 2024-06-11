@@ -68,7 +68,7 @@ public partial class StatItem : Node
         price += GD.RandRange(-priceRange, priceRange);
 
         // Determine the rarity of the item
-        float rarity = GD.Randf();
+        float newrarity = GD.Randf();
 
         // Determine the state of the item
 		stat = (Stat) GD.RandRange(0, 3);
@@ -79,14 +79,16 @@ public partial class StatItem : Node
 		if (stat == Stat.Jumps) mode = 0.2f;
 
         if (mode < 0.2f) {
-            percentageValue = (float) GD.RandRange(CalcPercentageValue(rarity)[0], CalcPercentageValue(rarity)[1]);
+            percentageValue = (float) GD.RandRange(CalcPercentageValue(newrarity)[0], CalcPercentageValue(newrarity)[1]);
             if (percentageValue < 1) QueueFree();
 		} else {
-            rawValue = CalcStat(stat, (float) GD.RandRange(CalcRawValue(rarity)[0], CalcRawValue(rarity)[1]));
+            rawValue = CalcStat(stat, (float) GD.RandRange(CalcRawValue(newrarity)[0], CalcRawValue(newrarity)[1]));
             if (rawValue < 1) QueueFree();
         }
+		GD.Print(newrarity);
+		GD.Print(SetRarityDisplay(newrarity).ToString());
+		rarity = SetRarityDisplay(newrarity);
 
-		SetRarityDisplay(rarity);
 	}
 
 	float[] CalcRawValue(float rarity) {
@@ -97,6 +99,7 @@ public partial class StatItem : Node
 	}
 
 	float[] CalcPercentageValue(float rarity) {
+	
 		if (rarity < common) return commonPercentageValues;
 		if (rarity < common + uncommon) return uncommonPercentageValues;
 		if (rarity < common + uncommon + rare) return rarePercentageValues;
@@ -143,9 +146,9 @@ public partial class StatItem : Node
             case Stat.Health:
                 return baseValue * 10;
             case Stat.Damage:
-                return baseValue * 10;
-            case Stat.Speed:
                 return baseValue;
+            case Stat.Speed:
+                return baseValue* 10;
             case Stat.Jumps:
                 return Mathf.FloorToInt(baseValue / 5);
         }
