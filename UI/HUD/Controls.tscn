@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://gotc6j0d53e0"]
+[gd_scene load_steps=11 format=3 uid="uid://gotc6j0d53e0"]
 
 [ext_resource type="Texture2D" uid="uid://by70h7aldsi2k" path="res://Assets/controller_icons/mouse/left.png" id="1_53jsq"]
 [ext_resource type="Texture2D" uid="uid://ctihc6i76cura" path="res://Assets/UI/Default/Panel/panel-029.png" id="1_d1gph"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cmdovbg7si3wt" path="res://Assets/controller_icons/key/d.png" id="6_lr3hl"]
 [ext_resource type="Texture2D" uid="uid://blm8w3cl0d1p5" path="res://Assets/controller_icons/key/w.png" id="7_yy21a"]
 [ext_resource type="Texture2D" uid="uid://ctsqh0bbcua6x" path="res://Assets/controller_icons/key/s.png" id="9_1nmku"]
+[ext_resource type="Texture2D" uid="uid://b6ch2vufptspx" path="res://Assets/controller_icons/key/b.png" id="10_mwfkx"]
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -186,6 +187,7 @@ theme_override_font_sizes/font_size = 24
 text = "Move"
 
 [node name="Movement2" type="Control" parent="NinePatchRect"]
+visible = false
 layout_mode = 1
 anchor_left = -0.086
 anchor_top = -0.032
@@ -206,6 +208,7 @@ texture = ExtResource("7_yy21a")
 expand_mode = 1
 
 [node name="Movement" type="Label" parent="NinePatchRect/Movement2"]
+visible = false
 layout_mode = 0
 offset_left = 60.0
 offset_top = 10.0
@@ -215,6 +218,7 @@ theme_override_font_sizes/font_size = 24
 text = "Quick Fall"
 
 [node name="Movement3" type="Control" parent="NinePatchRect"]
+visible = false
 layout_mode = 1
 anchor_left = -0.086
 anchor_top = -0.032
@@ -251,3 +255,32 @@ offset_right = 229.0
 offset_bottom = 61.0
 theme_override_font_sizes/font_size = 36
 text = "Controls"
+
+[node name="Movement4" type="Control" parent="NinePatchRect"]
+layout_mode = 1
+anchor_left = -0.086
+anchor_top = -0.032
+anchor_right = -0.086
+anchor_bottom = -0.032
+offset_left = 44.832
+offset_top = 317.488
+offset_right = 84.832
+offset_bottom = 357.488
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/Movement4"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.232
+offset_right = 52.0
+offset_bottom = 102.232
+texture = ExtResource("10_mwfkx")
+expand_mode = 1
+
+[node name="Movement" type="Label" parent="NinePatchRect/Movement4"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 62.0
+offset_right = 363.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 24
+text = "Open Shop"

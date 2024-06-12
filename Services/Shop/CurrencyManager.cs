@@ -3,6 +3,12 @@ using System;
 
 public partial class CurrencyManager : Node
 {
+    [Signal]
+    public delegate void CoinsChangedEventHandler(int coins);
+
+    [Signal]
+    public delegate void GemsChangedEventHandler(int gems);
+
     public static int gems { get; private set; }
     public int coins { get; private set; }
 
@@ -21,13 +27,17 @@ public partial class CurrencyManager : Node
         }
     }
 
-    public int[] ConvertCurrency(){
+    public int[] ConvertCurrency()
+    {
         int retCoins = coins;
         int newgems = coins / 5;
         coins = 0;
         gems += newgems;
-        return new int[] {retCoins, newgems};
+        EmitSignal(SignalName.GemsChanged, gems);
+        EmitSignal(SignalName.CoinsChanged, coins);
+        return new int[] { retCoins, newgems };
     }
+
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event is InputEventKey eventKey)
@@ -63,13 +73,12 @@ public partial class CurrencyManager : Node
     public void AddGems(int amount)
     {
         gems += amount;
+        EmitSignal(SignalName.GemsChanged, gems);
         if (testmode)
         {
             GD.Print("Added " + amount + " gems. Total: " + gems + "for player " + testID);
         }
     }
-
-
 
     public override void _ExitTree()
     {
@@ -105,6 +114,7 @@ public partial class CurrencyManager : Node
             GD.Print(d["gems"]);
             gems = (int)d["gems"];
         }
+        EmitSignal(SignalName.GemsChanged, gems);
     }
 
     public Godot.Collections.Dictionary<String, Variant> serializeGems()
@@ -115,11 +125,14 @@ public partial class CurrencyManager : Node
     public void resetCoins()
     {
         coins = 0;
+        EmitSignal(SignalName.CoinsChanged, coins);
     }
 
     public void AddCoins(int amount)
     {
         coins += amount;
+        EmitSignal(SignalName.CoinsChanged, coins);
+        GD.Print("Added " + amount + " coins. Total: " + coins);
         if (testmode)
         {
             GD.Print("Added " + amount + " coins. Total: " + coins + "for player " + testID);
@@ -134,6 +147,7 @@ public partial class CurrencyManager : Node
         }
 
         gems -= amount;
+        EmitSignal(SignalName.GemsChanged, gems);
         return true;
     }
 
@@ -145,6 +159,8 @@ public partial class CurrencyManager : Node
         }
 
         coins -= amount;
+        EmitSignal(SignalName.CoinsChanged, coins);
+
         return true;
     }
 }

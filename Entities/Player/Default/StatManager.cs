@@ -52,7 +52,9 @@ public partial class StatManager : Node2D
     {
         if (testmode)
         {
-            GD.Print("deathcount: " + deathCount);
+            GD.Print(
+                "stats: " + getHealth() + " " + getSpeed() + " " + getJumps() + " " + getDamage()
+            );
         }
 
         base._Process(delta);

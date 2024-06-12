@@ -53,7 +53,7 @@ public partial class GameManager : Node2D
                 instance.Position = new Vector2(24 * 32 * i, 128);
                 Rpc("RPCAddRoom", instance);
             }
-        }d
+        }
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
@@ -133,10 +133,18 @@ public partial class GameManager : Node2D
             player.pclass = players[currentPlayerID].As<int>();
 
             AddChild(player);
+            RpcId(currentPlayerID, "spawnShopRPC");
             player.AddToGroup("players");
             player.triggerMultiplayerAuthority(currentPlayerID);
             player.Position = new Vector2(100 + i * -100, 0);
         }
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    public void spawnShopRPC()
+    {
+        var shop = GD.Load<PackedScene>("res://Services/Shop/Shop.tscn");
+        GetNode("CanvasLayer").AddChild(shop.Instantiate());
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
