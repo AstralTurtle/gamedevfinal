@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Resolvers;
 
-public enum RoomType {
+public enum RoomType
+{
     Default,
     StairUp,
     StairDown,
@@ -13,13 +14,13 @@ public enum RoomType {
     Shop
 }
 
-
 public partial class GameManager : Node2D
 {
-  
-  private static Stack<RoomType> rooms = new();
+    private static Stack<RoomType> rooms = new();
+
     [Export]
     PackedScene[] playerPrefabs = new PackedScene[4];
+
     [Export]
     PackedScene lose;
 
@@ -30,25 +31,35 @@ public partial class GameManager : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-         lobby = GetNode("/root/Lobby");
+        lobby = GetNode("/root/Lobby");
         players = lobby.Get("players").As<Dictionary>();
         // CallDeferred("spawnAllPlayers");
         spawnAllPlayers();
 
-      var start = GD.Load<PackedScene>("res://Services/Rooms/Start.tscn");
-      var obby = GD.Load<PackedScene>("res://Services/Rooms/Obby.tscn");
+        var start = GD.Load<PackedScene>("res://Services/Rooms/Start.tscn");
+        var obby = GD.Load<PackedScene>("res://Services/Rooms/Obby.tscn");
 
-      for (int i = 0; i < 5; i++) {
-        if (GD.Randf() > 0.5) {
-          var instance = (Node2D) start.Instantiate();
-          instance.Position = new Vector2(24 * 32 * i, 128);
-          AddChild(instance);
-        } else {
-          var instance = (Node2D) obby.Instantiate();
-          instance.Position = new Vector2(24 * 32 * i, 128);
-          AddChild(instance);
-        }
-      }
+        for (int i = 0; i < 5; i++)
+        {
+            if (GD.Randf() > 0.5)
+            {
+                var instance = (Node2D)start.Instantiate();
+                instance.Position = new Vector2(24 * 32 * i, 128);
+                Rpc("RPCAddRoom", instance);
+            }
+            else
+            {
+                var instance = (Node2D)obby.Instantiate();
+                instance.Position = new Vector2(24 * 32 * i, 128);
+                Rpc("RPCAddRoom", instance);
+            }
+        }d
+    }
+
+    [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
+    public void RPCAddRoom(Node n)
+    {
+        AddChild(n);
     }
 
     // Called every frame. 'delta' is the elaps.ed time since the previous frame.
@@ -59,16 +70,15 @@ public partial class GameManager : Node2D
             GD.Print("losing?");
             Rpc("Lose");
         }
-        
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
-    public void Lose(){
+    public void Lose()
+    {
         // GD.Print("???");
         GetTree().Root.AddChild(lose.Instantiate());
         // lobby.Call("leaveLobby");
         // lobby.QueueFree();
-        
     }
 
     public void respawnPlayer(int pc, int pid, Vector2 pos)
@@ -78,7 +88,8 @@ public partial class GameManager : Node2D
         Rpc("RPCrespawnPlayer", pc, pid, pos);
     }
 
-    public void Unload(){
+    public void Unload()
+    {
         Node[] children = GetChildren().ToArray();
         GD.Print("unloading " + children.Length + " children");
         for (int i = 0; i < children.Length; i++)

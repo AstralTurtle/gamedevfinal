@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://tyefdx00unju"]
+[gd_scene load_steps=11 format=3 uid="uid://tyefdx00unju"]
 
 [ext_resource type="Script" path="res://Services/GameManager.cs" id="1_ek3bk"]
 [ext_resource type="PackedScene" uid="uid://balcxa7is4rwl" path="res://Entities/Player/Rogue/RoguePlayer.tscn" id="2_hsmnt"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://dv63y4uv5pgi6" path="res://Assets/ParallaxBackground/MiddleLayer.png" id="4_u5q1y"]
 [ext_resource type="Texture2D" uid="uid://b6k2n5dx1ejom" path="res://Assets/ParallaxBackground/TopLayer.png" id="5_h4ai3"]
 [ext_resource type="Texture2D" uid="uid://bfwhsybnsrj3u" path="res://Assets/ParallaxBackground/Light.png" id="6_dh25t"]
-[ext_resource type="PackedScene" uid="uid://dvvmkq31pedqm" path="res://Entities/Enemy/EnemySpawner.tscn" id="11_ppy4w"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(0, -2)
@@ -88,9 +87,3 @@ centered = false
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://Entities/Player/Rogue/RoguePlayer.tscn", "res://Entities/Player/Rogue/Scenes/RogueWarp.tscn", "res://Entities/Player/Rogue/Scenes/DaggerThrow.tscn", "res://Entities/Player/Support/Scenes/SupportPlayer.tscn")
 spawn_path = NodePath("..")
-
-[node name="EnemySpawner" parent="." instance=ExtResource("11_ppy4w")]
-position = Vector2(172, -14)
-
-[node name="EnemySpawner2" parent="." instance=ExtResource("11_ppy4w")]
-position = Vector2(76, 32)
