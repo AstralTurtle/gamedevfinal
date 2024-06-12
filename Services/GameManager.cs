@@ -118,6 +118,7 @@ public partial class GameManager : Node2D
         GD.Print(playerPrefabs);
         Variant[] playerID = players.Keys.ToArray();
         // int[] playerIDs = (int[])playerID; // Cast playerID to int[]
+
         for (int i = players.Count - 1; i > -1; i--)
         {
             // GD.Print(i);
@@ -133,7 +134,7 @@ public partial class GameManager : Node2D
             player.pclass = players[currentPlayerID].As<int>();
 
             AddChild(player);
-            RpcId(currentPlayerID, "spawnShopRPC");
+            Rpc("spawnShopRPC", currentPlayerID);
             player.AddToGroup("players");
             player.triggerMultiplayerAuthority(currentPlayerID);
             player.Position = new Vector2(100 + i * -100, 0);
@@ -141,10 +142,14 @@ public partial class GameManager : Node2D
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]
-    public void spawnShopRPC()
+    public void spawnShopRPC(int currentPlayerID)
     {
         var shop = GD.Load<PackedScene>("res://Services/Shop/Shop.tscn");
-        GetNode("CanvasLayer").AddChild(shop.Instantiate());
+        Shop s = shop.Instantiate<Shop>();
+        s.SetMultiplayerAuthority(currentPlayerID);
+        GD.Print("spawning shop" + currentPlayerID);
+        GD.Print("shop authority: " + s.GetMultiplayerAuthority());
+        GetNode("CanvasLayer").AddChild(s);
     }
 
     [Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true)]

@@ -52,8 +52,19 @@ public partial class Shop : Control
         }
     }
 
+    public override void _EnterTree()
+    {
+        // does shop exist
+
+
+        base._EnterTree();
+    }
+
     public override void _UnhandledInput(InputEvent @event)
     {
+        GD.Print("shop?: " + IsMultiplayerAuthority());
+        if (!IsMultiplayerAuthority())
+            return;
         if (@event.IsActionPressed("open_shop"))
         {
             active = !active;
@@ -111,6 +122,10 @@ public partial class Shop : Control
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        GD.Print("Shop: " + GetChildCount());
+        GD.Print("IsMultiplayerAuthority: " + IsMultiplayerAuthority());
+        if (!IsMultiplayerAuthority())
+            Visible = false;
+
+        // GD.Print("Shop: " + GetChildCount());
     }
 }

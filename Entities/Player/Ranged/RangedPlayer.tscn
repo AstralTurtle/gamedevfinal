@@ -260,7 +260,6 @@ bombScene = ExtResource("8_dngnp")
 
 [node name="StatManager" parent="." index="8"]
 maxHealth = 80.0
-testmode = true
 
 [node name="RayCast2D" parent="." index="9" instance=ExtResource("3_lvp8j")]
 
