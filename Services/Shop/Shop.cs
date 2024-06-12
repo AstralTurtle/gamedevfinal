@@ -63,8 +63,17 @@ public partial class Shop : Control
 
     void refreshShop()
     {
+        foreach (Node child in GetChildren())
+        {
+            if (child is StatItem)
+            {
+                child.QueueFree();
+            }
+        }
+
         items = new StatItem[numberOfItems];
         itemList.Clear();
+
         for (int i = 0; i < numberOfItems; i++)
         {
             StatItem item = new StatItem();
@@ -85,14 +94,18 @@ public partial class Shop : Control
         }
         StatItem item = items[index];
 
-        GD.Print(
+        if (
             item.OnBuy(
                 // how do i even get the player
                 GetTree().Root
                     .GetNode("Game")
                     .GetNode<Player>("Player" + GetMultiplayerAuthority())
             )
-        );
+        )
+        {
+            itemList.SetItemText(index, item.ToString());
+            itemList.Deselect(index);
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

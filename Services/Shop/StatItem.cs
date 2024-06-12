@@ -19,6 +19,8 @@ public enum Rarity
 
 public partial class StatItem : Node
 {
+    bool isSold = false;
+
     // The price of the item in coins
     public int price = 10;
 
@@ -133,6 +135,9 @@ public partial class StatItem : Node
 
     public bool OnBuy(Player player)
     {
+        if (isSold)
+            return false;
+
         CurrencyManager CurrencyManager = GetTree().Root.GetNode<CurrencyManager>(
             "CurrencyManager"
         );
@@ -142,10 +147,12 @@ public partial class StatItem : Node
         if (percentageValue == 0f)
         {
             Rpc("ChangeStat", player, (int)stat, rawValue, false);
+            isSold = true;
             return true;
         }
 
         Rpc("ChangeStat", player, (int)stat, percentageValue, true);
+        isSold = true;
         return true;
     }
 
@@ -206,7 +213,9 @@ public partial class StatItem : Node
                 + " | Price:  "
                 + price
                 + " | Rarity: "
-                + rarity.ToString();
+                + rarity.ToString()
+                + " | Bought:  "
+                + isSold;
         return "Type: "
             + stat.ToString()
             + " | Modifier: "
@@ -214,6 +223,8 @@ public partial class StatItem : Node
             + "% | Price: "
             + price
             + " | Rarity: "
-            + rarity.ToString();
+            + rarity.ToString()
+            + " | Bought:  "
+            + isSold;
     }
 }
